@@ -1,26 +1,74 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="showList.aspx.cs" Inherits="web.page.formpages.showList" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+    <style type="text/css">
+        .dropList {
+            left: 11px;
+            display: none;
+            border: 1px solid Gray;
+            background-color: White;
+            width: 132px;
+            position: absolute;
+            height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-top: -5px;
+        }
+    </style>
     <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
     <script type="text/javascript">
-        function showDetail( objectId, hcmc,table) {
-            layui.use( 'layer', function () {
+        function showDetail( objectId, hcmc, table )
+        {
+            layui.use( 'layer', function ()
+            {
                 var layer = layui.layer;
                 layer.open( {
                     type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
                     maxmin: false, move: false, area: ['632px', '90%'],
-                    content: 'showDetail.aspx?table='+table+'&&objectId=' + objectId,
-                    end: function () {
+                    content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
+                    end: function ()
+                    {
                         document.getElementById( "Button2" ).click();
                     }
                 } )
             } )
         };
+    </script>
+    <script type="text/javascript"> 
+        var timoutID;
+        function ShowMList()
+        {
+            document.getElementById( "dropList" ).style.display = "block";
+        }
+        function HideMList()
+        {
+            if ( document.getElementById( "dropList" ) != null )
+                document.getElementById( "dropList" ).style.display = "none";
+        }
+        function ChangeInfo()
+        {
+            var ObjectText = "";
+            var ObjectValue = "";
+            var r = document.getElementsByName( "subBox" );
+            for ( var i = 0; i < r.length; i++ )
+            {
+                if ( r[i].checked )
+                {
+                    ObjectValue += r[i].value + ",";
+                    ObjectText += r[i].nextSibling.nodeValue + ",";
+                }
+            }
+            document.getElementById( "txtBox" ).value = ObjectText;
+            $( "#newValue" ).val = ObjectValue;
+        }
+
+        function BodyTr_onload(){
+            this.left = document.getElementById( 'headTr' ).left;
+        }
     </script>
 </head>
 <body>
@@ -31,6 +79,7 @@
         <asp:DropDownList ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Height="24px" Width="50px" Style="margin-bottom: 8px;" Font-Names="微软雅黑" Font-Size="Small" BackColor="#CCCCCC"/>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height:0;width:0;padding-left:0;padding:0 0;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;"/>
+        
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="25" Width="100%" EmptyDataText="暂缺"
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
@@ -40,6 +89,33 @@
                         <asp:CheckBox ID="ChkItem" runat="server" Width="40px" />
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
+                </asp:TemplateField>
+                <asp:TemplateField  HeaderText="XZQ">
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text= '<%# DataBinder.Eval(Container.DataItem,"XZQ")%>'>></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="50px" />
+                    <EditItemTemplate>
+                        <div id="dropCheckBox" onmouseover="clearTimeout(timoutID);" onmouseout="timoutID = setTimeout('HideMList()', 250);">
+                            <table width="150px">
+                                <tr id="headTr">
+                                    <td align="left">
+                                        <asp:HiddenField ID="newValue" runat="server" OnValueChanged="newValue_ValueChanged"></asp:HiddenField>
+                                        <input id="txtBox" type="text" value="<%=nameList %>" readonly="readonly" onclick="ShowMList()"
+                                            style="width: 130px;" />
+                                    </td>
+                                    <%--<td align="left" valign="middle"><a href="#" onclick="ShowMList()" >选择</a></td> --%>
+                                </tr>
+                                <tr id="bodyTr" style="color: #454B5A; font-family:Arial; font-size:14px;font-weight:lighter" onload="BodyTr_onload();">
+                                    <td colspan="2">
+                                        <div id="dropList" class="dropList">
+                                            <%=checkList%>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </EditItemTemplate>
                 </asp:TemplateField>
             </Columns>
             <PagerTemplate>
