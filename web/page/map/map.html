@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="applicable-device" content="p,mobile" />
+
+    <title>广州市水务规划勘测设计研究院地理信息系统</title>
+
+<!--Link块-->
+    <link href="plugins/arcgis_js_api/dijit/themes/claro/claro.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/arcgis_js_api/esri/css/esri.css" rel="stylesheet" type="text/css" />
+    <!--augur css--> 
+    <link href="plugins/hplus/css/augur.min.css" rel="stylesheet"/>
+    <!--地图页面样式-->
+    <link href="plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!--滚动条样式-->
+    <link herf="../../plugins/layui/css/layui.css" rel="stylesheet" />
+    <link href="plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="css/table.css" rel="stylesheet" type="text/css" />
+    <link href="css/tabContent.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" media="screen" type="text/css" />
+<!--Link块-->
+<!--JS Src块-->
+    <script src="plugins/arcgis_js_api/jquery.js" type="text/javascript"></script>
+    
+    <script src="plugins/jquery-ui/jquery.min.js?v=1.0.1" type="text/javascript"></script>
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <!--引用的Jquery.js文件-->
+    <script src="plugins/mCustomScrollbar/jquery.mousewheel.min.js"></script>
+    <!--引入滚动条插件-->
+    <script src="plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.js"></script>
+    <!--引入滚动条插件-->
+    <script src="plugins/echarts/echarts.js"></script>
+    <script src="plugins/bootstrap/bootstrap.min.js?v=3.3.6"></script>
+    <script src="plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    
+    <!--地图脚本-->
+    <script src="plugins/arcgis_js_api/dojoConfig.js" type="text/javascript"></script>
+    <script src="plugins/arcgis_js_api/init.js" type="text/javascript"></script>
+    <script src="js/initConfig.js"></script>
+    <script src="js/initMap.js" type="text/javascript"></script>
+    <script src="js/queryLayer.js" type="text/javascript"></script>
+    <!--地图脚本-->
+    <!--框架脚本-->
+    <script src="plugins/hplus/js/augur.min.js"></script>
+    <!--自定义脚本-->
+    <script src="js/initTabContent.js" type="text/javascript"></script>
+    <script src="js/showDataPanel.js" type="text/javascript"></script>
+
+    <!--框架脚本-->
+<!--JS src块-->
+</head>
+<body>
+    <!--地图及功能控件-->
+    <div id="wrapper">
+        <!-- 地图显示 -->
+        <div class="J_iframe" id="mapDiv" data-id="mapDiv"></div>
+        <!--显示比例尺及坐标-->
+        <div id="coorDiv" style="position: absolute; bottom: 18px; z-index: 1000; margin-left: 10px;"></div>
+        <div id="scaleDiv" style="position: absolute; bottom: 1px; z-index: 1000; margin-left: 10px;"></div>
+        <!--显示比例尺及坐标-->
+        <!-- 地图显示-->
+        <!--搜索条-->
+        <div id="search" style="top:5px;margin-left: 35px">
+            <div id="inputBox">
+                <!--文本框-->
+                <input id="sole-input" class="searchbox-content-common" type="txt" name="word" autocomplete="off" maxlength="256" placeholder="查找河流(涌)、设施等" value=""/>             
+                <!--文本框-->
+                <!--下拉按钮-->
+                <span class="icon icon-bottom" id="toggleLayer"></span>
+                <!--下拉按钮-->
+            </div>
+            <!--搜索按钮-->
+            <button id="search-button" data-title="搜索"></button>
+            <!--搜索按钮-->
+        </div>
+        <!--搜索条-->
+        <!--搜索下拉框-->
+        <div id="selectLayer" style="top: 44px; margin-left: 30px">
+            <!--搜索项目框-->
+<!--            <div class="layerStyle clear">
+                <p>选择图层</p>
+                <ul>
+                    <li class="highlight"><a class="all" href="#" onclick="allBtnClick()">全部</a></li>
+                    <li><a class="heicong" href="#" onclick="showHeChongPanel()">河流(涌)</a></li>
+                    <li><a class="shuizha" href="#" onclick="showShuiZhaPanel()">水闸</a></li>
+                    <li><a class="bengzhan" href="#" onclick="showBengZhanPanel()">泵站</a></li>
+                    <li><a class="difang" href="#" onclick="showDiFangPanel()">堤防</a></li>
+                    <li><a class="shuiku" href="#" onclick="showShuiKuPanel()">水库</a></li>
+                    <li><a class="interestPoint" href="#" onclick="showInterestPointPanel()">兴趣点</a></li>
+                </ul>
+            </div>-->
+            <!--搜索项目框-->
+            <!--搜索结果TAB条-->
+            <div class="infoPanel">
+                <div class="infoBox" style="overflow-y: hidden;height: 100%; width: 100%">
+                    <!--tab标题-->
+                    <div id="divSearchResultTitle" style="overflow-x: auto; overflow-y: hidden; width: auto; display: none">
+                        <ul class="tabs" id="searchResultTitle" style="background: transparent;width: 2000px;">
+                        </ul>
+                    </div>
+                    <!--tab标题-->
+                    <!--tab内容-->
+                    <div class="tab_container" id="searchResultInfo" style="background: transparent; width: 99%; height: 100%; display: none;"></div>
+                    <!--tab内容-->
+                </div>
+            </div>
+            <!--搜索结果TAB条-->
+        </div>
+        <!--搜索下拉框-->
+
+                    <!--<div class="expandBox">
+                        <p>详细信息</p>
+                        <span id="closeExpand" class="close"></span>
+                        <table id="exampleTableEvents" class="table table-bordered"></table>
+                    </div>-->
+
+        <!--统计信息窗-->
+        <div id="rightInfoWindow" class="allInfoBox" style="z-index: 99999; margin-top: 65px">
+            <!--关闭按钮-->
+            <span id="closeAll" class="close"></span>
+            <!--关闭按钮-->
+            <div style="height: 16em; width: 100%">
+                <div class="chart" style="float: left">
+                    <div class="chartBox" id="chartBox1">
+                        <!--标题-->
+                        <p id="chartTitle1" class="chartTitle p1"></p>
+                        <!--标题-->
+                        <!--小标题-->
+                        <a style="font-size: 13px; color: black">选择统计类型</a>
+                        <!--小标题-->
+                        <!--选择框-->
+                        <select style="width: 30%" id="select_statisticField" onchange="refreshChart()" dir="ltr"></select>
+                        <!--选择框-->
+
+                        <div id="chart1" class="chartbody">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="divBottomTable" style="height: 55%; width: 100%; display: block; margin-top: 30px;">
+                <!-- 用于显示与饼图相应的表格 -->
+                <p id="div_PietableName" style="font-size: 15px; height: 10%">统计表:</p>
+                <div id="div_Pietable" style="width: 100%; height: 90%; overflow-y: auto;">
+                </div>
+            </div>
+            <div id="divBottomChart" style="height: 60%; width: 100%; display: none; margin-top: 10px">
+                <ul class="tabs" style="background: transparent;">
+                    <li class="active" style="background: transparent;"><a id="tab_Chart" href="#tab1"
+                        style="background: transparent;"><font color="black">统计图</font></a></li>
+                    <li style="background: transparent;"><a href="#tab2" style="background: transparent;">
+                        <font color="black">统计表</font></a></li>
+                </ul>
+                <input type="radio" name="radiobutton" value="35" checked onclick="changeStatisticShow()"
+                    style="margin-left: 10px">
+                <font size="1">35条黑臭河涌</font>
+                <input type="radio" name="radiobutton" value="152" onclick="changeStatisticShow()">
+                <font size="1">152条黑臭河涌</font>
+                <div class="tab_container" style="background: transparent; width: 100%; height: 100%;">
+                    <div id="tab1" class="tab_content" style="display: block; width: 100%; height: 100%;">
+                        <div style="width: 100%; height: 95%">
+                            <div class="chart">
+                                <div class="chartBox" id="chartBox2" style="display: none;">
+                                    <p id="chartTitle2" class="chartTitle p2">
+                                    </p>
+                                    <div id="chart2" class="chartbody">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab_content" style="display: none; width: 100%; height: 100%;">
+                        <div style="width: 100%; height: 95%">
+                            <div class="chart">
+                                <div class="chartBox">
+                                    <p id="tableTitle" class="chartTitle p2">
+                                    </p>
+                                    <div id="statTable" style="width: 100%; height: 100%; overflow-y: auto;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!--统计信息窗-->
+        <div>
+            <iframe id="iframe720" style="position: absolute; top: 0px; left: 0px; z-index: 99999; display: none" width="100%" height="100%" scrolling="no" frameborder="0"></iframe>
+        </div>
+        <!--地图工具栏-->
+        <div id="tool-box">
+            <ul class="toolBar">
+                <li class="menu down">
+                    <a id="tool_1" href="#" title="导航工具"></a>
+                    <ul class="popup measureTools" id="list1">
+                        <li><a href="#" id="tool_zoom_in" class="zoom-in">放大</a></li>
+                        <li><a href="#" id="tool_zoom_out" class="zoom-out">缩小</a></li>
+                        <li class="highlight"><a href="#" id="tool_zoom_pan" class="zoom-pan">平移</a></li>
+                    </ul>
+                </li>
+                <li class="menu down">
+                    <a id="tool_2" href="#" title="测距"></a>
+                    <ul class="popup measureTools" id="list2">
+                        <li><a href="#" class="measure-distance">测线</a></li>
+                        <li><a href="#" class="measure-area">测面</a></li>
+                    </ul>
+                </li>
+                <li class="menu down">
+                    <a id="tool_3" href="#" title="选择图层"></a>
+                    <!--图层开关-->
+                    <ul class="popup" id="list3">
+                        <li>
+                            <a href="#" class="projectInfo">项目基本信息</a>
+                            <div class="bg_con">
+                                <input id="checked_4" type="checkbox" class="layerSwitch" checked />
+                                <label for="checked_4"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="interestPoint">兴趣点</a>
+                            <div class="bg_con">
+                                <input id="checked_13" type="checkbox" class="layerSwitch" />
+                                <label for="checked_13"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="interestMultiPoint1">兴趣点集</a>
+                            <div class="bg_con">
+                                <input id="checked_14" type="checkbox" class="layerSwitch" />
+                                <label for="checked_14"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="interestPolyline1">兴趣线</a>
+                            <div class="bg_con">
+                                <input id="checked_15" type="checkbox" class="layerSwitch" />
+                                <label for="checked_15"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="interestPolygon1">兴趣面</a>
+                            <div class="bg_con">
+                                <input id="checked_16" type="checkbox" class="layerSwitch" />
+                                <label for="checked_16"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="shuiliLayer">水系数据</a>
+                            <div class="bg_con">
+                                <input id="checked_6" type="checkbox" class="layerSwitch" checked />
+                                <label for="checked_6"></label>
+                            </div>
+                        </li>
+                        <!--                        <li class="menu down"><a id="tool_s1" href="#" title="选择图层">排水数据</a>
+                                            <ul class="popup" id="lists1">
+                                                <li><a href="#" class="paishuidianLayer">排水点数据</a>
+                                                    <div class="bg_con">
+                                                        <input id="checked_14" type="checkbox" class="layerSwitch" />
+                                                        <label for="checked_14"></label>
+                                                    </div>
+                                                </li>
+                                                <li><a href="#" class="paishuixianLayer">排水线数据</a>
+                                                    <div class="bg_con">
+                                                        <input id="checked_15" type="checkbox" class="layerSwitch" />
+                                                        <label for="checked_15"></label>
+                                                    </div>
+                                                </li>
+                                                <li><a href="#" class="paishuimianLayer">排水面数据</a>
+                                                    <div class="bg_con">
+                                                        <input id="checked_16" type="checkbox" class="layerSwitch" />
+                                                        <label for="checked_16"></label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                            </ul>
+                                        </li>-->
+                        <li>
+                            <a href="#" class="paishuiLayer">排水数据</a>
+                            <div class="bg_con">
+                                <input id="checked_12" type="checkbox" class="layerSwitch" checked />
+                                <label for="checked_12"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="jichushujuLayer">道路数据</a>
+                            <div class="bg_con">
+                                <input id="checked_1" type="checkbox" class="layerSwitch" checked />
+                                <label for="checked_1"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="dituLayer">基础底图</a>
+                            <div class="bg_con">
+                                <input id="checked_3" type="checkbox" class="layerSwitch" checked />
+                                <label for="checked_3"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="weixingyingxiangLayer">卫星影像</a>
+                            <div class="bg_con">
+                                <input id="checked_5" type="checkbox" class="layerSwitch" />
+                                <label for="checked_5"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="zhili187">187条重点治理</a>
+                            <div class="bg_con">
+                                <input id="checked_11" type="checkbox" class="layerSwitch" />
+                                <label for="checked_11"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="zhili35">35条重点治理</a>
+                            <div class="bg_con">
+                                <input id="checked_8" type="checkbox" class="layerSwitch" />
+                                <label for="checked_8"></label>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="#" class="qujie">区界</a>
+                            <div class="bg_con">
+                                <input id="checked_2" type="checkbox" class="layerSwitch" />
+                                <label for="checked_2"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="zhenjie">镇界</a>
+                            <div class="bg_con">
+                                <input id="checked_9" type="checkbox" class="layerSwitch" />
+                                <label for="checked_9"></label>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#" class="cunjie">村界</a>
+                            <div class="bg_con">
+                                <input id="checked_10" type="checkbox" class="layerSwitch" />
+                                <label for="checked_10"></label>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--图层开关-->
+                </li>
+                <li class="menu down">
+                    <a id="tool_4" href="#" title="选择查询"></a>
+                    <ul class="popup measureTools" id="list4">
+                        <li><a href="#" id="tool_rec_select" class="select_rectangle">拉框查询</a></li>
+                        <li><a href="#" id="tool_clear_select" class="select_clear">清除选择</a></li>
+                    </ul>
+                </li>
+                <li class="menu down">
+                    <a id="tool_5" href="#" title="信息管理"></a>
+                    <a href="#" id="projectPoint" class="interest_manager" style="display:none">添加项目位置</a>
+                    <ul class="popup measureTools" id="list5">
+                        <li><a href="#" id="projectPoint" class="interest_manager" style="display:none">添加项目位置</a></li>
+                        <li><a href="#" id="interest_point1" class="interest_manager">添加点</a></li>
+                        <li><a href="#" id="interest_multipoint1" class="interest_manager">添加点集</a></li>
+                        <li><a href="#" id="interest_polyline1" class="interest_manager">添加线</a></li>
+                        <li><a href="#" id="interest_polygon1" class="interest_manager">添加面</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="extentResultWindow" class="extentResultBox" style="z-index: 99999; margin-top: 65px">
+            <div style="height: 2em; width: 100%; background: #3385ff; font-size: 15px; color: white">框选结果</div>
+            <span id="extentResultCloseAll" class="close"></span>
+            <div id="divExtentResult">
+                <!--tab标题-->
+                <div id="dicExtentResultTab" style="overflow-x: scroll; overflow-y: hidden; width: auto;">
+                    <ul class="tabs" id="extentResultTitle" style="background: transparent;">
+                    </ul>
+                </div>
+                <!--tab内容-->
+                <div class="tab_container" id="extentResultInfo" style="background: transparent; width: 99%; height: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--地图及功能控件-->
+    <div id="svgloading" style="z-index:9999;display:none" class= "l-wrapper" >
+        <svg class="svg1" style ="margin-top:25%" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="circle" class="g-circles g-circles--v3">
+                <circle id="12" transform="translate(35, 16.698730) rotate(-30) translate(-35, -16.698730) " cx="35" cy="16.6987298" r="10"></circle>
+                <circle id="11" transform="translate(16.698730, 35) rotate(-60) translate(-16.698730, -35) " cx="16.6987298" cy="35" r="10"></circle>
+                <circle id="10" transform="translate(10, 60) rotate(-90) translate(-10, -60) " cx="10" cy="60" r="10"></circle>
+                <circle id="9" transform="translate(16.698730, 85) rotate(-120) translate(-16.698730, -85) " cx="16.6987298" cy="85" r="10"></circle>
+                <circle id="8" transform="translate(35, 103.301270) rotate(-150) translate(-35, -103.301270) " cx="35" cy="103.30127" r="10"></circle>
+                <circle id="7" cx="60" cy="110" r="10"></circle>
+                <circle id="6" transform="translate(85, 103.301270) rotate(-30) translate(-85, -103.301270) " cx="85" cy="103.30127" r="10"></circle>
+                <circle id="5" transform="translate(103.301270, 85) rotate(-60) translate(-103.301270, -85) " cx="103.30127" cy="85" r="10"></circle>
+                <circle id="4" transform="translate(110, 60) rotate(-90) translate(-110, -60) " cx="110" cy="60" r="10"></circle>
+                <circle id="3" transform="translate(103.301270, 35) rotate(-120) translate(-103.301270, -35) " cx="103.30127" cy="35" r="10"></circle>
+                <circle id="2" transform="translate(85, 16.698730) rotate(-150) translate(-85, -16.698730) " cx="85" cy="16.6987298" r="10"></circle>
+                <circle id="1" cx="60" cy="10" r="10"></circle>
+            </g>
+            <use xlink:href="#circle" class="use" ></use>
+        </svg>
+    </div>
+</body>
+</html>

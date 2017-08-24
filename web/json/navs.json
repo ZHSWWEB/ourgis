@@ -1,0 +1,234 @@
+[
+  {
+    "title": "电子地图",
+    "icon": "icon-earth",
+    "href": "map.html",
+    "spread": false
+  },
+  {
+    "title": "专题数据",
+    "icon": "icon-zhuanti1",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "35条河流治理",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "187条河流治理",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "水利数据",
+    "icon": "icon-shetangguanli",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "河流",
+        "icon": "icon-polygon",
+        "href": "page/formpages/hechongList.aspx",
+        "spread": false
+      },
+      {
+        "title": "湖泊",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "水库",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "堤防",
+        "icon": "icon-line1",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "泵站",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "水闸",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "排水数据",
+    "icon": "icon-paishui",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "污水系统",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "污水处理厂",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "排水泵站",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "排水水闸",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "排水管道",
+        "icon": "icon-line1",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "排水沟渠",
+        "icon": "icon-line1",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "监测点",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "雨水口",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "拍门",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "溢流堰",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "排放口",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "管线暗点",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "弯头",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "窨井",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "变径",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "附注数据",
+    "icon": "icon-pin",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "面标记",
+        "icon": "icon-polygon",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "线标记",
+        "icon": "icon-line1",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "点集标记",
+        "icon": "icon-dian",
+        "href": "page/404.html",
+        "spread": false
+      },
+      {
+        "title": "点标记",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/404.html",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "历史数据",
+    "icon": "icon-lishi1",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "用户登陆历史",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/recinfo/recinfoLogin.aspx",
+        "spread": false
+      },
+      {
+        "title": "用户操作历史",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/recinfo/recinfoDataOperation.aspx",
+        "spread": false
+      },
+      {
+        "title": "使用习惯信息",
+        "icon": "icon-dian-copy-copy",
+        "href": "page/recinfo/recinfoHabit.aspx",
+        "spread": false
+      }
+    ]
+  },
+  {
+    "title": "用户管理",
+    "icon": "icon-yonghuguanli2",
+    "href": "page/user/userManager.aspx",
+    "spread": false
+  }
+]

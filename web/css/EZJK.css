@@ -1,0 +1,59 @@
+﻿
+.layui-nav .layui-nav-item a {    padding: 0 12px;}
+
+.logo {
+    width: 400px;
+    padding: 0 12px;
+}
+
+.weather {    margin-left: 0px;}
+
+.layui-layout-admin .layui-body {    bottom: 0px;}
+
+#top_tabs {    left: 24px;}
+    #top_tabs li{    height:40px;}
+
+.hideMenu {
+    width: 24px;
+    height: 35px;
+    font-size: 24px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+/*#top_tabs_box {padding-right: 50px;}*/
+/*#top_tabs {right: 50px;}*/
+.closeBox {    padding: 0 0;}
+    .closeBox a {    height:40px;}
+    .closeBox li {        background-color: #1AA094;}
+    .closeBox .layui-nav-child {        left: -57px;}
+ .icon-redianguanbi1 {    color:#fff;}
+
+.layui-unselect.layui-tab-bar {
+    width: 0px;
+    height: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+}
+
+.headBox {
+    display: block;
+    border-left: 0px;
+    border-bottom: 1px solid #e2e2e2;
+    left: 0px;
+    width: 24px;
+}
+    .headBox li {        width: inherit;}
+
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    background-color: #1AA094;
+}
+
+#headHide {
+    width:24px;
+    height:40px;
+    margin: 0 0;
+    padding: 0 0;
+}

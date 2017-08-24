@@ -1,0 +1,36 @@
+﻿customBody,customTable,customTable2{ 
+    font-size:8px; 
+} 
+customTable,customTable2{ 
+    table-layout:fixed; 
+    empty-cells:show; 
+    border-collapse: collapse; 
+    margin:0 auto;
+}
+customh1,customh2,customh3{ 
+    margin:0; 
+    padding:0; 
+} 
+.customTable .customTable2{ 
+    border:1px solid #cad9ea; 
+    color:#666; 
+} 
+.customTable .customTable2 th { 
+    background-repeat:repeat-x; 
+    height:30px; 
+} 
+.customTable2 td,.customTable2 th{ 
+    border:1px solid #cad9ea; 
+    padding:0 1em 0;
+    white-space:nowrap;
+} 
+.customTable td,.customTable th{ 
+    border:1px solid #cad9ea; 
+    padding:0 1em 0; 
+    font-size:15px;
+    word-break: keep-all;
+    white-space:nowrap;
+} 
+.customTable tr.alter{ 
+    background-color:#f5fafe; 
+}

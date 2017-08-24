@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link herf="../../plugins/layui/css/layui.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <title></title>
+    <script>
+        var t;
+        function save() {
+            //check pointReady
+            var pointReady = document.getElementById( "pointReady" ).innerText;
+            if ( pointReady != 1 ) {//no point
+                alert("请选定项目位置")
+            } else {//point ready
+                var mapWin = parent.document.getElementById( "map" ).contentWindow;
+                //send save
+                mapWin.document.getElementById( "projectPoint" ).innerText = ""
+                //wait for saved
+                timedCount();
+            }
+        }
+        //开始计时
+        function timedCount() {
+            pointSaved = document.getElementById( "pointSaved" ).innerText;
+            t = setTimeout( "timedCount()", 200 )
+            if ( pointSaved == 1 ) {
+                saveForm()
+            }
+        }
+        //停止计时
+        function stopCount() {
+            clearTimeout( t )
+        }
+        //存储到数据库
+        function saveForm() {
+            stopCount();//停止计时
+            alert("UPDATE PROJECT_INFO SET (xxxxxx) WHERE SYSTEMID = -1")
+        }
+    </script>
+</head>
+<body>
+    <div>项目位置定点状态：<p  id="pointReady">0</p></div>
+    <button onclick="save()">提交</button>
+    <div title="保存"></div>
+    <div>项目位置保存状态：<p id="pointSaved">0</p></div>
+</body>
+</html>
