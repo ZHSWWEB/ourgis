@@ -30,7 +30,13 @@ namespace web.page.formpages
         static bool onSort = false;
         [ThreadStatic]
         static int index = -1;
-
+        //下拉多选
+        public string checkList { get; set; }
+        public string valueList { get; set; }//复选框的value值 
+        public string nameList { get; set; } // 复选框的Text值 
+        public DataSet listds { get; set; }//数据源 
+        public string inputValue { get; set; }//选中的字符串值 
+        public string outputValue { get; set; }//新的的字符串值 
         protected void Page_Load(object sender, EventArgs e)
         {
             //获得此cookie对象 
@@ -73,7 +79,6 @@ namespace web.page.formpages
                         //首次打开
                         if (!IsPostBack)
                         {
-
                             //绑定下拉菜单
                             DistrictList_bind();
                             SearchList_bind();
@@ -135,6 +140,12 @@ namespace web.page.formpages
         }
         protected void refresh()//绑定到GridView
         {
+            //if (GridView1.EditIndex > -1)
+            //{
+            //    HiddenField hF = GridView1.Rows[GridView1.EditIndex].Cells[1].FindControl("newValue") as HiddenField;
+            //    hF.Value = inputValue;
+            //    BindData();
+            //}
             //获取行政区下拉菜单、搜索框、搜索选项的值
             string district = DistrictList.SelectedValue;
             string field = SearchList.SelectedValue;
@@ -204,21 +215,29 @@ namespace web.page.formpages
                 e.Row.Attributes.Add("onmouseover", "currentColor=this.style.backgroundColor;this.style.backgroundColor='#31b7ab';");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentColor;");
             }
-            //if (e.Row.RowState == DataControlRowState.Alternate || e.Row.RowState == DataControlRowState.Edit)
-            //{
-            //    e.Row.Cells[3].Controls.AddAt(0, new DropDownList());
-            //    //    TextBox curText;
-            //    //    DropDownList sexddl = new DropDownList;
-            //    //    sexddl.Items.Add("男");
-            //    //    sexddl.Items.Add("女");
-            //    //    sexddl.Items.Add("");
-            //    //    curText = (TextBox)e.Row.Cells[2].Controls[0];
-            //    //    sexddl.SelectedValue = curText.Text;
-            //    //    e.Row.Cells[2].Controls.RemoveAt(0);
-            //    //    e.Row.Cells[2].Controls.Add(sexddl);
+            if (GridView1.EditIndex > -1 && e.Row.RowIndex == GridView1.EditIndex && (e.Row.RowState & DataControlRowState.Edit) != 0)  
+            {
+                HiddenField newValue = e.Row.Controls[1].Controls[0] as HiddenField;
+                DataSet dds = QuarySde("select distinct xzq,xzq val from slg_rv_po");
+                listds = dds;//操作数据库，获得数据集dataset 
+                //listds = config.DataSet;//获得数据集dataset 
+                inputValue = "天河区,白云区";//编辑时，可把字符串赋值到该参数 
+                outputValue = inputValue;
+                newValue.Value = inputValue;
+                BindData();
+                //    e.Row.Cells[3].Controls.AddAt(0, new DropDownList());
+                //    //    TextBox curText;
+                //    //    DropDownList sexddl = new DropDownList;
+                //    //    sexddl.Items.Add("男");
+                //    //    sexddl.Items.Add("女");
+                //    //    sexddl.Items.Add("");
+                //    //    curText = (TextBox)e.Row.Cells[2].Controls[0];
+                //    //    sexddl.SelectedValue = curText.Text;
+                //    //    e.Row.Cells[2].Controls.RemoveAt(0);
+                //    //    e.Row.Cells[2].Controls.Add(sexddl);
 
-            //    int a = GridView1.Rows[e.Row.RowIndex-1].Cells[3].Controls.Count;
-            //}
+                //    int a = GridView1.Rows[e.Row.RowIndex-1].Cells[3].Controls.Count;
+            }
         }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)//行编辑事件
         {
@@ -456,6 +475,52 @@ namespace web.page.formpages
         protected void SearchList_SelectedIndexChanged(object sender, EventArgs e)//搜索选项的切换事件
         {
             //refresh();
+        }
+        #region 绑定数据 
+        protected void BindData()
+        {
+            string liststr = "";
+            DataTable dt = new DataTable();
+            if (CheckDataSet(listds, out dt))
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string chkchecked = "";
+                    if (!string.IsNullOrEmpty(inputValue))
+                    {
+                        string[] arrstr = inputValue.Split(',');
+                        if (arrstr != null)
+                        {
+                            for (int c = 0; c < arrstr.Length; c++)
+                            {
+                                if (arrstr[c] == dt.Rows[i][0].ToString())
+                                {
+                                    chkchecked = "checked=\"checked\"";
+                                    valueList += dt.Rows[i][0] + ",";
+                                    nameList += dt.Rows[i][1] + ",";
+                                }
+                            }
+                        }
+                    }
+                    liststr += "<div><input type=\"checkbox\"   " + chkchecked + " name=\"subBox\"    onclick=\"ChangeInfo()\" value=\"" + dt.Rows[i][0] + "\" />" + dt.Rows[i][1] + "</div>";
+                }
+            }
+            checkList = liststr;
+        }
+        #endregion
+        /// <summary> 
+        /// 检查dataset是否有值 
+        /// </summary> 
+        /// <param name="listds"></param> 
+        /// <returns></returns> 
+        public static bool CheckDataSet(DataSet listds, out DataTable dt)
+        {
+            dt = listds.Tables.Count > 0 ? (listds.Tables[0].Rows.Count > 0 ? listds.Tables[0] : null) : null;
+            return (dt == null) ? false : true;
+        }
+        protected void newValue_ValueChanged(object sender, EventArgs e)
+        {
+            outputValue = e.ToString();
         }
     }
 }
