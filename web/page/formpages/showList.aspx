@@ -66,7 +66,7 @@
             ObjectText = ObjectText.substr( 0, ObjectValue.length - 1 );
             ObjectValue = ObjectValue.substr( 0, ObjectValue.length - 1 );
             document.getElementById( "txtBox" ).value = ObjectText;
-            $( "#newValue" ).val = ObjectValue;
+            document.getElementById( "GridView1_newValue_" + "<%= GridView1.EditIndex %>" ).value = ObjectValue;
         }
 
         function BodyTr_onload(){
@@ -93,7 +93,7 @@
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
-                <asp:TemplateField  HeaderText="XZQ">
+                <asp:TemplateField  HeaderText="行政区">
                     <ItemTemplate>
                         <asp:Label runat="server" Text= '<%# DataBinder.Eval(Container.DataItem,"XZQ")%>'>></asp:Label>
                     </ItemTemplate>
@@ -103,7 +103,7 @@
                             <table width="150px">
                                 <tr id="headTr">
                                     <td align="left">
-                                        <asp:HiddenField ID="newValue" runat="server" OnValueChanged="newValue_ValueChanged"></asp:HiddenField>
+                                        <asp:HiddenField id="newValue" runat="server" OnValueChanged="newValue_ValueChanged"></asp:HiddenField>
                                         <input id="txtBox" type="text" value="<%=nameList %>" readonly="readonly" onclick="ShowMList()"
                                             style="width: 130px;" />
                                     </td>

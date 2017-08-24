@@ -85,9 +85,9 @@ namespace web.page.formpages
                             //生成GridView
                             build();
                             //获取按键所在列
-                            int editcontrol = listconfig.Rows.Count + 1;
-                            int detailcontrol = listconfig.Rows.Count + 2;
-                            int mapcontrol = listconfig.Rows.Count + 3;
+                            int editcontrol = listconfig.Rows.Count + 2;
+                            int detailcontrol = listconfig.Rows.Count + 3;
+                            int mapcontrol = listconfig.Rows.Count + 4;
                             //隐藏按键
                             GridView1.Columns[editcontrol].Visible = (Convert.ToInt32(config.Rows[0]["showEdit"]) == 0 || Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()) < 2) ? false : true;
                             GridView1.Columns[detailcontrol].Visible = Convert.ToInt32(config.Rows[0]["showDetail"]) == 1 ? true : false;
@@ -255,16 +255,25 @@ namespace web.page.formpages
             for (int i = 0; i < GridView1.Columns.Count; i++)
             {
                 BoundField boundField = GridView1.Columns[i] as BoundField;
-                if (boundField == null) continue;
-                if (boundField.ReadOnly) continue;
-                string fieldName = boundField.DataField;
-                string fieldCN = boundField.HeaderText;
-                string newvalue = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[i].Controls[0])).Text;
-                string oldvalue = ds.Tables[0].Rows[0][i - 1].ToString();
-                if (newvalue != oldvalue)
+                TemplateField templateField = GridView1.Columns[i] as TemplateField;
+                if (boundField != null)
                 {
-                    update = update + fieldName + " = '" + newvalue + "',";
-                    history = history + "#" + fieldCN + " ：[" + oldvalue + "] >> [" + newvalue + "]" + ", ";
+                    if (boundField.ReadOnly) continue;
+                    string fieldName = boundField.DataField;
+                    string fieldCN = boundField.HeaderText;
+                    string newvalue = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[i].Controls[0])).Text;
+                    string oldvalue = ds.Tables[0].Rows[0][i - 2].ToString();
+                    if (newvalue != oldvalue)
+                    {
+                        update = update + fieldName + " = '" + newvalue + "',";
+                        history = history + "#" + fieldCN + " ：[" + oldvalue + "] >> [" + newvalue + "]" + ", ";
+                    }
+                }else if (templateField != null && templateField.HeaderText == "行政区")
+                {
+                    string fieldName = "XZQ";
+                    string fieldCN = templateField.HeaderText;
+                    string newvalue = ((HiddenField)(GridView1.Rows[e.RowIndex].Cells[i].Controls[0])).Value;
+                    string oldvalue = ds.Tables[0].Rows[0]["XZQ"].ToString();
                 }
             }
             if (update != "")
@@ -279,8 +288,8 @@ namespace web.page.formpages
                 history = history.Remove(history.Length - 2, 2);
                 history = "insert into REC_" + config.Rows[0]["tableName"] + " (USERID,OBJECTID,OPERATION,DATETIME,DETAIL) values ('" + Request.Cookies["userId"].Value + "','" + objectId + "','修改',to_date('" + now + "', 'yyyy-mm-dd hh24:mi:ss'),'" + history + "')";
 
-                OperateSde(update);
-                OperateUser(history);
+                //OperateSde(update);
+                //OperateUser(history);
             }
             GridView1.EditIndex = -1;
             refresh();
