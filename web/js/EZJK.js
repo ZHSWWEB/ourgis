@@ -25,10 +25,10 @@ function autoDateTime(elemId,ms) {
 }
 //获取系统日期-时间
 var serverDate;
-//$.ajax({ type: "OPTIONS", url: "/", complete: function (x) { serverDate = x.getResponseHeader("Date") } })
+$.ajax({ type: "OPTIONS", url: "/", complete: function (x) { serverDate = x.getResponseHeader("Date") } })
 function serDateTime() {
     var date;
-  //  $.ajax({type: "OPTIONS", url: "/", complete: function (x) {serverDate = x.getResponseHeader("Date")}});
+    $.ajax({type: "OPTIONS", url: "/", complete: function (x) {serverDate = x.getResponseHeader("Date")}});
     var now = new Date(serverDate);
     var year = now.getFullYear();
     var month = now.getMonth() + 1;
