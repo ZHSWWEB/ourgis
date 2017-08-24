@@ -19,6 +19,7 @@
             margin-top: -5px;
         }
     </style>
+    <script src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
     <script type="text/javascript">
         function showDetail( objectId, hcmc, table )
@@ -57,11 +58,13 @@
             for ( var i = 0; i < r.length; i++ )
             {
                 if ( r[i].checked )
-                {
-                    ObjectValue += r[i].value + ",";
-                    ObjectText += r[i].nextSibling.nodeValue + ",";
+                { 
+                    ObjectText += r[i].nextSibling.nodeValue + "|";
+                    ObjectValue += r[i].value + "|";
                 }
             }
+            ObjectText = ObjectText.substr( 0, ObjectValue.length - 1 );
+            ObjectValue = ObjectValue.substr( 0, ObjectValue.length - 1 );
             document.getElementById( "txtBox" ).value = ObjectText;
             $( "#newValue" ).val = ObjectValue;
         }

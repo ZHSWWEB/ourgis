@@ -140,12 +140,6 @@ namespace web.page.formpages
         }
         protected void refresh()//绑定到GridView
         {
-            //if (GridView1.EditIndex > -1)
-            //{
-            //    HiddenField hF = GridView1.Rows[GridView1.EditIndex].Cells[1].FindControl("newValue") as HiddenField;
-            //    hF.Value = inputValue;
-            //    BindData();
-            //}
             //获取行政区下拉菜单、搜索框、搜索选项的值
             string district = DistrictList.SelectedValue;
             string field = SearchList.SelectedValue;
@@ -215,28 +209,15 @@ namespace web.page.formpages
                 e.Row.Attributes.Add("onmouseover", "currentColor=this.style.backgroundColor;this.style.backgroundColor='#31b7ab';");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentColor;");
             }
+            //Gridview处于编辑状态&&数据行处于编辑行&&数据行状态含编辑状态
             if (GridView1.EditIndex > -1 && e.Row.RowIndex == GridView1.EditIndex && (e.Row.RowState & DataControlRowState.Edit) != 0)  
             {
-                HiddenField newValue = e.Row.Controls[1].Controls[0] as HiddenField;
-                DataSet dds = QuarySde("select distinct xzq,xzq val from slg_rv_po");
-                listds = dds;//操作数据库，获得数据集dataset 
-                //listds = config.DataSet;//获得数据集dataset 
-                inputValue = "天河区,白云区";//编辑时，可把字符串赋值到该参数 
+                listds = QuaryExcel("select dropMulitListValue,dropMulitListValue from [District$] where " + config.Rows[0]["tableName"] + "_DML = 1");
+                //inputValue = ((DataRowView)e.Row.DataItem).Row.ItemArray[3].ToString();
+                inputValue = DataBinder.Eval(e.Row.DataItem, "XZQ").ToString();
                 outputValue = inputValue;
-                newValue.Value = inputValue;
+                ((HiddenField)e.Row.Controls[1].Controls[0]).Value = inputValue;
                 BindData();
-                //    e.Row.Cells[3].Controls.AddAt(0, new DropDownList());
-                //    //    TextBox curText;
-                //    //    DropDownList sexddl = new DropDownList;
-                //    //    sexddl.Items.Add("男");
-                //    //    sexddl.Items.Add("女");
-                //    //    sexddl.Items.Add("");
-                //    //    curText = (TextBox)e.Row.Cells[2].Controls[0];
-                //    //    sexddl.SelectedValue = curText.Text;
-                //    //    e.Row.Cells[2].Controls.RemoveAt(0);
-                //    //    e.Row.Cells[2].Controls.Add(sexddl);
-
-                //    int a = GridView1.Rows[e.Row.RowIndex-1].Cells[3].Controls.Count;
             }
         }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)//行编辑事件
@@ -480,15 +461,13 @@ namespace web.page.formpages
         protected void BindData()
         {
             string liststr = "";
-            DataTable dt = new DataTable();
-            if (CheckDataSet(listds, out dt))
-            {
+            DataTable dt = listds.Tables[0];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string chkchecked = "";
                     if (!string.IsNullOrEmpty(inputValue))
                     {
-                        string[] arrstr = inputValue.Split(',');
+                        string[] arrstr = inputValue.Split('|');
                         if (arrstr != null)
                         {
                             for (int c = 0; c < arrstr.Length; c++)
@@ -496,16 +475,17 @@ namespace web.page.formpages
                                 if (arrstr[c] == dt.Rows[i][0].ToString())
                                 {
                                     chkchecked = "checked=\"checked\"";
-                                    valueList += dt.Rows[i][0] + ",";
-                                    nameList += dt.Rows[i][1] + ",";
+                                    valueList += dt.Rows[i][0] + "|";
+                                    nameList += dt.Rows[i][1] + "|";
                                 }
                             }
                         }
                     }
                     liststr += "<div><input type=\"checkbox\"   " + chkchecked + " name=\"subBox\"    onclick=\"ChangeInfo()\" value=\"" + dt.Rows[i][0] + "\" />" + dt.Rows[i][1] + "</div>";
                 }
-            }
             checkList = liststr;
+            valueList = valueList.Substring(0, valueList.Length - 1);
+            nameList = nameList.Substring(0, nameList.Length - 1);
         }
         #endregion
         /// <summary> 
@@ -513,11 +493,11 @@ namespace web.page.formpages
         /// </summary> 
         /// <param name="listds"></param> 
         /// <returns></returns> 
-        public static bool CheckDataSet(DataSet listds, out DataTable dt)
-        {
-            dt = listds.Tables.Count > 0 ? (listds.Tables[0].Rows.Count > 0 ? listds.Tables[0] : null) : null;
-            return (dt == null) ? false : true;
-        }
+        //public static bool CheckDataSet(DataSet listds, out DataTable dt)
+        //{
+        //    dt = listds.Tables.Count > 0 ? (listds.Tables[0].Rows.Count > 0 ? listds.Tables[0] : null) : null;
+        //    return (dt == null) ? false : true;
+        //}
         protected void newValue_ValueChanged(object sender, EventArgs e)
         {
             outputValue = e.ToString();
