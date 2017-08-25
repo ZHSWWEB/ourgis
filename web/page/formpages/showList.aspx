@@ -19,7 +19,6 @@
             margin-top: -5px;
         }
     </style>
-    <script src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
     <script type="text/javascript">
         function showDetail( objectId, hcmc, table )
@@ -93,6 +92,7 @@
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
+
                 <asp:TemplateField  HeaderText="行政区">
                     <ItemTemplate>
                         <asp:Label runat="server" Text= '<%# DataBinder.Eval(Container.DataItem,"XZQ")%>'>></asp:Label>
@@ -120,6 +120,7 @@
                         </div>
                     </EditItemTemplate>
                 </asp:TemplateField>
+
             </Columns>
             <PagerTemplate>
                 共计
