@@ -57,13 +57,15 @@
             for ( var i = 0; i < r.length; i++ )
             {
                 if ( r[i].checked )
-                {
-                    ObjectValue += r[i].value + ",";
-                    ObjectText += r[i].nextSibling.nodeValue + ",";
+                { 
+                    ObjectText += r[i].nextSibling.nodeValue + "|";
+                    ObjectValue += r[i].value + "|";
                 }
             }
+            ObjectText = ObjectText.substr( 0, ObjectValue.length - 1 );
+            ObjectValue = ObjectValue.substr( 0, ObjectValue.length - 1 );
             document.getElementById( "txtBox" ).value = ObjectText;
-            $( "#newValue" ).val = ObjectValue;
+            document.getElementById( "GridView1_newValue_" + "<%= GridView1.EditIndex %>" ).value = ObjectValue;
         }
 
         function BodyTr_onload(){
@@ -84,13 +86,14 @@
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="选择">
+                <asp:TemplateField runat="server" HeaderText="选择">
                     <ItemTemplate>
                         <asp:CheckBox ID="ChkItem" runat="server" Width="40px" />
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
-                <asp:TemplateField  HeaderText="XZQ">
+
+                <asp:TemplateField runat="server" HeaderText="行政区">
                     <ItemTemplate>
                         <asp:Label runat="server" Text= '<%# DataBinder.Eval(Container.DataItem,"XZQ")%>'>></asp:Label>
                     </ItemTemplate>
@@ -100,7 +103,7 @@
                             <table width="150px">
                                 <tr id="headTr">
                                     <td align="left">
-                                        <asp:HiddenField ID="newValue" runat="server" OnValueChanged="newValue_ValueChanged"></asp:HiddenField>
+                                        <asp:HiddenField id="newValue" runat="server"></asp:HiddenField>
                                         <input id="txtBox" type="text" value="<%=nameList %>" readonly="readonly" onclick="ShowMList()"
                                             style="width: 130px;" />
                                     </td>
@@ -117,6 +120,7 @@
                         </div>
                     </EditItemTemplate>
                 </asp:TemplateField>
+
             </Columns>
             <PagerTemplate>
                 共计
