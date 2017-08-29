@@ -86,14 +86,14 @@
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="选择">
+                <asp:TemplateField runat="server" HeaderText="选择">
                     <ItemTemplate>
                         <asp:CheckBox ID="ChkItem" runat="server" Width="40px" />
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
 
-                <asp:TemplateField  HeaderText="行政区">
+                <asp:TemplateField runat="server" HeaderText="行政区">
                     <ItemTemplate>
                         <asp:Label runat="server" Text= '<%# DataBinder.Eval(Container.DataItem,"XZQ")%>'>></asp:Label>
                     </ItemTemplate>
@@ -103,7 +103,7 @@
                             <table width="150px">
                                 <tr id="headTr">
                                     <td align="left">
-                                        <asp:HiddenField id="newValue" runat="server" OnValueChanged="newValue_ValueChanged"></asp:HiddenField>
+                                        <asp:HiddenField id="newValue" runat="server"></asp:HiddenField>
                                         <input id="txtBox" type="text" value="<%=nameList %>" readonly="readonly" onclick="ShowMList()"
                                             style="width: 130px;" />
                                     </td>

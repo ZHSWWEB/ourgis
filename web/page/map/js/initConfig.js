@@ -691,7 +691,7 @@ var layerConfiguration = {
             type: "point",
             titleField: 'NAME',
             outFields: ["OBJECTID", "SYSTEMID","SYSTEMNO", "NAME", "DISTRICT", "SEAT_RIVER", "LOCATION", "EMPLOYER_DEPT", "CREATE_PERSON", "CREATE_DEPT", "CREATE_TIME", "PROPOSAL", "FEASIBILITY_STUDY", "PRELIMINARY_DESIGN", "DETAILED_DESIGN", "DESIGN_CHANGE", "CALCULATION"],
-            displayFields: ["序号", "系统序号", "项目名称", "项目编号", "行政区", "所属河流", "项目位置", "业主单位", "录入人", "录入部门", "录入时间", "项目建议书", "可行性研究报告", "初步设计", "施工图及招标", "设计变更", "计算书"],
+            displayFields: ["序号", "系统序号", "项目编号", "项目名称", "行政区", "所属河流", "项目位置", "业主单位", "录入人", "录入部门", "录入时间", "项目建议书", "可行性研究报告", "初步设计", "施工图及招标", "设计变更", "计算书"],
             dateFields: ["录入时间"],
             queryField: ["NAME", "DISTRICT", "SYSTEMID", "SEAT_RIVER", "LOCATION"],
             statisticsFields: {

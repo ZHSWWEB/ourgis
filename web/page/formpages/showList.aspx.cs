@@ -75,7 +75,6 @@ namespace web.page.formpages
                         //记录用户习惯
                         sql = "UPDATE REC_HABIT SET " + pagename + " = " + pagename + " + 1";
                         OperateUser(sql);
-
                         //首次打开
                         if (!IsPostBack)
                         {
@@ -106,19 +105,33 @@ namespace web.page.formpages
         {
             //设置主键
             GridView1.DataKeyNames = new string[] { Convert.ToString(config.Rows[0]["mainKey"]) };
+            GridView1.Columns.Clear();
             //设置数据列
-            for (int i = 0; i < listconfig.Rows.Count; i++)
+            bool rv_po = Convert.ToString(config.Rows[0]["tableName"]) == "SLG_RV_PO";
+            if (rv_po)
             {
-                if (Convert.ToString(config.Rows[0]["tableName"]) == "SLG_RV_PO" && Convert.ToString(listconfig.Rows[i]["fieldCN"]) == "行政区") 
+                for (int i = 0; i < listconfig.Rows.Count; i++)
                 {
-                    TemplateField tf = new TemplateField();
-                    tf.SortExpression = Convert.ToString(listconfig.Rows[i]["fieldName"]);
-                    tf.HeaderText = Convert.ToString(listconfig.Rows[i]["fieldCN"]);
-                    tf.HeaderStyle.Width = new Unit((string)listconfig.Rows[i]["onListHeaderWidth"]);
-                    tf.ItemTemplate = new TheItemTemplate(i);
-                    GridView1.Columns.Add(tf);
+                    if (rv_po && Convert.ToString(listconfig.Rows[i]["fieldCN"]) == "行政区")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        BoundField bf = new BoundField();
+                        bf.DataField = Convert.ToString(listconfig.Rows[i]["fieldName"]);
+                        bf.SortExpression = Convert.ToString(listconfig.Rows[i]["fieldName"]);
+                        bf.HeaderText = Convert.ToString(listconfig.Rows[i]["fieldCN"]);
+                        bf.HeaderStyle.Width = new Unit((string)listconfig.Rows[i]["onListHeaderWidth"]);
+                        bf.ReadOnly = (double)listconfig.Rows[i]["readOnly"] > 0;
+                        GridView1.Columns.Add(bf);
+                    }
                 }
-                else
+            }
+            else
+            {
+                //GridView1.Columns.RemoveAt(1);
+                for (int i = 0; i < listconfig.Rows.Count; i++)
                 {
                     BoundField bf = new BoundField();
                     bf.DataField = Convert.ToString(listconfig.Rows[i]["fieldName"]);
@@ -174,20 +187,20 @@ namespace web.page.formpages
                 view.Sort = sort;
                 GridView1.DataSource = view;
                 GridView1.DataBind();
-                //for (int i = 0; i < listconfig.Rows.Count; i++)//   i列
-                //{
-                //    if (Convert.ToString(listconfig.Rows[i]["fieldCN"]) == "行政区")
-                //    {
-                //        for(int j=0; j < GridView1.Rows.Count; j++)//   j行
-                //        {
-                //            Label lab = (Label)GridView1.Rows[j].Cells[i + 2].FindControl("lab");
-                //            if(lab != null)
-                //            {
-                //                lab.Text = view[GridView1.Rows[j].DataItemIndex]["XZQ"].ToString();
-                //            }
-                //        }
-                //    }
-                //} 
+                for (int i = 0; i < listconfig.Rows.Count; i++)//   i列
+                {
+                    if (Convert.ToString(listconfig.Rows[i]["fieldCN"]) == "行政区")
+                    {
+                        for (int j = 0; j < GridView1.Rows.Count; j++)//   j行
+                        {
+                            Label lab = (Label)GridView1.Rows[j].Cells[i + 1].FindControl("lab");
+                            if (lab != null)
+                            {
+                                lab.Text = view[GridView1.Rows[j].DataItemIndex]["XZQ"].ToString();
+                            }
+                        }
+                    }
+                }
                 //绑定数据的条数到分页菜单栏
                 Label dataCount = (Label)GridView1.BottomPagerRow.Cells[0].FindControl("dataCount");
                 dataCount.Text = view.Count.ToString();
