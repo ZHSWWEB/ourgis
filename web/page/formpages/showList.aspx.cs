@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
-using System.Data.OracleClient;
-using System.Configuration;
-using System.Web.Security;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
+using System.Web;
+using System.Web.UI.WebControls;
 using static tools.quaryData;
-using System.Collections;
 
 namespace web.page.formpages
 {
@@ -39,7 +30,7 @@ namespace web.page.formpages
             if (null == cookie)
             {
                 //未登录的跳转
-                Response.Write("<script>window.location.href = \"../notLogin.html\";</script>");
+                Response.Write("<script>window.location.href = \"../notLogin.html\";</script>"); 
             }
             else
             {
@@ -174,7 +165,7 @@ namespace web.page.formpages
         protected void DistrictList_bind()//绑定到行政区DropList
         {
             //行政区拼接查询语句
-            string sql = "SELECT text,'" + config.Rows[0]["districtName"] + "'+' '+value FROM [District$] WHERE " + config.Rows[0]["tableName"] + " = 1";
+            string sql = "SELECT text,left+'" + config.Rows[0]["districtName"] + "'+' '+value+value1 FROM [District$] WHERE " + config.Rows[0]["tableName"] + " = 1";
             DataSet ds = QuaryExcel(sql);
             //清除all选项的多余字段
             ds.Tables[0].Rows[0]["Expr1001"] = "";
