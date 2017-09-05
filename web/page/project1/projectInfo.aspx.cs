@@ -29,7 +29,8 @@ namespace web.page.project
                         Response.Write("<script>layui.use('layer', function(){var layer = layui.layer;layer.msg('未找到该项目', {icon: 5,time: 5000,area: '300',btnAlign: 'c',btn: ['确认']});});</script>");
                         return;
                     }
-                    proTitleDiv.InnerHtml = "<h1 align=\"center\" style =\"font-family:'Microsoft YaHei';font-size:40px;color:darkred\">" + ds.Tables[0].Rows[0]["NAME"].ToString() + "</h1>";
+                    proTitleDiv.InnerHtml = "<h1 align=\"center\" style =\"font-family:'Microsoft YaHei';font-size:40px;color:darkred;background-color:cadetblue\">" + ds.Tables[0].Rows[0]["NAME"].ToString() + "</h1>";
+                    //proTitleDiv.InnerHtml = "<blockquote class=\"layui-elem-quote layui-quote-nm\" style=\"font-size:36px;font-weight:bold;color:darkred;background-color:cadetblue\">" + ds.Tables[0].Rows[0]["NAME"].ToString() + "</blockquote>";
                     proinfo_body.InnerHtml += "<tr><th style=\"background:#999\">项目编号</th><td>" + ds.Tables[0].Rows[0]["SYSTEMNO"].ToString() + "</td></tr>";
                     proinfo_body.InnerHtml += "<tr><th style=\"background:#999\">行政区</th><td>" + ds.Tables[0].Rows[0]["DISTRICT"].ToString() + "</td></tr>";
                     proinfo_body.InnerHtml += "<tr><th style=\"background:#999\">所属河流</th><td>" + ds.Tables[0].Rows[0]["SEAT_RIVER"].ToString() + "</td></tr>";
@@ -45,30 +46,6 @@ namespace web.page.project
                     proinfo_body.InnerHtml += "<tr><th style=\"background:#999\">录入部门</th><td>" + ds.Tables[0].Rows[0]["CREATE_DEPT"].ToString() + "</td></tr>";
                     proinfo_body.InnerHtml += "<tr><th style=\"background:#999\">录入时间</th><td>" + ds.Tables[0].Rows[0]["CREATE_TIME"].ToString() + "</td></tr>";
                 }
-                //else if (Convert.ToInt32(tabtypestr) == 1)
-                //{
-                //    //项目建议书标签页
-                //}
-                //else if (Convert.ToInt32(tabtypestr) == 2)
-                //{
-                //    //可行性研究报告标签页
-                //}
-                //else if (Convert.ToInt32(tabtypestr) == 3)
-                //{
-                //    //初步设计标签页
-                //}
-                //else if (Convert.ToInt32(tabtypestr) == 4)
-                //{
-                //    //施工图及招标书标签页
-                //}
-                //else if (Convert.ToInt32(tabtypestr) == 5)
-                //{
-                //    //计划变更报告标签页
-                //}
-                //else if (Convert.ToInt32(tabtypestr) == 6)
-                //{
-                //    //计算书标签页
-                //}
             }
         }
     }

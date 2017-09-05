@@ -14,7 +14,7 @@ namespace web.page.project
         protected void Page_Load(object sender, EventArgs e)
         {
             string userId = Request.Cookies["userId"].Value;
-            if (userId == null)
+            if (userId == null || userId == String.Empty)
             {
                 Response.Write("<script>window.location.href = \"../notLogin.html\";</script>");
                 return;

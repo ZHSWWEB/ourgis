@@ -84,14 +84,15 @@
     <Content Include="json\usersList.json" />
     <Content Include="page\formpages\showList.aspx" />
     <Content Include="page\formpages\testHtml.html" />
-    <Content Include="page\project\projectAdd.aspx" />
-    <Content Include="page\project\projectFiles.aspx" />
-    <Content Include="page\project\projectFiles.js" />
-    <Content Include="page\project\projectFilesDownload.aspx" />
-    <Content Include="page\project\projectInfo.aspx" />
-    <Content Include="page\project\projectList.aspx" />
-    <Content Include="page\project\projectManage.aspx" />
-    <Content Include="page\project\projectManage.js" />
+    <Content Include="page\project1\projectAdd.aspx" />
+    <Content Include="page\project1\projectFiles.aspx" />
+    <Content Include="page\project1\projectFiles.js" />
+    <Content Include="page\project1\projectFilesDownload.aspx" />
+    <Content Include="page\project1\projectFilesList.aspx" />
+    <Content Include="page\project1\projectInfo.aspx" />
+    <Content Include="page\project1\projectList.aspx" />
+    <Content Include="page\project1\projectManage.aspx" />
+    <Content Include="page\project1\projectManage.js" />
     <Content Include="plugins\layui\font\iconfont.eot" />
     <Content Include="plugins\layui\font\iconfont.ttf" />
     <Content Include="plugins\layui\font\iconfont.woff" />
@@ -11335,46 +11336,46 @@
     <Compile Include="page\login\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\project\projectAdd.aspx.cs">
-      <DependentUpon>projectAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="page\project\projectAdd.aspx.designer.cs">
+    <Compile Include="page\project1\projectAdd.aspx.cs">
       <DependentUpon>projectAdd.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\project\projectFiles.aspx.cs">
+    <Compile Include="page\project1\projectAdd.aspx.designer.cs">
+      <DependentUpon>projectAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\project1\projectFiles.aspx.cs">
       <DependentUpon>projectFiles.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="page\project\projectFiles.aspx.designer.cs">
+    <Compile Include="page\project1\projectFiles.aspx.designer.cs">
       <DependentUpon>projectFiles.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\project\projectFilesDownload.aspx.cs">
-      <DependentUpon>projectFilesDownload.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="page\project\projectFilesDownload.aspx.designer.cs">
+    <Compile Include="page\project1\projectFilesDownload.aspx.cs">
       <DependentUpon>projectFilesDownload.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\project\projectInfo.aspx.cs">
+    <Compile Include="page\project1\projectFilesDownload.aspx.designer.cs">
+      <DependentUpon>projectFilesDownload.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\project1\projectFilesList.aspx.cs">
+      <DependentUpon>projectFilesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\project1\projectFilesList.aspx.designer.cs">
+      <DependentUpon>projectFilesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\project1\projectInfo.aspx.cs">
       <DependentUpon>projectInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="page\project\projectInfo.aspx.designer.cs">
+    <Compile Include="page\project1\projectInfo.aspx.designer.cs">
       <DependentUpon>projectInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\project\projectList.aspx.cs">
-      <DependentUpon>projectList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="page\project\projectList.aspx.designer.cs">
+    <Compile Include="page\project1\projectList.aspx.cs">
       <DependentUpon>projectList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\project\projectManage.aspx.cs">
+    <Compile Include="page\project1\projectList.aspx.designer.cs">
+      <DependentUpon>projectList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\project1\projectManage.aspx.cs">
       <DependentUpon>projectManage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="page\project\projectManage.aspx.designer.cs">
+    <Compile Include="page\project1\projectManage.aspx.designer.cs">
       <DependentUpon>projectManage.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\recinfo\recinfoDataOperation.aspx.cs">

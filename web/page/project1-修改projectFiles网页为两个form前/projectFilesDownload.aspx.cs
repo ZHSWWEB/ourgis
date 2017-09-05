@@ -43,9 +43,9 @@ namespace web.page.project
                 {
                     string fileName = fileds.Tables[0].Rows[0]["FILENAME"].ToString();//显示给客户端文件名
                     string filePath = fileds.Tables[0].Rows[0]["PATH"].ToString();//路径
+                    string fileFullPath = filePath+fileName;
 
-
-                    System.IO.FileInfo fileInfo = new System.IO.FileInfo(fileName + filePath);
+                    System.IO.FileInfo fileInfo = new System.IO.FileInfo(fileFullPath);
 
                     if (fileInfo.Exists == true)
                     {
@@ -53,7 +53,7 @@ namespace web.page.project
                         byte[] buffer = new byte[ChunkSize];
 
                         Response.Clear();
-                        System.IO.FileStream iStream = System.IO.File.OpenRead(fileName + filePath);
+                        System.IO.FileStream iStream = System.IO.File.OpenRead(fileFullPath);
                         long dataLengthToRead = iStream.Length;//获取下载的文件总大小
                         Response.ContentType = "application/octet-stream";
                         Response.AddHeader("Content-Disposition", "attachment; filename=" + HttpUtility.UrlEncode(fileName));
