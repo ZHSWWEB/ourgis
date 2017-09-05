@@ -1,28 +1,76 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="showList.aspx.cs" Inherits="web.page.formpages.showList" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="showList1.aspx.cs" Inherits="web.page.formpages.showList" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script src="../../js/jquery.js"></script>
+    <style type="text/css">
+        .dropList {
+            left: 11px;
+            display: none;
+            border: 1px solid Gray;
+            background-color: White;
+            width: 132px;
+            position: absolute;
+            height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-top: -5px;
+        }
+    </style>
     <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
     <script type="text/javascript">
-        function showDetail( objectId, hcmc,table) {
-            layui.use( 'layer', function () {
+        function showDetail( objectId, hcmc, table )
+        {
+            layui.use( 'layer', function ()
+            {
                 var layer = layui.layer;
                 layer.open( {
                     type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
                     maxmin: false, move: false, area: ['632px', '90%'],
-                    content: 'showDetail.aspx?table='+table+'&&objectId=' + objectId,
-                    end: function () {
+                    content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
+                    end: function ()
+                    {
                         document.getElementById( "Button2" ).click();
                     }
                 } )
             } )
         };
+    </script>
+    <script type="text/javascript"> 
         var timoutID;
+        function ShowMList()
+        {
+            document.getElementById( "dropList" ).style.display = "block";
+        }
+        function HideMList()
+        {
+            if ( document.getElementById( "dropList" ) != null )
+                document.getElementById( "dropList" ).style.display = "none";
+        }
+        function ChangeInfo()
+        {
+            var ObjectText = "";
+            var ObjectValue = "";
+            var r = document.getElementsByName( "subBox" );
+            for ( var i = 0; i < r.length; i++ )
+            {
+                if ( r[i].checked )
+                { 
+                    ObjectText += r[i].nextSibling.nodeValue + "|";
+                    ObjectValue += r[i].value + "|";
+                }
+            }
+            ObjectText = ObjectText.substr( 0, ObjectValue.length - 1 );
+            ObjectValue = ObjectValue.substr( 0, ObjectValue.length - 1 );
+            document.getElementById( "txtBox" ).value = ObjectText;
+            document.getElementById( "GridView1_newValue_" + "<%= GridView1.EditIndex %>" ).value = ObjectValue;
+        }
+
+        function BodyTr_onload(){
+            this.left = document.getElementById( 'headTr' ).left;
+        }
     </script>
 </head>
 <body>
@@ -33,16 +81,45 @@
         <asp:DropDownList ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Height="24px" Width="50px" Style="margin-bottom: 8px;" Font-Names="微软雅黑" Font-Size="Small" BackColor="#CCCCCC"/>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height:0;width:0;padding-left:0;padding:0 0;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;"/>
+        <asp:HiddenField id="newValue" runat="server"></asp:HiddenField>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="25" Width="100%" EmptyDataText="暂缺"
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="选择">
+                
+                <asp:TemplateField runat="server" HeaderText="选择">
                     <ItemTemplate>
                         <asp:CheckBox ID="ChkItem" runat="server" Width="40px" />
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
+
+                <asp:TemplateField runat="server" HeaderText="行政区">
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text= '<%# DataBinder.Eval(Container.DataItem,"XZQ")%>'>></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="50px" />
+                    <EditItemTemplate>
+                        <div id="dropCheckBox" onmouseover="clearTimeout(timoutID);" onmouseout="timoutID = setTimeout('HideMList()', 250);">
+                            <table width="150px">
+                                <tr id="headTr">
+                                    <td align="left">
+                                        <input id="txtBox" type="text" value="<%=nameList %>" readonly="readonly" onclick="ShowMList()"
+                                            style="width: 130px;" /
+                                    </td>
+                                </tr>
+                                <tr id="bodyTr" style="color: #454B5A; font-family:Arial; font-size:14px;font-weight:lighter" onload="BodyTr_onload();">
+                                    <td colspan="2">
+                                        <div id="dropList" class="dropList">
+                                            <%=checkList%>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+
             </Columns>
             <PagerTemplate>
                 共计
@@ -84,103 +161,5 @@
             <SelectedRowStyle BackColor="#1AA094" Font-Bold="True" ForeColor="White" />
         </asp:GridView>
     </form>
-    <div id='selectList' class="dropli" style="display:none" onmouseover="clearTimeout(timoutID);"  onmouseout="timoutID = setTimeout('HideMList()', 250);">
-        <table class="dropli" style="background-color: #31b7ab">
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox0" type="checkbox" onclick="checkclick(this,0);" value="白云区" />白云区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox1" type="checkbox"  onclick="checkclick(this,0);" value="从化区"/>从化区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox2" type="checkbox" onclick="checkclick(this,0);" value="番禺区"/>番禺区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox3" type="checkbox" onclick="checkclick(this,0);" value="海珠区"/>海珠区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox4" type="checkbox" onclick="checkclick(this,0);" value="花都区"/>花都区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox5" type="checkbox" onclick="checkclick(this,0);" value="黄埔区"/>黄埔区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox6" type="checkbox" onclick="checkclick(this,0);" value="荔湾区"/>荔湾区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox7" type="checkbox" onclick="checkclick(this,0);" value="南沙区"/>南沙区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox8" type="checkbox" onclick="checkclick(this,0);" value="天河区"/>天河区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox9" type="checkbox" onclick="checkclick(this,0);" value="越秀区"/>越秀区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox10" type="checkbox" onclick="checkclick(this,0);" value="增城区"/>增城区</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox11" type="checkbox" onclick="checkclick(this,0);" value="市属"/>市属</td>
-            </tr>
-            <tr class="dropli">
-                <td class="dropli" onclick="checkclick(this.firstChild,1);"><input class="droplic" id="Checkbox12" type="checkbox" onclick="checkclick(this,0);" value="市外"/>市外</td>
-            </tr>
-        </table>
-    </div>
 </body>
-<script> 
-    $( "input[name$='$ctl02']" ).click( function ()
-    {
-        var editIndex = <%= GridView1.EditIndex %>;
-            var top = $( "input[name$='$ctl02']" ).offset().top;
-            var left = $( "input[name$='$ctl02']" ).offset().left;
-            var height = $( "input[name$='$ctl02']" ).height();
-            var width = $( "input[name$='$ctl02']" ).width()+2;
-            $( "#selectList" ).css( { "position": "absolute", "left": left +1+ "px", "top": top + height+4 + "px", "z-index": "1", "display": "block" } );
-            if ( width < 70 )//最小值
-            {
-                $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
-                $( ".droplic" ).css( { "width": "13px" } );//13
-            } else
-            {
-                $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
-                $( ".droplic" ).css( { "width": width * 0.20 + "px" } );//20%
-            }
-            var val = $( "input[name$='$ctl02']" )[0].value.split( "|" );
-            var check = $( "input.droplic" );
-            var checked = 0;
-            for ( j = 0; j < check.length; j++ )
-            {
-                checked = 0;
-                for ( i = 0; i < val.length; i++ )
-                {
-                    if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
-                }
-                document.getElementById( "Checkbox" + j ).checked = checked == 1;
-            }
-        } );
-    function HideMList()
-    {
-        if ( document.getElementById( "selectList" ) != null )
-            document.getElementById( "selectList" ).style.display = "none";
-    }
-    function checkclick( ele, flag )
-    {
-        ele.checked = ele.checked ? false : true;
-        if ( flag == 1 )
-        {
-            var text="";
-            var len = ele.parentNode.parentNode.parentNode.childNodes.length / 2;
-            for ( i = 0; i < len; i++ )
-            {
-                ckbox = document.getElementById( "Checkbox" + i );
-                if ( ckbox.checked )
-                {
-                    text = text + ( text == "" ? ckbox.value : ( "|" + ckbox.value ) );
-                }
-            }
-            $( "input[name$='$ctl02']" )[0].value = text;
-        }
-    }
-</script>
 </html>

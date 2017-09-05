@@ -30,7 +30,13 @@ namespace web.page.formpages
         static bool onSort = false;
         [ThreadStatic]
         static int index = -1;
-
+        //下拉多选
+        public string checkList { get; set; }
+        public string valueList { get; set; }//复选框的value值 
+        public string nameList { get; set; } // 复选框的Text值 
+        public DataSet listds { get; set; }//数据源 
+        public string inputValue { get; set; }//选中的字符串值 
+        public string outputValue { get; set; }//新的的字符串值 
         protected void Page_Load(object sender, EventArgs e)
         {
             //获得此cookie对象 
@@ -53,7 +59,7 @@ namespace web.page.formpages
                     {
                         listName = tablename;
                         config = QuaryExcel("SELECT * FROM [" + listName + "$]").Tables[0];
-                        listconfig = QuaryExcel("SELECT fieldName,fieldCN,onListControlWidth,onListHeaderWidth,readOnly FROM[" + listName + "$] WHERE onList>0 ORDER BY onList ASC").Tables[0];
+                        listconfig = QuaryExcel("SELECT fieldName,fieldCN,onListControlWidth,onListHeaderWidth,readOnly,onList FROM[" + listName + "$] WHERE onList>0 ORDER BY onList ASC").Tables[0];
                         pagename = Convert.ToString(config.Rows[0]["pagename"]);
                     }
                     //检查对应权限
@@ -69,11 +75,9 @@ namespace web.page.formpages
                         //记录用户习惯
                         sql = "UPDATE REC_HABIT SET " + pagename + " = " + pagename + " + 1";
                         OperateUser(sql);
-
                         //首次打开
                         if (!IsPostBack)
                         {
-
                             //绑定下拉菜单
                             DistrictList_bind();
                             SearchList_bind();
@@ -102,15 +106,40 @@ namespace web.page.formpages
             //设置主键
             GridView1.DataKeyNames = new string[] { Convert.ToString(config.Rows[0]["mainKey"]) };
             //设置数据列
-            for (int i = 0; i < listconfig.Rows.Count; i++)
+            bool rv_po = Convert.ToString(config.Rows[0]["tableName"]) == "SLG_RV_PO";
+            if (rv_po)
             {
-                BoundField bf = new BoundField();
-                bf.DataField = Convert.ToString(listconfig.Rows[i]["fieldName"]);
-                bf.SortExpression = Convert.ToString(listconfig.Rows[i]["fieldName"]);
-                bf.HeaderText = Convert.ToString(listconfig.Rows[i]["fieldCN"]);
-                bf.HeaderStyle.Width = new Unit((string)listconfig.Rows[i]["onListHeaderWidth"]);
-                bf.ReadOnly = (double)listconfig.Rows[i]["readOnly"] > 0;
-                GridView1.Columns.Add(bf);
+                for (int i = 0; i < listconfig.Rows.Count; i++)
+                {
+                    if (rv_po && Convert.ToString(listconfig.Rows[i]["fieldCN"]) == "行政区")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        BoundField bf = new BoundField();
+                        bf.DataField = Convert.ToString(listconfig.Rows[i]["fieldName"]);
+                        bf.SortExpression = Convert.ToString(listconfig.Rows[i]["fieldName"]);
+                        bf.HeaderText = Convert.ToString(listconfig.Rows[i]["fieldCN"]);
+                        bf.HeaderStyle.Width = new Unit((string)listconfig.Rows[i]["onListHeaderWidth"]);
+                        bf.ReadOnly = (double)listconfig.Rows[i]["readOnly"] > 0;
+                        GridView1.Columns.Insert(i + 1, bf);
+                    }
+                }
+            }
+            else
+            {
+                GridView1.Columns.RemoveAt(1);
+                for (int i = 0; i < listconfig.Rows.Count; i++)
+                {
+                    BoundField bf = new BoundField();
+                    bf.DataField = Convert.ToString(listconfig.Rows[i]["fieldName"]);
+                    bf.SortExpression = Convert.ToString(listconfig.Rows[i]["fieldName"]);
+                    bf.HeaderText = Convert.ToString(listconfig.Rows[i]["fieldCN"]);
+                    bf.HeaderStyle.Width = new Unit((string)listconfig.Rows[i]["onListHeaderWidth"]);
+                    bf.ReadOnly = (double)listconfig.Rows[i]["readOnly"] > 0;
+                    GridView1.Columns.Add(bf);
+                }
             }
             //设置按钮
             CommandField cf = new CommandField();
@@ -157,6 +186,20 @@ namespace web.page.formpages
                 view.Sort = sort;
                 GridView1.DataSource = view;
                 GridView1.DataBind();
+                for (int i = 0; i < listconfig.Rows.Count; i++)//   i列
+                {
+                    if (Convert.ToString(listconfig.Rows[i]["fieldCN"]) == "行政区")
+                    {
+                        for (int j = 0; j < GridView1.Rows.Count; j++)//   j行
+                        {
+                            Label lab = (Label)GridView1.Rows[j].Cells[i + 1].FindControl("lab");
+                            if (lab != null)
+                            {
+                                lab.Text = view[GridView1.Rows[j].DataItemIndex]["XZQ"].ToString();
+                            }
+                        }
+                    }
+                }
                 //绑定数据的条数到分页菜单栏
                 Label dataCount = (Label)GridView1.BottomPagerRow.Cells[0].FindControl("dataCount");
                 dataCount.Text = view.Count.ToString();
@@ -204,22 +247,17 @@ namespace web.page.formpages
                 e.Row.Attributes.Add("onmouseover", "currentColor=this.style.backgroundColor;this.style.backgroundColor='#31b7ab';");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentColor;");
             }
-            //if (e.Row.RowState == DataControlRowState.Alternate || e.Row.RowState == DataControlRowState.Edit)
-            //{
-            //    e.Row.Cells[3].Controls.AddAt(0, new DropDownList());
-            //    //    TextBox curText;
-            //    //    DropDownList sexddl = new DropDownList;
-            //    //    sexddl.Items.Add("男");
-            //    //    sexddl.Items.Add("女");
-            //    //    sexddl.Items.Add("");
-            //    //    curText = (TextBox)e.Row.Cells[2].Controls[0];
-            //    //    sexddl.SelectedValue = curText.Text;
-            //    //    e.Row.Cells[2].Controls.RemoveAt(0);
-            //    //    e.Row.Cells[2].Controls.Add(sexddl);
-
-            //    int a = GridView1.Rows[e.Row.RowIndex-1].Cells[3].Controls.Count;
-            //}
-        }
+            //Gridview处于编辑状态&&数据行处于编辑行&&数据行状态含编辑状态
+            if (GridView1.EditIndex > -1 && e.Row.RowIndex == GridView1.EditIndex && (e.Row.RowState & DataControlRowState.Edit) != 0)
+            {
+                listds = QuaryExcel("select dropMulitListValue,dropMulitListValue from [District$] where " + config.Rows[0]["tableName"] + "_DML = 1");
+                //inputValue = ((DataRowView)e.Row.DataItem).Row.ItemArray[3].ToString();
+                inputValue = DataBinder.Eval(e.Row.DataItem, "XZQ").ToString();
+                outputValue = inputValue;
+                newValue.Value = inputValue;
+                BindData();
+            }
+    }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)//行编辑事件
         {
 
@@ -255,16 +293,30 @@ namespace web.page.formpages
             for (int i = 0; i < GridView1.Columns.Count; i++)
             {
                 BoundField boundField = GridView1.Columns[i] as BoundField;
-                if (boundField == null) continue;
-                if (boundField.ReadOnly) continue;
-                string fieldName = boundField.DataField;
-                string fieldCN = boundField.HeaderText;
-                string newvalue = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[i].Controls[0])).Text;
-                string oldvalue = ds.Tables[0].Rows[0][i - 1].ToString();
-                if (newvalue != oldvalue)
+                TemplateField templateField = GridView1.Columns[i] as TemplateField;
+                if (boundField != null)
                 {
-                    update = update + fieldName + " = '" + newvalue + "',";
-                    history = history + "#" + fieldCN + " ：[" + oldvalue + "] >> [" + newvalue + "]" + ", ";
+                    if (boundField.ReadOnly) continue;
+                    string fieldName = boundField.DataField;
+                    string fieldCN = boundField.HeaderText;
+                    string newvalue = ((TextBox)(GridView1.Rows[e.RowIndex].Cells[i].Controls[0])).Text;
+                    string oldvalue = ds.Tables[0].Rows[0][i - 1].ToString();
+                    if (newvalue != oldvalue)
+                    {
+                        update = update + fieldName + " = '" + newvalue + "',";
+                        history = history + "#" + fieldCN + " ：[" + oldvalue + "] >> [" + newvalue + "]" + ", ";
+                    }
+                } else if (templateField != null && templateField.HeaderText == "行政区")
+                {
+                    string fieldName = "XZQ";
+                    string fieldCN = templateField.HeaderText;
+                    string newvalue = ((HiddenField)(GridView1.Rows[e.RowIndex].Cells[i].Controls[0])).Value;
+                    string oldvalue = ds.Tables[0].Rows[0]["XZQ"].ToString();
+                    if (newvalue != oldvalue)
+                    {
+                        update = update + fieldName + " = '" + newvalue + "',";
+                        history = history + "#" + fieldCN + " ：[" + oldvalue + "] >> [" + newvalue + "]" + ", ";
+                    }
                 }
             }
             if (update != "")
@@ -279,8 +331,8 @@ namespace web.page.formpages
                 history = history.Remove(history.Length - 2, 2);
                 history = "insert into REC_" + config.Rows[0]["tableName"] + " (USERID,OBJECTID,OPERATION,DATETIME,DETAIL) values ('" + Request.Cookies["userId"].Value + "','" + objectId + "','修改',to_date('" + now + "', 'yyyy-mm-dd hh24:mi:ss'),'" + history + "')";
 
-                OperateSde(update);
-                OperateUser(history);
+                //OperateSde(update);
+                //OperateUser(history);
             }
             GridView1.EditIndex = -1;
             refresh();
@@ -457,5 +509,75 @@ namespace web.page.formpages
         {
             //refresh();
         }
+        #region 绑定数据 
+        protected void BindData()
+        {
+            string liststr = "";
+            DataTable dt = listds.Tables[0];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string chkchecked = "";
+                if (!string.IsNullOrEmpty(inputValue))
+                {
+                    string[] arrstr = inputValue.Split('|');
+                    if (arrstr != null)
+                    {
+                        for (int c = 0; c < arrstr.Length; c++)
+                        {
+                            if (arrstr[c] == dt.Rows[i][0].ToString())
+                            {
+                                chkchecked = "checked=\"checked\"";
+                                valueList += dt.Rows[i][0] + "|";
+                                nameList += dt.Rows[i][1] + "|";
+                            }
+                        }
+                    }
+                }
+                liststr += "<div><input type=\"checkbox\"   " + chkchecked + " name=\"subBox\"    onclick=\"ChangeInfo()\" value=\"" + dt.Rows[i][0] + "\" />" + dt.Rows[i][1] + "</div>";
+            }
+            checkList = liststr;
+            valueList = valueList.Substring(0, valueList.Length - 1);
+            nameList = nameList.Substring(0, nameList.Length - 1);
+        }
+        #endregion
+        /// <summary> 
+        /// 检查dataset是否有值 
+        /// </summary> 
+        /// <param name="listds"></param> 
+        /// <returns></returns> 
+        //public static bool CheckDataSet(DataSet listds, out DataTable dt)
+        //{
+        //    dt = listds.Tables.Count > 0 ? (listds.Tables[0].Rows.Count > 0 ? listds.Tables[0] : null) : null;
+        //    return (dt == null) ? false : true;
+        //}
+
+        //protected void newValue_ValueChanged(object sender, EventArgs e)
+        //{
+        //    outputValue = e.ToString();
+        //}
+        //public class TheItemTemplate : ITemplate
+        //{
+        //    private int i;
+        //    public TheItemTemplate(int i)
+        //    {
+        //        this.i = i;
+        //    }
+        //    #region Implementation of ITemplate
+
+        //    public void InstantiateIn(Control container)
+        //    {
+        //        Label lab = new Label();
+        //        lab.ID = "lab";
+        //        //lab.DataBinding += new EventHandler(lab_binding);
+        //        container.Controls.Add(lab);
+        //    }
+        //    #endregion
+        //    //void lab_binding(object sender, EventArgs e)
+        //    //{
+        //    //    Label lab = (Label)sender;
+        //    //    var dataItem = DataBinder.GetDataItem(lab.BindingContainer);
+        //    //    lab.Text = DataBinder.Eval(dataItem, "XZQ").ToString();
+        //    //}
+        //} 
     }
 }

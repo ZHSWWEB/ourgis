@@ -83,6 +83,7 @@
     <Content Include="json\userface.json" />
     <Content Include="json\usersList.json" />
     <Content Include="page\formpages\dropMultiSelect.ascx" />
+    <Content Include="page\formpages\showList.aspx" />
     <Content Include="page\formpages\testDrop.aspx" />
     <Content Include="page\formpages\testHtml.html" />
     <Content Include="page\project\projectAdd.aspx" />
@@ -902,7 +903,6 @@
     <Content Include="js\screenfull.js" />
     <Content Include="page\404.html" />
     <Content Include="page\formpages\showDetail.aspx" />
-    <Content Include="page\formpages\showList.aspx" />
     <Content Include="page\img\images.html" />
     <Content Include="page\img\images.js" />
     <Content Include="page\links\linksAdd.html" />
