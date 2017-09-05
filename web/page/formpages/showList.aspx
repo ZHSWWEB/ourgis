@@ -6,28 +6,31 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <script src="../../js/jquery.js"></script>
+    <%--引入jquery将导致弹窗失败--%>
     <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
     <script type="text/javascript">
-        function showDetail( objectId, hcmc,table) {
-            layui.use( 'layer', function () {
+        function showDetail( objectId, hcmc, table )
+        {
+            layui.use( 'layer', function ()
+            {
                 var layer = layui.layer;
                 layer.open( {
                     type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
                     maxmin: false, move: false, area: ['632px', '90%'],
-                    content: 'showDetail.aspx?table='+table+'&&objectId=' + objectId,
-                    end: function () {
+                    content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
+                    end: function ()
+                    {
                         document.getElementById( "Button2" ).click();
                     }
                 } )
             } )
         };
+        var url = window.location.href;
         var timoutID;
     </script>
 </head>
 <body>
     <form id="Form1" runat="server">
-        <%--<asp:SqlDataSource ID="hechongDate" runat="server" ConnectionString="<%$ ConnectionStrings:OracleConnectionString %>" ProviderName="<%$ ConnectionStrings:OracleConnectionString.ProviderName %>" SelectCommand="SELECT OBJECTID,HCMC,HCBM,HCGN,HCFL FROM SLG_RV_po"></asp:SqlDataSource>--%>
         <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
         <asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="146px" Style="margin-bottom: 10px;" Font-Names="微软雅黑" Font-Size="Small" MaxLength="100"></asp:TextBox>
         <asp:DropDownList ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
@@ -129,47 +132,58 @@
     </div>
 </body>
 <script> 
-    $( "input[name$='$ctl02']" ).click( function ()
+    layui.use( ['jquery'], function ()
     {
-        var editIndex = <%= GridView1.EditIndex %>;
-            var top = $( "input[name$='$ctl02']" ).offset().top;
-            var left = $( "input[name$='$ctl02']" ).offset().left;
-            var height = $( "input[name$='$ctl02']" ).height();
-            var width = $( "input[name$='$ctl02']" ).width()+2;
-            $( "#selectList" ).css( { "position": "absolute", "left": left +1+ "px", "top": top + height+4 + "px", "z-index": "1", "display": "block" } );
-            if ( width < 70 )//最小值
+        var $ = layui.jquery;
+        $( "input[name$='$ctl02']" ).click( function ()
+        {
+            if ( url.indexOf( "slg_rv_po" ) > -1 )
             {
-                $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
-                $( ".droplic" ).css( { "width": "13px" } );//13
-            } else
-            {
-                $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
-                $( ".droplic" ).css( { "width": width * 0.20 + "px" } );//20%
-            }
-            var val = $( "input[name$='$ctl02']" )[0].value.split( "|" );
-            var check = $( "input.droplic" );
-            var checked = 0;
-            for ( j = 0; j < check.length; j++ )
-            {
-                checked = 0;
-                for ( i = 0; i < val.length; i++ )
+                var top = $( "input[name$='$ctl02']" ).offset().top;
+                var left = $( "input[name$='$ctl02']" ).offset().left;
+                var height = $( "input[name$='$ctl02']" ).height();
+                var width = $( "input[name$='$ctl02']" ).width() + 2;
+                $( "#selectList" ).css( { "position": "absolute", "left": left + 1 + "px", "top": top + height + 4 + "px", "z-index": "100" } );
+                $( "#selectList" ).slideDown( "fast" );
+                if ( width < 70 )//最小值
                 {
-                    if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
+                    $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
+                    $( ".droplic" ).css( { "width": "13px" } );//13
+                } else
+                {
+                    $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
+                    $( ".droplic" ).css( { "width": width * 0.20 + "px" } );//20%
                 }
-                document.getElementById( "Checkbox" + j ).checked = checked == 1;
+                var val = $( "input[name$='$ctl02']" )[0].value.split( "|" );
+                var check = $( "input.droplic" );
+                var checked = 0;
+                for ( j = 0; j < check.length; j++ )
+                {
+                    checked = 0;
+                    for ( i = 0; i < val.length; i++ )
+                    {
+                        if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
+                    }
+                    document.getElementById( "Checkbox" + j ).checked = checked == 1;
+                }
             }
         } );
+    } );
     function HideMList()
     {
         if ( document.getElementById( "selectList" ) != null )
-            document.getElementById( "selectList" ).style.display = "none";
+            layui.use( ['jquery'], function ()
+            {
+                var $ = layui.jquery;
+                $( "#selectList" ).slideUp( "fast" );
+            } );
     }
     function checkclick( ele, flag )
     {
         ele.checked = ele.checked ? false : true;
         if ( flag == 1 )
         {
-            var text="";
+            var text = "";
             var len = ele.parentNode.parentNode.parentNode.childNodes.length / 2;
             for ( i = 0; i < len; i++ )
             {
@@ -179,7 +193,11 @@
                     text = text + ( text == "" ? ckbox.value : ( "|" + ckbox.value ) );
                 }
             }
-            $( "input[name$='$ctl02']" )[0].value = text;
+            layui.use( ['jquery'], function ()
+            {
+                var $ = layui.jquery;
+                $( "input[name$='$ctl02']" )[0].value = text;
+            } );
         }
     }
 </script>

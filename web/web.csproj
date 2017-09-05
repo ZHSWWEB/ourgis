@@ -82,9 +82,7 @@
     <Content Include="json\systemParameter.json" />
     <Content Include="json\userface.json" />
     <Content Include="json\usersList.json" />
-    <Content Include="page\formpages\dropMultiSelect.ascx" />
     <Content Include="page\formpages\showList.aspx" />
-    <Content Include="page\formpages\testDrop.aspx" />
     <Content Include="page\formpages\testHtml.html" />
     <Content Include="page\project\projectAdd.aspx" />
     <Content Include="page\project\projectFiles.aspx" />
@@ -11309,13 +11307,6 @@
     <Compile Include="json\userList.aspx.designer.cs">
       <DependentUpon>userList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\formpages\dropMultiSelect.ascx.cs">
-      <DependentUpon>dropMultiSelect.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="page\formpages\dropMultiSelect.ascx.designer.cs">
-      <DependentUpon>dropMultiSelect.ascx</DependentUpon>
-    </Compile>
     <Compile Include="page\formpages\showDetail.aspx.cs">
       <DependentUpon>showDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -11329,13 +11320,6 @@
     </Compile>
     <Compile Include="page\formpages\showList.aspx.designer.cs">
       <DependentUpon>showList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="page\formpages\testDrop.aspx.cs">
-      <DependentUpon>testDrop.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="page\formpages\testDrop.aspx.designer.cs">
-      <DependentUpon>testDrop.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\login\checkCode.aspx.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>

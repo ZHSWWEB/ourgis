@@ -69,11 +69,9 @@ namespace web.page.formpages
                         //记录用户习惯
                         sql = "UPDATE REC_HABIT SET " + pagename + " = " + pagename + " + 1";
                         OperateUser(sql);
-
                         //首次打开
                         if (!IsPostBack)
                         {
-
                             //绑定下拉菜单
                             DistrictList_bind();
                             SearchList_bind();
@@ -204,21 +202,6 @@ namespace web.page.formpages
                 e.Row.Attributes.Add("onmouseover", "currentColor=this.style.backgroundColor;this.style.backgroundColor='#31b7ab';");
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentColor;");
             }
-            //if (e.Row.RowState == DataControlRowState.Alternate || e.Row.RowState == DataControlRowState.Edit)
-            //{
-            //    e.Row.Cells[3].Controls.AddAt(0, new DropDownList());
-            //    //    TextBox curText;
-            //    //    DropDownList sexddl = new DropDownList;
-            //    //    sexddl.Items.Add("男");
-            //    //    sexddl.Items.Add("女");
-            //    //    sexddl.Items.Add("");
-            //    //    curText = (TextBox)e.Row.Cells[2].Controls[0];
-            //    //    sexddl.SelectedValue = curText.Text;
-            //    //    e.Row.Cells[2].Controls.RemoveAt(0);
-            //    //    e.Row.Cells[2].Controls.Add(sexddl);
-
-            //    int a = GridView1.Rows[e.Row.RowIndex-1].Cells[3].Controls.Count;
-            //}
         }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)//行编辑事件
         {
