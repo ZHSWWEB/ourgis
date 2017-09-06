@@ -66,6 +66,9 @@ namespace web.page.formpages
                             //绑定下拉菜单
                             DistrictList_bind();
                             SearchList_bind();
+                            //生成选择框
+                            only187.Visible = pagename == "RIVER";
+                            only35.Visible = pagename == "RIVER";
                             //生成GridView
                             build();
                             //获取按键所在列
@@ -124,17 +127,19 @@ namespace web.page.formpages
         }
         protected void refresh()//绑定到GridView
         {
-            //获取行政区下拉菜单、搜索框、搜索选项的值
+            //获取行政区下拉菜单、搜索框、搜索选项等的值
             string district = DistrictList.SelectedValue;
             string field = SearchList.SelectedValue;
             string find = TextBox1.Text;
+            string set187 = only187.Checked ? "AND F1368查187>0 " : "";
+            string set35 = only35.Checked ? "AND F1368查35>0 " : "";
             //拼接Listconfig的查询字符串
             string sql = "";
             for (int i = 0; i < listconfig.Rows.Count; i++)
             {
                 sql = sql + listconfig.Rows[i]["fieldName"] + (i < listconfig.Rows.Count - 1 ? "," : "");
             }
-            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + field + " like '%" + find + "%'";
+            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + field + " like '%" + find + "%' " + set187 + set35;
             //string sql = "SELECT OBJECTID,HCMC,其他叫法,XZQ,F1368,F1368NUM,F1368查187,F1368查35,HZ_SHI,HZ_QU,HZ_JIEDAO FROM SLG_RV_po where " + xzq + field + " like '%" + find + "%'";
             DataSet ds = QuarySde(sql);
             //ds非空
@@ -165,7 +170,7 @@ namespace web.page.formpages
         protected void DistrictList_bind()//绑定到行政区DropList
         {
             //行政区拼接查询语句
-            string sql = "SELECT text,left+'" + config.Rows[0]["districtName"] + "'+' '+value+value1 FROM [District$] WHERE " + config.Rows[0]["tableName"] + " = 1";
+            string sql = "SELECT text,left+'" + config.Rows[0]["districtName"] + "'+' '+value,value1 FROM [District$] WHERE " + config.Rows[0]["tableName"] + " = 1";
             DataSet ds = QuaryExcel(sql);
             //清除all选项的多余字段
             ds.Tables[0].Rows[0]["Expr1001"] = "";
@@ -173,6 +178,9 @@ namespace web.page.formpages
             DistrictList.DataSource = ds;
             DistrictList.DataTextField = "text";
             DistrictList.DataValueField = "Expr1001";
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++) {//拼接value和value1
+                ds.Tables[0].Rows[i][1] = ds.Tables[0].Rows[i][1].ToString() + ds.Tables[0].Rows[i][2].ToString();
+            } 
             DistrictList.DataBind();
         }
         protected void SearchList_bind()//绑定到搜索选项DropList
@@ -430,6 +438,16 @@ namespace web.page.formpages
         protected void SearchList_SelectedIndexChanged(object sender, EventArgs e)//搜索选项的切换事件
         {
             //refresh();
+        }
+        protected void only187_CheckedChanged(object sender, EventArgs e)
+        {
+            if (only187.Checked) only35.Checked = false;
+            refresh();
+        }
+        protected void only35_CheckedChanged(object sender, EventArgs e)
+        {
+            if (only35.Checked) only187.Checked = false;
+            refresh();
         }
     }
 }
