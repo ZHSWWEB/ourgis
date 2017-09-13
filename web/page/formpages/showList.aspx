@@ -6,6 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link rel="stylesheet" href="../../fonts/iconfont.css" media="all" />
     <%--引入jquery将导致弹窗失败--%>
     <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
     <script type="text/javascript">
@@ -31,20 +32,42 @@
 </head>
 <body>
     <form id="Form1" runat="server">
-        <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
+        <div id="topBox" style="display: block">
+            <div>
+                <asp:label runat="server" for="DistrictList" id="lDistrictList">行政区：</asp:label>
+                <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
+                <asp:label runat="server" for="set1368" id="lset1368">&nbsp;&nbsp;&nbsp;&nbsp;1368条河流：</asp:label>
+                <asp:DropDownList ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
+                    <asp:ListItem Value="" Selected="True">------</asp:ListItem>
+                    <asp:ListItem Value="F1368NUM > 0 AND ">仅显示</asp:ListItem>
+                    <asp:ListItem Value="F1368NUM = 0 AND ">不显示</asp:ListItem>
+                </asp:DropDownList>
+                &nbsp;&nbsp;&nbsp;&nbsp;数据ID：<asp:TextBox ID="objectidd" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+                &#126;&nbsp;<asp:TextBox ID="objectidu" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+            </div>
+            <div>
+                <asp:CheckBox ID="only187" runat="server" AutoPostBack="True" Text="仅显示187条重点黑臭河流" OnCheckedChanged="only187_CheckedChanged" />
+                <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" Text="仅显示35条重点黑臭河流" OnCheckedChanged="only35_CheckedChanged" />
+            </div>
+        </div>
+        <hr style="margin-bottom:0;margin-top:2px;height:1px" onclick="toplist()" />
+        <div  style="height:8px;text-align:center" onclick="toplist()">
+            <i id ="topu" style="font-size:22px;display:block"  class="iconfont icon-shang"></i>
+            <i id ="topd" style="font-size:22px;display:none"  class="iconfont icon-xia"></i>
+        </div>
+        
         <asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="146px" Style="margin-bottom: 10px;" Font-Names="微软雅黑" Font-Size="Small" MaxLength="100"></asp:TextBox>
         <asp:DropDownList ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Height="24px" Width="50px" Style="margin-bottom: 8px;" Font-Names="微软雅黑" Font-Size="Small" BackColor="#CCCCCC"/>
-        <asp:CheckBox ID="only187" runat="server" AutoPostBack="True" Text="仅显示187条重点黑臭河流" OnCheckedChanged="only187_CheckedChanged"/>
-        <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" Text="仅显示35条重点黑臭河流" OnCheckedChanged="only35_CheckedChanged"/>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height:0;width:0;padding-left:0;padding:0 0;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;"/>
+
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="25" Width="100%" EmptyDataText="暂缺"
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="选择">
+                <asp:TemplateField HeaderText="行号">
                     <ItemTemplate>
-                        <asp:CheckBox ID="ChkItem" runat="server" Width="40px" />
+                        <asp:Label ID="rowIndex" class="rowIndex" runat="server">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:Label>
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
@@ -134,9 +157,25 @@
     </div>
 </body>
 <script> 
+    function loadRowIndex()
+    {
+        layui.use( ['jquery'], function ()
+        {
+            var $ = layui.jquery;
+            var len = $( ".rowIndex" ).length;
+            for ( var i = 0; i < len; i++ )
+            {
+                $( "#GridView1_rowIndex_" + i )[0].innerHTML = "&nbsp;&nbsp;" + ( i + 1 ) + "&nbsp;&nbsp;";
+            }
+        } );
+    }
+    //写入行号
+    loadRowIndex();
+
     layui.use( ['jquery'], function ()
     {
         var $ = layui.jquery;
+        $( "input[name$='$ctl02']" ).focus( function () { $( "input[name$='$ctl02']" )[0].readOnly = true } );
         $( "input[name$='$ctl02']" ).click( function ()
         {
             if ( url.indexOf( "slg_rv_po" ) > -1 )
@@ -200,6 +239,62 @@
                 var $ = layui.jquery;
                 $( "input[name$='$ctl02']" )[0].value = text;
             } );
+        }
+    }
+    function toplist()
+    {
+        layui.use( ['jquery'], function ()
+        {
+            var $ = layui.jquery;
+            $( "#topu" ).toggle();
+            $( "#topd" ).toggle();
+            $( "#topBox" ).slideToggle();
+            //$( "#DistrictList" )[0].style.display = $( "#DistrictList" )[0].style.display == "none" ? "block" : "none";
+            //$( "#only187" )[0].style.display = $( "#only187" )[0].style.display == "none" ? "block" : "none";
+            //$( "#only35" )[0].style.display = $( "#only35" )[0].style.display == "none" ? "block" : "none";
+            //$( "#topu" )[0].style.display = $( "#topu" )[0].style.display == "none" ? "block" : "none";
+            //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
+        } );
+    }
+    function inputObjectId( event )//限制为只可输入为数字
+    { 
+        if ( event.keyCode == 13 )
+        {
+            event.returnValue = checkObjectId();
+        } else
+        {
+            if ( event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;
+        }
+    }
+    function checkObjectId()
+    {
+        var d = document.getElementById( "objectidd" );
+        var u = document.getElementById( "objectidu" );
+        if ( d.value != "" && !( /^\d+$/.test( d.value ) ) )//是否全为数字
+        {
+            d.value = "";
+            alert( "请输入数字" );
+            return false;
+        }
+        if ( u.value != "" && !( /^\d+$/.test( u.value ) ) )//是否全为数字
+        {
+            u.value = "";
+            alert( "请输入数字" );
+            return false;
+        }
+        if ( d.value == "" || u.value == "" )
+        {
+            return true;
+        }
+        else if ( d.value < u.value)
+        {
+            return true;
+        } else
+        {
+            d.value = "";
+            u.value = "";
+            alert( "左侧值应小于右侧值" );
+            return false;
         }
     }
 </script>

@@ -88,7 +88,6 @@
 			    	<li class="layui-nav-item showNotice" id="showNotice" pc>
 						<a href="javascript:;"><i class="iconfont icon-gonggao2"></i><cite>系统公告</cite></a>
 					</li>
-                    
                     <li class="layui-nav-item" id="mapFullScreen" pc>
 						<a href="javascript:;"><i class="iconfont icon-quanping6"></i><cite>全屏</cite></a>
 					</li>

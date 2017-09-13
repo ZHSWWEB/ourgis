@@ -93,6 +93,7 @@
     <Content Include="page\project1\projectList.aspx" />
     <Content Include="page\project1\projectManage.aspx" />
     <Content Include="page\project1\projectManage.js" />
+    <Content Include="plugins\echarts\echarts.min.js" />
     <Content Include="plugins\layui\font\iconfont.eot" />
     <Content Include="plugins\layui\font\iconfont.ttf" />
     <Content Include="plugins\layui\font\iconfont.woff" />
@@ -854,6 +855,7 @@
     <Content Include="page\map\plugins\hplus\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="page\map\plugins\hplus\fonts\glyphicons-halflings-regulard41d.eot" />
     <Content Include="page\map\plugins\hplus\js\chart.zip" />
+    <Content Include="page\formpages\data.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -11338,42 +11340,49 @@
     </Compile>
     <Compile Include="page\project1\projectAdd.aspx.cs">
       <DependentUpon>projectAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectAdd.aspx.designer.cs">
       <DependentUpon>projectAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectFiles.aspx.cs">
       <DependentUpon>projectFiles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectFiles.aspx.designer.cs">
       <DependentUpon>projectFiles.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectFilesDownload.aspx.cs">
       <DependentUpon>projectFilesDownload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectFilesDownload.aspx.designer.cs">
       <DependentUpon>projectFilesDownload.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectFilesList.aspx.cs">
       <DependentUpon>projectFilesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectFilesList.aspx.designer.cs">
       <DependentUpon>projectFilesList.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectInfo.aspx.cs">
       <DependentUpon>projectInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectInfo.aspx.designer.cs">
       <DependentUpon>projectInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectList.aspx.cs">
       <DependentUpon>projectList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectList.aspx.designer.cs">
       <DependentUpon>projectList.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectManage.aspx.cs">
       <DependentUpon>projectManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="page\project1\projectManage.aspx.designer.cs">
       <DependentUpon>projectManage.aspx</DependentUpon>

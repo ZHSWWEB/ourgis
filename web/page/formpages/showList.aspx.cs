@@ -66,7 +66,9 @@ namespace web.page.formpages
                             //绑定下拉菜单
                             DistrictList_bind();
                             SearchList_bind();
-                            //生成选择框
+                            //设置河流工具
+                            set1368.Visible = pagename == "RIVER";
+                            lset1368.Visible = set1368.Visible;
                             only187.Visible = pagename == "RIVER";
                             only35.Visible = pagename == "RIVER";
                             //生成GridView
@@ -131,15 +133,29 @@ namespace web.page.formpages
             string district = DistrictList.SelectedValue;
             string field = SearchList.SelectedValue;
             string find = TextBox1.Text;
-            string set187 = only187.Checked ? "AND F1368查187>0 " : "";
-            string set35 = only35.Checked ? "AND F1368查35>0 " : "";
+            string se1368 = set1368.Text;
+            string set187 = only187.Checked ? "AND F1368查187 > 0 " : "";
+            string set35 = only35.Checked ? "AND F1368查35 > 0 " : "";
+            string objd = objectidd.Text;
+            string obju = objectidu.Text;
+            string objstr = "";
+            if (objd != "" && obju != "")
+            {
+                objstr = "OBJECTID BETWEEN " + objd + " AND " + obju + " AND ";
+            }else if (objd != "" && obju == "")
+            {
+                objstr = "OBJECTID > " + objd + " AND ";
+            }else if (objd == "" && obju != "")
+            {
+                objstr = "OBJECTID < " + obju + " AND ";
+            }
             //拼接Listconfig的查询字符串
             string sql = "";
             for (int i = 0; i < listconfig.Rows.Count; i++)
             {
                 sql = sql + listconfig.Rows[i]["fieldName"] + (i < listconfig.Rows.Count - 1 ? "," : "");
             }
-            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + field + " like '%" + find + "%' " + set187 + set35;
+            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + objstr + se1368 + field + " like '%" + find + "%' " + set187 + set35;
             //string sql = "SELECT OBJECTID,HCMC,其他叫法,XZQ,F1368,F1368NUM,F1368查187,F1368查35,HZ_SHI,HZ_QU,HZ_JIEDAO FROM SLG_RV_po where " + xzq + field + " like '%" + find + "%'";
             DataSet ds = QuarySde(sql);
             //ds非空
@@ -435,6 +451,14 @@ namespace web.page.formpages
             GridView1.SelectedIndex = -1;
             refresh();
         }
+        protected void set1368_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //重置页码
+            GridView1.PageIndex = 0;
+            //取消选中行
+            GridView1.SelectedIndex = -1;
+            refresh();
+        }
         protected void SearchList_SelectedIndexChanged(object sender, EventArgs e)//搜索选项的切换事件
         {
             //refresh();
@@ -442,12 +466,22 @@ namespace web.page.formpages
         protected void only187_CheckedChanged(object sender, EventArgs e)
         {
             if (only187.Checked) only35.Checked = false;
+            //重置页码
+            GridView1.PageIndex = 0;
+            //取消选中行
+            GridView1.SelectedIndex = -1;
             refresh();
         }
         protected void only35_CheckedChanged(object sender, EventArgs e)
         {
             if (only35.Checked) only187.Checked = false;
+            //重置页码
+            GridView1.PageIndex = 0;
+            //取消选中行
+            GridView1.SelectedIndex = -1;
             refresh();
         }
+
+        
     }
 }
