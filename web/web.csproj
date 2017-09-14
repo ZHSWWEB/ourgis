@@ -83,6 +83,7 @@
     <Content Include="json\userface.json" />
     <Content Include="json\usersList.json" />
     <Content Include="page\formpages\showList.aspx" />
+    <Content Include="page\formpages\test.aspx" />
     <Content Include="page\formpages\testHtml.html" />
     <Content Include="page\project1\projectAdd.aspx" />
     <Content Include="page\project1\projectFiles.aspx" />
@@ -11323,6 +11324,13 @@
     </Compile>
     <Compile Include="page\formpages\showList.aspx.designer.cs">
       <DependentUpon>showList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\formpages\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="page\formpages\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\login\checkCode.aspx.cs">
       <DependentUpon>checkCode.aspx</DependentUpon>

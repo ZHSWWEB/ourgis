@@ -28,19 +28,30 @@
         };
         var url = window.location.href;
         var timoutID;
+        var curmenu = JSON.parse( sessionStorage.getItem( "curmenu" ) );
+        var title = curmenu.title;
+        var topShow = sessionStorage.getItem( "topShow_" + title );
+        if ( topShow == null )//首次打开
+        {
+            sessionStorage.setItem( "topShow_" + title ,false);
+            topShow = false;
+        } else
+        {
+            topShow = ( topShow == "true" );
+        }
     </script>
 </head>
 <body>
     <form id="Form1" runat="server">
-        <div id="topBox" style="display: block">
+        <div id="topBox" style="display: none">
             <div>
                 <asp:label runat="server" for="DistrictList" id="lDistrictList">行政区：</asp:label>
                 <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
                 <asp:label runat="server" for="set1368" id="lset1368">&nbsp;&nbsp;&nbsp;&nbsp;1368条河流：</asp:label>
                 <asp:DropDownList ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
-                    <asp:ListItem Value="" Selected="True">------</asp:ListItem>
-                    <asp:ListItem Value="F1368NUM > 0 AND ">仅显示</asp:ListItem>
-                    <asp:ListItem Value="F1368NUM = 0 AND ">不显示</asp:ListItem>
+                    <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
+                    <asp:ListItem Value="F1368NUM > 0 AND ">仅1368</asp:ListItem>
+                    <asp:ListItem Value="F1368NUM = 0 AND ">非1368</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;&nbsp;&nbsp;&nbsp;数据ID：<asp:TextBox ID="objectidd" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
                 &#126;&nbsp;<asp:TextBox ID="objectidu" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
@@ -50,10 +61,10 @@
                 <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" Text="仅显示35条重点黑臭河流" OnCheckedChanged="only35_CheckedChanged" />
             </div>
         </div>
-        <hr style="margin-bottom:0;margin-top:2px;height:1px" onclick="toplist()" />
+        <hr style="margin-bottom:0;margin-top:2px;height:2px" onclick="toplist()" />
         <div  style="height:8px;text-align:center" onclick="toplist()">
-            <i id ="topu" style="font-size:22px;display:block"  class="iconfont icon-shang"></i>
-            <i id ="topd" style="font-size:22px;display:none"  class="iconfont icon-xia"></i>
+            <i id ="topu" style="font-size:22px;display:none"  class="iconfont icon-shang"></i>
+            <i id ="topd" style="font-size:22px;display:block"  class="iconfont icon-xia"></i>
         </div>
         
         <asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="146px" Style="margin-bottom: 10px;" Font-Names="微软雅黑" Font-Size="Small" MaxLength="100"></asp:TextBox>
@@ -61,7 +72,7 @@
         <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Height="24px" Width="50px" Style="margin-bottom: 8px;" Font-Names="微软雅黑" Font-Size="Small" BackColor="#CCCCCC"/>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height:0;width:0;padding-left:0;padding:0 0;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;"/>
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="25" Width="100%" EmptyDataText="暂缺"
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="20" Width="100%" EmptyDataText="暂缺"
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
@@ -157,6 +168,9 @@
     </div>
 </body>
 <script> 
+    document.getElementById( "topBox" ).style.display = ( topShow ? "block" : "none" );
+    document.getElementById( "topu" ).style.display = ( topShow ? "block" : "none" );
+    document.getElementById( "topd" ).style.display = ( !topShow ? "block" : "none" );
     function loadRowIndex()
     {
         layui.use( ['jquery'], function ()
@@ -249,10 +263,8 @@
             $( "#topu" ).toggle();
             $( "#topd" ).toggle();
             $( "#topBox" ).slideToggle();
-            //$( "#DistrictList" )[0].style.display = $( "#DistrictList" )[0].style.display == "none" ? "block" : "none";
-            //$( "#only187" )[0].style.display = $( "#only187" )[0].style.display == "none" ? "block" : "none";
-            //$( "#only35" )[0].style.display = $( "#only35" )[0].style.display == "none" ? "block" : "none";
-            //$( "#topu" )[0].style.display = $( "#topu" )[0].style.display == "none" ? "block" : "none";
+            topShow = !topShow;
+            sessionStorage.setItem( "topShow_" + title, topShow );
             //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
         } );
     }
