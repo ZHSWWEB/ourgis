@@ -106,7 +106,10 @@ function initMap(Map) {
 
     //paishuiLayer = new esri.layers.ArcGISDynamicMapServiceLayer(layerConfiguration.baseMap.paishui, { visible: false, id: "paishuiLayer" });
     paishuiLayer = new esri.layers.ArcGISTiledMapServiceLayer(layerConfiguration.baseMap.paishui, { visible: true, id: "paishuiLayer" });
-    map.addLayer(paishuiLayer);
+    map.addLayer( paishuiLayer );
+
+    jietubiaoLayer = new esri.layers.ArcGISDynamicMapServiceLayer( layerConfiguration.baseMap.jietubiao, { visible: false, id: "jietubiaoLayer" } );
+    map.addLayer( jietubiaoLayer );
 
     //paishuidianLayer = new esri.layers.ArcGISDynamicMapServiceLayer(layerConfiguration.baseMap.paishuidian, { visible: false, id: "paishuidianLayer" });
     //map.addLayer(paishuidianLayer);

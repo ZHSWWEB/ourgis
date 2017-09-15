@@ -18,6 +18,7 @@ var layerConfiguration = {
 	    jichushuju: commandUrl + "QuanLiuYu/jichushuju/MapServer",
         paishui: commandUrl + "QuanLiuYu/paishui/MapServer",
         shuili: commandUrl + "QuanLiuYu/shuili/MapServer",
+        jietubiao: commandUrl + "QuanLiuYu/jietubiao/MapServer",
     },
     dissertation: {
         hechong: {
