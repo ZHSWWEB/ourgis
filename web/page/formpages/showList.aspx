@@ -33,8 +33,8 @@
         var topShow = sessionStorage.getItem( "topShow_" + title );
         if ( topShow == null )//首次打开
         {
-            sessionStorage.setItem( "topShow_" + title ,false);
-            topShow = false;
+            sessionStorage.setItem( "topShow_" + title ,true);
+            topShow = true;
         } else
         {
             topShow = ( topShow == "true" );

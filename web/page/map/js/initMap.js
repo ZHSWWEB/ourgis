@@ -126,6 +126,30 @@ function initMap(Map) {
         }
     }
     //添加图层layer到地图
+    //记录或读取各图层的visible状态到sessionStorage
+    var visibleConfig = sessionStorage.getItem( "visibleConfig" );
+    if ( visibleConfig == null )//首次打开写入sessionStorage
+    {
+
+        visibleConfig = [];
+        var ids = map.layerIds.concat( map.graphicsLayerIds )
+        for ( i = 0; i < ids.length; i++ )
+        {
+            var layerr = {};
+            layerr.id = ids[i];
+            layerr.visible = map.getLayer( layerr.id ).visible;
+            visibleConfig.push( layerr );
+        }
+        sessionStorage.setItem( "visibleConfig", JSON.stringify( visibleConfig ) );
+    } else//二次打开读取sessionStorage并设置图层
+    {
+        visibleConfig = JSON.parse( visibleConfig );
+        for ( i = 0; i < visibleConfig.length; i++ )
+        {
+            map.getLayer( visibleConfig[i].id ).visible = visibleConfig[i].visible;
+        }
+    }
+    
     //设置地图的显示范围
     map.centerAt(new esri.geometry.Point(66295, 50180, new esri.SpatialReference(wkt)));//定位到广州的范围
     map.setScale(1000000);

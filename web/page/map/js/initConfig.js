@@ -226,8 +226,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/0",
             type: "polygon",
             titleField: 'FQ',
-            outFields: ["FQ"],
-            displayFields: ["行政区"],
+            outFields: ["FQ", "SHAPE.AREA", "SHAPE.LEN"],
+            displayFields: ["行政区","面积(平方米)","周长(米)"],
             dateFields: [],
             queryField: ["FQ"],
             statisticsFields: {
@@ -247,8 +247,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/1",
             type: "polygon",
             titleField: 'JEDAONAME',
-            outFields: ["JEDAONAME"],
-            displayFields: ["街镇名"],
+            outFields: ["JEDAONAME", "SHAPE.AREA", "SHAPE.LEN"],
+            displayFields: ["街镇名", "面积(平方米)", "周长(米)"],
             dateFields: [],
             queryField: ["JEDAONAME"],
             statisticsFields: {
@@ -268,8 +268,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/2",
             type: "polygon",
             titleField: 'XZQMC',
-            outFields: ["XZQMC"],
-            displayFields: ["村名"],
+            outFields: ["XZQMC", "SHAPE.AREA", "SHAPE.LEN"],
+            displayFields: ["村名", "面积(平方米)", "周长(米)"],
             dateFields: [],
             queryField: ["XZQMC"],
             statisticsFields: {

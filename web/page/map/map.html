@@ -227,8 +227,8 @@
                         <li>
                             <a href="#" class="jietubiaoLayer">2K接图表</a>
                             <div class="bg_con">
-                                <input id="checked_6" type="checkbox" class="layerSwitch" />
-                                <label for="checked_6"></label>
+                                <input id="checked_7" type="checkbox" class="layerSwitch" />
+                                <label for="checked_7"></label>
                             </div>
                         </li>
                         <li>
@@ -411,5 +411,18 @@
             <use xlink:href="#circle" class="use" ></use>
         </svg>
     </div>
+    <script>
+        visibleConfig = JSON.parse( sessionStorage.getItem( "visibleConfig" ));
+        for ( i = 0; i < visibleConfig.length; i++ )
+        {
+            //$( "a."+visibleConfig[i].id ).siblings().find( "input[type=checkbox]" ).prop( "checked", layer.visible );
+            var a = $( "a." + visibleConfig[i].id )
+            if ( a != null )
+            {
+                $( "a." + visibleConfig[i].id ).siblings().find( "input[type=checkbox]" ).prop( "checked", visibleConfig[i].visible );
+            }
+        }
+        //
+    </script>
 </body>
 </html>
