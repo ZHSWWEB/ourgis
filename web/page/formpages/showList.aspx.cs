@@ -134,8 +134,8 @@ namespace web.page.formpages
             string field = SearchList.SelectedValue;
             string find = TextBox1.Text;
             string se1368 = set1368.Text;
-            string set187 = only187.Checked ? "AND F1368查187 > 0 " : "";
-            string set35 = only35.Checked ? "AND F1368查35 > 0 " : "";
+            string set187 = only187.Checked ? "AND F187 > 0 " : "";
+            string set35 = only35.Checked ? "AND F35 > 0 " : "";
             string objd = objectidd.Text;
             string obju = objectidu.Text;
             string objstr = "";

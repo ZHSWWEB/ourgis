@@ -413,16 +413,17 @@
     </div>
     <script>
         visibleConfig = JSON.parse( sessionStorage.getItem( "visibleConfig" ));
-        for ( i = 0; i < visibleConfig.length; i++ )
+        if ( visibleConfig )
         {
-            //$( "a."+visibleConfig[i].id ).siblings().find( "input[type=checkbox]" ).prop( "checked", layer.visible );
-            var a = $( "a." + visibleConfig[i].id )
-            if ( a != null )
+            for ( i = 0; i < visibleConfig.length; i++ )//设置checkbox状态
             {
-                $( "a." + visibleConfig[i].id ).siblings().find( "input[type=checkbox]" ).prop( "checked", visibleConfig[i].visible );
+                var a = $( "a." + visibleConfig[i].id )
+                if ( a != null )
+                {
+                    $( "a." + visibleConfig[i].id ).siblings().find( "input[type=checkbox]" ).prop( "checked", visibleConfig[i].visible );
+                }
             }
         }
-        //
     </script>
 </body>
 </html>

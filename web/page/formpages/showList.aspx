@@ -50,8 +50,8 @@
                 <asp:label runat="server" for="set1368" id="lset1368">&nbsp;&nbsp;&nbsp;&nbsp;1368条河流：</asp:label>
                 <asp:DropDownList ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
                     <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
-                    <asp:ListItem Value="F1368NUM > 0 AND ">仅1368</asp:ListItem>
-                    <asp:ListItem Value="F1368NUM = 0 AND ">非1368</asp:ListItem>
+                    <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
+                    <asp:ListItem Value="F1368 = 0 AND ">非1368</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;&nbsp;&nbsp;&nbsp;数据ID：<asp:TextBox ID="objectidd" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
                 &#126;&nbsp;<asp:TextBox ID="objectidu" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>

@@ -12,10 +12,10 @@ var commandUrl = 'http://192.168.2.55:6080/arcgis/rest/services/';
 //定义图层
 var layerConfiguration = {
     baseMap: {
-	    weixingyingxiang: commandUrl + "QuanLiuYu/weixingyingxiang/MapServer",
+        weixingyingxiang: commandUrl + "QuanLiuYu/weixingyingxiang/MapServer",
         dituT: commandUrl + "QuanLiuYu/ditu/MapServer",
         dituD: commandUrl + "QuanLiuYu/ditu1/MapServer",
-	    jichushuju: commandUrl + "QuanLiuYu/jichushuju/MapServer",
+        jichushuju: commandUrl + "QuanLiuYu/jichushuju/MapServer",
         paishui: commandUrl + "QuanLiuYu/paishui/MapServer",
         shuili: commandUrl + "QuanLiuYu/shuili/MapServer",
         jietubiao: commandUrl + "QuanLiuYu/jietubiao/MapServer",
@@ -32,16 +32,13 @@ var layerConfiguration = {
             maxScale: 0,
             url: commandUrl + "QuanLiuYu/shuili/MapServer/4",
             type: "polygon",
-            titleField: 'HCMC',
-            outFields: ['OBJECTID', 'HCMC', "HCBM", "其他叫法", "XZQ", "F1368", "F1368NUM", "F1368查187", "F1368查35", "HZ_SHI", "HZ_QU", "HZ_JIEDAO", "HCGN", 'HCFL', 'HCCD', 'LYMJ', 'HCKD', 'SMMJ', 'ISKQY', 'ISHC', 'SGNYJQ', 'SQNEJQ', 'SGNQSZMB', 'SJFHBZ', 'SJPLBZ', 'ZZCD', 'QDMC', 'QDQX', 'QDJZ', 'QD_X', 'QD_Y', 'ZDMC', 'ZDQX', 'ZDJZ', 'ZD_X', 'ZD_Y', 'SSPLP', 'SZLY', 'SJHLMC', 'SJHLDM', 'HLJB', 'XGR','XGRQ'],
-            displayFields: ['OBJECTID','河涌名称', '河涌编码','其他叫法','行政区','1368条名录','1368条编号','186条名录','35条名录','市级河长','区级河长','街道河长', '河涌功能', '河涌分类', '河涌长度（km）', '流域面积（km2）', '河涌宽度（m）', '水面面积（万m2）', '是否跨区域', '是否黑臭', '水功能一级区划', '水功能二级区划', '水功能区水质目标', '设计防洪标准（年）', '设计排涝标准（年）', '整治长度（km）', '起点（源头）位置 名称', '起点位置 区县', '起点位置 街镇', '起点坐标X', '起点坐标Y', '终点（河口）位置 名称', '终点位置 区县', '终点位置 街镇', '终点坐标X', '终点坐标Y', '所属排涝片', '所在流域名称', '上级干流名称', '上级干流编码', '河流级别', '修改人','修改日期'],
-            dateFields: ["修改日期"],
-            queryField: ['OBJECTID','HCMC', 'HCBM', 'HCGN', 'XZQ', 'HZXM', 'ISHC'],
+            titleField: 'RVNM',
+            outFields: ["OBJECTID", "RVNM", "RVCD", "ALIAS", "RVTP", "DWWT", "DWWTCD", "HWPS", "HWEL", "ESPS", "ESEL", "DTPL", "RVLEN", "AVGG", "CTAR", "AVANRNAM", "ANRNSTDV", "RVOV", "DTUPDT", "SSLYDM", "SSLYMC", "HDDJ", "XZQ", "HCFL", "HZ_SHI", "HZ_QU", "HZ_JIEDAO", "ISKQY", "F35", "F187", "F1368", "SJFHBZ", "SJPLBZ", "SGNYJQ", "SGNEJQ", "SGNQSZMB", "HLPJKD", "SMMJ", "REMARK"],
+            displayFields: ["数据ID", "河流名称", "河流代码", "别名／曾用名", "河流类别", "汇入水域", "汇入水域代码", "河源位置", "河源高程", "河口位置", "河口高程", "水准基面", "河流长度(km)", "平均比降", "流域面积", "多年平均径流量", "年径流量标准差", "河流概况", "数据更新日期", "所属流域代码", "所属流域名称", "河道等级", "所属行政区", "河涌分类", "市级河长", "区级河长", "街道河长", "跨区数量", "35条黑臭河涌编号", "187条黑臭河涌编号", "1368条河涌编号", "设计防洪标准", "设计排涝标准", "水功能一级区划", "水功能二级区划", "水功能区水质目标", "河涌平均宽度(m)", "水面面积(km2)", "备注"],
+            dateFields: ["数据更新日期"],
+            queryField: ['OBJECTID', "RVNM", "RVCD", "ALIAS", 'XZQ', "F1368"],
             statisticsFields: {
-                'HCGN': "河流(涌)功能",
-                'HCFL': '河流(涌)分类',
-                'XZQ': '行政区',
-                'ISHC': '是否黑臭'
+                'XZQ': '行政区'
             },
             statType: 'count',
             sumField: null
@@ -119,7 +116,7 @@ var layerConfiguration = {
                 'SJBZ': '规划防洪标准'
             },
             statType: 'other',
-            sumField:'CD'
+            sumField: 'CD'
         },
         bengzhan: {
             name: '泵站',
@@ -164,56 +161,54 @@ var layerConfiguration = {
         //    statType: 'count',
         //    sumField: null
         //},
-        //chengzhongcun: {
-        //    name: '城中村',
-        //    addToMap: false,
-        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/1",
-        //    type: "point",
-        //    titleField: '村',
-        //    outFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
-        //    displayFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
-        //    queryField: ["区", "街道", "村", "地址"],
-        //    statisticsFields: {
-        //        '区': '行政区'
-        //    },
-        //    statType: 'count',
-        //    sumField: null
-        //},
-        //wurenjixunfei: {
-        //    name: '无人机巡飞',
-        //    addToMap: false,
-        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/2",
-        //    type: "line",
-        //    titleField: 'NAME',
-        //    outFields: ["NAME", "DISTRICT"],
-        //    displayFields: ["巡飞河流", "行政区域"],
-        //    queryField: ["NAME", "DISTRICT"],
-        //    statisticsFields: {
-        //        'NAME': '巡飞河流',
-        //        'DISTRICT': '行政区域'
-        //    },
-        //    statType: 'count',
-        //    sumField: null
-        //},
-        //chengshigengxin: {
-        //    name: '城市改造',
-        //    addToMap: false,
-        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/3",
-        //    type: "polygon",
-        //    titleField: '项目名称',
-        //    outFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
-        //    displayFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
-        //    queryField: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体"],
-        //    statisticsFields: {
-        //        '更新类型': '更新类型',
-        //        '更新方式': '更新方式',
-        //        '行政区域': '行政区域'
-        //    },
-        //    statType: 'count',
-        //    sumField: null
-        //},
-
-
+        chengzhongcun: {
+            name: '城中村',
+            addToMap: false,
+            url: commandUrl + "QuanLiuYu/zhuanti/MapServer/1",
+            type: "point",
+            titleField: '村',
+            outFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
+            displayFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
+            queryField: ["区", "街道", "村", "地址"],
+            statisticsFields: {
+                '区': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        wurenjixunfei: {
+            name: '无人机巡飞',
+            addToMap: false,
+            url: commandUrl + "QuanLiuYu/zhuanti/MapServer/2",
+            type: "line",
+            titleField: 'NAME',
+            outFields: ["NAME", "DISTRICT"],
+            displayFields: ["巡飞河流", "行政区域"],
+            queryField: ["NAME", "DISTRICT"],
+            statisticsFields: {
+                'NAME': '巡飞河流',
+                'DISTRICT': '行政区域'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        chengshigengxin: {
+            name: '城市改造',
+            addToMap: false,
+            url: commandUrl + "QuanLiuYu/zhuanti/MapServer/3",
+            type: "polygon",
+            titleField: '项目名称',
+            outFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
+            displayFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
+            queryField: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体"],
+            statisticsFields: {
+                '更新类型': '更新类型',
+                '更新方式': '更新方式',
+                '行政区域': '行政区域'
+            },
+            statType: 'count',
+            sumField: null
+        },
         qujie: {
             name: '区界',
             addToMap: true,
@@ -227,7 +222,7 @@ var layerConfiguration = {
             type: "polygon",
             titleField: 'FQ',
             outFields: ["FQ", "SHAPE.AREA", "SHAPE.LEN"],
-            displayFields: ["行政区","面积(平方米)","周长(米)"],
+            displayFields: ["行政区", "面积(平方米)", "周长(米)"],
             dateFields: [],
             queryField: ["FQ"],
             statisticsFields: {
@@ -288,16 +283,13 @@ var layerConfiguration = {
             maxScale: 0,
             url: commandUrl + "QuanLiuYu/zhuanti/MapServer/5",
             type: "polygon",
-            titleField: 'HCMC',
-            outFields: ['OBJECTID', 'HCMC', "HCBM", "其他叫法", "XZQ", "F1368", "F1368NUM", "F1368查187", "F1368查35", "HZ_SHI", "HZ_QU", "HZ_JIEDAO", "HCGN", 'HCFL', 'HCCD', 'LYMJ', 'HCKD', 'SMMJ', 'ISKQY', 'ISHC', 'SGNYJQ', 'SQNEJQ', 'SGNQSZMB', 'SJFHBZ', 'SJPLBZ', 'ZZCD', 'QDMC', 'QDQX', 'QDJZ', 'QD_X', 'QD_Y', 'ZDMC', 'ZDQX', 'ZDJZ', 'ZD_X', 'ZD_Y', 'SSPLP', 'SZLY', 'SJHLMC', 'SJHLDM', 'HLJB', 'XGR', 'XGRQ'],
-            displayFields: ['OBJECTID', '河涌名称', '河涌编码', '其他叫法', '行政区', '1368条名录', '1368条编号', '186条名录', '35条名录', '市级河长', '区级河长', '街道河长', '河涌功能', '河涌分类', '河涌长度（km）', '流域面积（km2）', '河涌宽度（m）', '水面面积（万m2）', '是否跨区域', '是否黑臭', '水功能一级区划', '水功能二级区划', '水功能区水质目标', '设计防洪标准（年）', '设计排涝标准（年）', '整治长度（km）', '起点（源头）位置 名称', '起点位置 区县', '起点位置 街镇', '起点坐标X', '起点坐标Y', '终点（河口）位置 名称', '终点位置 区县', '终点位置 街镇', '终点坐标X', '终点坐标Y', '所属排涝片', '所在流域名称', '上级干流名称', '上级干流编码', '河流级别', '修改人', '修改日期'],
-            dateFields: ["修改日期"],
-            queryField: ['OBJECTID', 'HCMC', 'HCBM', 'HCGN', 'XZQ', 'HZXM', 'ISHC'],
+            titleField: 'RVNM',
+            outFields: ["OBJECTID", "RVNM", "RVCD", "ALIAS", "RVTP", "DWWT", "DWWTCD", "HWPS", "HWEL", "ESPS", "ESEL", "DTPL", "RVLEN", "AVGG", "CTAR", "AVANRNAM", "ANRNSTDV", "RVOV", "DTUPDT", "SSLYDM", "SSLYMC", "HDDJ", "XZQ", "HCFL", "HZ_SHI", "HZ_QU", "HZ_JIEDAO", "ISKQY", "F35", "F187", "F1368", "SJFHBZ", "SJPLBZ", "SGNYJQ", "SGNEJQ", "SGNQSZMB", "HLPJKD", "SMMJ", "REMARK"],
+            displayFields: ["数据ID", "河流名称", "河流代码", "别名／曾用名", "河流类别", "汇入水域", "汇入水域代码", "河源位置", "河源高程", "河口位置", "河口高程", "水准基面", "河流长度(km)", "平均比降", "流域面积", "多年平均径流量", "年径流量标准差", "河流概况", "数据更新日期", "所属流域代码", "所属流域名称", "河道等级", "所属行政区", "河涌分类", "市级河长", "区级河长", "街道河长", "跨区数量", "35条黑臭河涌编号", "187条黑臭河涌编号", "1368条河涌编号", "设计防洪标准", "设计排涝标准", "水功能一级区划", "水功能二级区划", "水功能区水质目标", "河涌平均宽度(m)", "水面面积(km2)", "备注"],
+            dateFields: ["数据更新日期"],
+            queryField: ['OBJECTID', "RVNM", "RVCD", "ALIAS", 'XZQ', "F1368"],
             statisticsFields: {
-                'HCGN': "河流(涌)功能",
-                'HCFL': '河流(涌)分类',
-                'XZQ': '行政区',
-                'ISHC': '是否黑臭'
+                'XZQ': '行政区'
             },
             statType: 'count',
             sumField: null
@@ -313,21 +305,18 @@ var layerConfiguration = {
             maxScale: 0,
             url: commandUrl + "QuanLiuYu/zhuanti/MapServer/4",
             type: "polygon",
-            titleField: 'HCMC',
-            outFields: ['OBJECTID', 'HCMC', "HCBM", "其他叫法", "XZQ", "F1368", "F1368NUM", "F1368查187", "F1368查35", "HZ_SHI", "HZ_QU", "HZ_JIEDAO", "HCGN", 'HCFL', 'HCCD', 'LYMJ', 'HCKD', 'SMMJ', 'ISKQY', 'ISHC', 'SGNYJQ', 'SQNEJQ', 'SGNQSZMB', 'SJFHBZ', 'SJPLBZ', 'ZZCD', 'QDMC', 'QDQX', 'QDJZ', 'QD_X', 'QD_Y', 'ZDMC', 'ZDQX', 'ZDJZ', 'ZD_X', 'ZD_Y', 'SSPLP', 'SZLY', 'SJHLMC', 'SJHLDM', 'HLJB', 'XGR', 'XGRQ'],
-            displayFields: ['OBJECTID', '河涌名称', '河涌编码', '其他叫法', '行政区', '1368条名录', '1368条编号', '186条名录', '35条名录', '市级河长', '区级河长', '街道河长', '河涌功能', '河涌分类', '河涌长度（km）', '流域面积（km2）', '河涌宽度（m）', '水面面积（万m2）', '是否跨区域', '是否黑臭', '水功能一级区划', '水功能二级区划', '水功能区水质目标', '设计防洪标准（年）', '设计排涝标准（年）', '整治长度（km）', '起点（源头）位置 名称', '起点位置 区县', '起点位置 街镇', '起点坐标X', '起点坐标Y', '终点（河口）位置 名称', '终点位置 区县', '终点位置 街镇', '终点坐标X', '终点坐标Y', '所属排涝片', '所在流域名称', '上级干流名称', '上级干流编码', '河流级别', '修改人', '修改日期'],
-            dateFields: ["修改日期"],
-            queryField: ['OBJECTID', 'HCMC', 'HCBM', 'HCGN', 'XZQ', 'HZXM', 'ISHC'],
+            titleField: 'RVNM',
+            outFields: ["OBJECTID", "RVNM", "RVCD", "ALIAS", "RVTP", "DWWT", "DWWTCD", "HWPS", "HWEL", "ESPS", "ESEL", "DTPL", "RVLEN", "AVGG", "CTAR", "AVANRNAM", "ANRNSTDV", "RVOV", "DTUPDT", "SSLYDM", "SSLYMC", "HDDJ", "XZQ", "HCFL", "HZ_SHI", "HZ_QU", "HZ_JIEDAO", "ISKQY", "F35", "F187", "F1368", "SJFHBZ", "SJPLBZ", "SGNYJQ", "SGNEJQ", "SGNQSZMB", "HLPJKD", "SMMJ", "REMARK"],
+            displayFields: ["数据ID", "河流名称", "河流代码", "别名／曾用名", "河流类别", "汇入水域", "汇入水域代码", "河源位置", "河源高程", "河口位置", "河口高程", "水准基面", "河流长度(km)", "平均比降", "流域面积", "多年平均径流量", "年径流量标准差", "河流概况", "数据更新日期", "所属流域代码", "所属流域名称", "河道等级", "所属行政区", "河涌分类", "市级河长", "区级河长", "街道河长", "跨区数量", "35条黑臭河涌编号", "187条黑臭河涌编号", "1368条河涌编号", "设计防洪标准", "设计排涝标准", "水功能一级区划", "水功能二级区划", "水功能区水质目标", "河涌平均宽度(m)", "水面面积(km2)", "备注"],
+            dateFields: ["数据更新日期"],
+            queryField: ['OBJECTID', "RVNM", "RVCD", "ALIAS", 'XZQ', "F1368"],
             statisticsFields: {
-                'HCGN': "河流(涌)功能",
-                'HCFL': '河流(涌)分类',
-                'XZQ': '行政区',
-                'ISHC': '是否黑臭'
+                'XZQ': '行政区'
             },
             statType: 'count',
             sumField: null
         },
-                
+
         wushuichulichang: {
             name: '污水处理厂',
             addToMap: true,
@@ -336,7 +325,7 @@ var layerConfiguration = {
             queryflag: 4,
             followvisit: "paishuiLayer",
             minScale: 5000,
-            maxScale:0,
+            maxScale: 0,
             url: commandUrl + "QuanLiuYu/paishui/MapServer/13",
             type: "polygon",
             titleField: 'NAME',
@@ -492,7 +481,7 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/2",
             type: "point",
             titleField: 'NAME',
-            outFields: ["USID","FCODE","SEWAGESYST","RAINESYSTE","DISTRICT","PROJECT_NA","OWNERDEPT","MANAGEDEPT","STATE","FINISH_DAT","NAME","WORK_ID","LANE_WAY","ADDR","SORT","SUBTYPE","COVER_TYPE","COVER_MATE","COVER_SIZE","MATERIAL","SUR_H","BOTTOM_H","BT_H","WELL_STATU","X","Y","REPAIR_DAT","REPAIR_COM","DATA_ORIGI","REMARK"],
+            outFields: ["USID", "FCODE", "SEWAGESYST", "RAINESYSTE", "DISTRICT", "PROJECT_NA", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DAT", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUBTYPE", "COVER_TYPE", "COVER_MATE", "COVER_SIZE", "MATERIAL", "SUR_H", "BOTTOM_H", "BT_H", "WELL_STATU", "X", "Y", "REPAIR_DAT", "REPAIR_COM", "DATA_ORIGI", "REMARK"],
             displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "窨井名称", "作业编号", "所在道路", "地址", "类别", "窨井类型", "井盖型号", "井盖材质", "井盖大小", "井室材质", "地面高程", "井底高程", "最低流水位高程", "井底状况", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
@@ -642,7 +631,7 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/8",
             type: "point",
             titleField: 'NAME',
-            outFields: ["USID","FCODE","SEWAGESYST","RAINESYSTE","DISTRICT","PROJECT_NA","OWNERDEPT","MANAGEDEPT","STATE","FINISH_DAT","NAME","WORK_ID","LANE_WAY","ADDR","SUBTYPE","FEATURE","STYLE","SUR_H","X","Y","REPAIR_DAT","REPAIR_COM","DATA_ORIGI","REMARK"],
+            outFields: ["USID", "FCODE", "SEWAGESYST", "RAINESYSTE", "DISTRICT", "PROJECT_NA", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DAT", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SUBTYPE", "FEATURE", "STYLE", "SUR_H", "X", "Y", "REPAIR_DAT", "REPAIR_COM", "DATA_ORIGI", "REMARK"],
             displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "雨水口名称", "作业编号", "所在道路", "地址", "雨水箅类型", "特征", "形式", "地面高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
@@ -691,12 +680,12 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/projectInfo/FeatureServer/0",
             type: "point",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "SYSTEMID","SYSTEMNO", "NAME", "DISTRICT", "SEAT_RIVER", "LOCATION", "EMPLOYER_DEPT", "CREATE_PERSON", "CREATE_DEPT", "CREATE_TIME", "PROPOSAL", "FEASIBILITY_STUDY", "PRELIMINARY_DESIGN", "DETAILED_DESIGN", "DESIGN_CHANGE", "CALCULATION"],
+            outFields: ["OBJECTID", "SYSTEMID", "SYSTEMNO", "NAME", "DISTRICT", "SEAT_RIVER", "LOCATION", "EMPLOYER_DEPT", "CREATE_PERSON", "CREATE_DEPT", "CREATE_TIME", "PROPOSAL", "FEASIBILITY_STUDY", "PRELIMINARY_DESIGN", "DETAILED_DESIGN", "DESIGN_CHANGE", "CALCULATION"],
             displayFields: ["序号", "系统序号", "项目编号", "项目名称", "行政区", "所属河流", "项目位置", "业主单位", "录入人", "录入部门", "录入时间", "项目建议书", "可行性研究报告", "初步设计", "施工图及招标", "设计变更", "计算书"],
             dateFields: ["录入时间"],
             queryField: ["NAME", "DISTRICT", "SYSTEMID", "SEAT_RIVER", "LOCATION"],
             statisticsFields: {
-
+                'XZQ': '行政区'
             },
             statType: 'count',
             sumField: null
