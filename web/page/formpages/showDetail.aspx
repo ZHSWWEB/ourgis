@@ -6,7 +6,9 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <link href="formstyle.css" rel="stylesheet" />
+    <script src="../../js/jquery.js"></script>
+    <script type="text/javascript" src="plugins/layui/layui.all.js"></script>
     <script>
         var url = window.location.href;
         var timoutID;
@@ -69,74 +71,66 @@
         </table>
     </div>
 </body>
-   <script> 
-        layui.use( ['jquery'], function ()
+<script>
+    $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-small" );
+    $( "td :submit[value='确认']" ).removeClass( "layui-btn-radius layui-btn-normal" ).addClass( "layui-btn-danger" );
+    $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-small layui-btn-primary" );
+    $( "td :button[value='返回']" ).addClass( "layui-btn layui-btn-small layui-btn-normal" );
+    $( "input[name$='$ctl03']" ).click( function ()
+    {
+        if ( url.indexOf( "slg_rv_po" ) > -1 )
         {
-            var $ = layui.jquery;
-            $( "input[name$='$ctl03']" ).click( function ()
+            var top = $( "input[name$='$ctl03']" ).offset().top;
+            var left = $( "input[name$='$ctl03']" ).offset().left;
+            var height = $( "input[name$='$ctl03']" ).height();
+            var width = $( "input[name$='$ctl03']" ).width() + 2;
+            $( "#selectList" ).css( { "position": "absolute", "left": left + 1 + "px", "top": top + height + 5 + "px", "z-index": "100" } );
+            $( "#selectList" ).slideDown( "fast" );
+            if ( width < 70 )//最小值
             {
-                if ( url.indexOf( "slg_rv_po" ) > -1 )
-                {
-                var top = $( "input[name$='$ctl03']" ).offset().top;
-                var left = $( "input[name$='$ctl03']" ).offset().left;
-                var height = $( "input[name$='$ctl03']" ).height();
-                var width = $( "input[name$='$ctl03']" ).width() + 2;
-                $( "#selectList" ).css( { "position": "absolute", "left": left + 1 + "px", "top": top + height + 5 + "px", "z-index": "100" } );
-                $( "#selectList" ).slideDown( "fast" );
-                if ( width < 70 )//最小值
-                {
-                    $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
-                    $( ".droplic" ).css( { "width": "13px" } );//13
-                } else
-                {
-                    $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
-                    $( ".droplic" ).css( { "width": width * 0.30 + "px" } );//20%
-                }
-                var val = $( "input[name$='$ctl03']" )[0].value.split( "|" );
-                var check = $( "input.droplic" );
-                var checked = 0;
-                for ( j = 0; j < check.length; j++ )
-                {
-                    checked = 0;
-                    for ( i = 0; i < val.length; i++ )
-                    {
-                        if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
-                    }
-                    document.getElementById( "Checkbox" + j ).checked = checked == 1;
-                }
+                $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
+                $( ".droplic" ).css( { "width": "13px" } );//13
+            } else
+            {
+                $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
+                $( ".droplic" ).css( { "width": width * 0.30 + "px" } );//20%
             }
-        } );
-        } );
-        function HideMList()
-        {
-            if ( document.getElementById( "selectList" ) != null )
-                layui.use( ['jquery'], function ()
-                {
-                    var $ = layui.jquery;
-                    $( "#selectList" ).slideUp( "fast" );
-                } );
-        }
-        function checkclick( ele, flag )
-        {
-            ele.checked = ele.checked ? false : true;
-            if ( flag == 1 )
+            var val = $( "input[name$='$ctl03']" )[0].value.split( "|" );
+            var check = $( "input.droplic" );
+            var checked = 0;
+            for ( j = 0; j < check.length; j++ )
             {
-                var text = "";
-                var len = ele.parentNode.parentNode.parentNode.childNodes.length / 2;
-                for ( i = 0; i < len; i++ )
+                checked = 0;
+                for ( i = 0; i < val.length; i++ )
                 {
-                    ckbox = document.getElementById( "Checkbox" + i );
-                    if ( ckbox.checked )
-                    {
-                        text = text + ( text == "" ? ckbox.value : ( "|" + ckbox.value ) );
-                    }
+                    if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
                 }
-                layui.use( ['jquery'], function ()
-                {
-                    var $ = layui.jquery;
-                    $( "input[name$='$ctl03']" )[0].value = text;
-                } );
+                document.getElementById( "Checkbox" + j ).checked = checked == 1;
             }
         }
+    } );
+    function HideMList()
+    {
+        if ( document.getElementById( "selectList" ) != null )
+            $( "#selectList" ).slideUp( "fast" );
+    }
+    function checkclick( ele, flag )
+    {
+        ele.checked = ele.checked ? false : true;
+        if ( flag == 1 )
+        {
+            var text = "";
+            var len = ele.parentNode.parentNode.parentNode.childNodes.length / 2;
+            for ( i = 0; i < len; i++ )
+            {
+                ckbox = document.getElementById( "Checkbox" + i );
+                if ( ckbox.checked )
+                {
+                    text = text + ( text == "" ? ckbox.value : ( "|" + ckbox.value ) );
+                }
+            }
+            $( "input[name$='$ctl03']" )[0].value = text;
+        }
+    }
 </script>
 </html> 

@@ -7,8 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link rel="stylesheet" href="../../fonts/iconfont.css" media="all" />
+    <%--<link href="plugins/layui/css/layui.css" rel="stylesheet" />--%>
+    <link href="formstyle.css" rel="stylesheet" />
     <%--引入jquery将导致弹窗失败--%>
-    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
+    <script src="../../js/jquery.js"></script>
+    <script type="text/javascript" src="plugins/layui/layui.all.js"></script>
     <script type="text/javascript">
         function showDetail( objectId, hcmc, table )
         {
@@ -17,12 +20,24 @@
                 var layer = layui.layer;
                 layer.open( {
                     type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
-                    maxmin: false, move: false, area: ['632px', '90%'],
+                    maxmin: false, move: false, area: ['632px', '90%'], scrollbar: false,
                     content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
                     end: function ()
                     {
                         document.getElementById( "Button2" ).click();
                     }
+                } )
+            } )
+        };
+        function showHz( hzcd, hcmc, table )
+        {
+            layui.use( 'layer', function ()
+            {
+                var layer = layui.layer;
+                layer.open( {
+                    type: 2, title: hcmc, shadeClose: true, shade: [0.3],
+                    maxmin: false, move: false, area: ['90%', '40%'], scrollbar: false,
+                    content: 'showList.aspx?table=' + table + '&&hzcd=' + hzcd
                 } )
             } )
         };
@@ -43,33 +58,35 @@
 </head>
 <body>
     <form id="Form1" runat="server">
-        <div id="topBox" style="display: none">
-            <div>
-                <asp:label runat="server" for="DistrictList" id="lDistrictList">行政区：</asp:label>
-                <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
-                <asp:label runat="server" for="set1368" id="lset1368">&nbsp;&nbsp;&nbsp;&nbsp;1368条河流：</asp:label>
-                <asp:DropDownList ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
-                    <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
-                    <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
-                    <asp:ListItem Value="F1368 = 0 AND ">非1368</asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;&nbsp;&nbsp;&nbsp;数据ID：<asp:TextBox ID="objectidd" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
-                &#126;&nbsp;<asp:TextBox ID="objectidu" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+        <div id="headBox" style="display: block">
+            <div id="topBox" style="display: none">
+                <div>
+                    <asp:Label runat="server" for="DistrictList" ID="lDistrictList">行政区：</asp:Label>
+                    <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
+                    <asp:Label runat="server" for="set1368" ID="lset1368">&nbsp;&nbsp;&nbsp;&nbsp;1368条河流：</asp:Label>
+                    <asp:DropDownList ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
+                        <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
+                        <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
+                        <asp:ListItem Value="F1368 = 0 AND ">非1368</asp:ListItem>
+                    </asp:DropDownList>
+                    &nbsp;&nbsp;&nbsp;&nbsp;数据ID：<asp:TextBox ID="objectidd" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+                    &#126;&nbsp;<asp:TextBox ID="objectidu" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+                </div>
+                <div>
+                    <asp:CheckBox ID="only187" runat="server" AutoPostBack="True" Text="仅显示187条重点黑臭河流" OnCheckedChanged="only187_CheckedChanged" />
+                    <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" Text="仅显示35条重点黑臭河流" OnCheckedChanged="only35_CheckedChanged" />
+                </div>
             </div>
-            <div>
-                <asp:CheckBox ID="only187" runat="server" AutoPostBack="True" Text="仅显示187条重点黑臭河流" OnCheckedChanged="only187_CheckedChanged" />
-                <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" Text="仅显示35条重点黑臭河流" OnCheckedChanged="only35_CheckedChanged" />
+            <hr style="margin-bottom: 0; margin-top: 2px; height: 2px" onclick="toplist()" />
+            <div style="height: 8px; text-align: center" onclick="toplist()">
+                <i id="topu" style="font-size: 22px; display: none" class="iconfont icon-shang"></i>
+                <i id="topd" style="font-size: 22px; display: block" class="iconfont icon-xia"></i>
             </div>
-        </div>
-        <hr style="margin-bottom:0;margin-top:2px;height:2px" onclick="toplist()" />
-        <div  style="height:8px;text-align:center" onclick="toplist()">
-            <i id ="topu" style="font-size:22px;display:none"  class="iconfont icon-shang"></i>
-            <i id ="topd" style="font-size:22px;display:block"  class="iconfont icon-xia"></i>
         </div>
         
         <asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="146px" Style="margin-bottom: 10px;" Font-Names="微软雅黑" Font-Size="Small" MaxLength="100"></asp:TextBox>
         <asp:DropDownList ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
-        <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Height="24px" Width="50px" Style="margin-bottom: 8px;" Font-Names="微软雅黑" Font-Size="Small" BackColor="#CCCCCC"/>
+        <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Style="margin-bottom: 5px;" Font-Names="微软雅黑" Font-Size="Small"/>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height:0;width:0;padding-left:0;padding:0 0;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;"/>
 
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="20" Width="100%" EmptyDataText="暂缺"
@@ -99,7 +116,7 @@
                 <asp:Button ID="LinkButtonFirstPage" runat="server" CommandArgument="First" CommandName="Page"
                     Visible='<%#((GridView)Container.NamingContainer).PageIndex != 0 %>' Text="首页"></asp:Button>
                 <asp:Button ID="LinkButtonPreviousPage" runat="server" CommandArgument="Prev"
-                    CommandName="Page" Visible='<%# ((GridView)Container.NamingContainer).PageIndex != 0 %>' Text="上一页"></asp:Button>
+                    CommandName="Page" Visible='<%# ((GridView)Container.NamingContainer).PageIndex != 0 %>' Text="上一页" ></asp:Button>
                 <%--如果该分页是尾页，那么该连接就不会显示了--%>
                 <asp:Button ID="LinkButtonNextPage" runat="server" CommandArgument="Next" CommandName="Page"
                     Visible='<%# ((GridView)Container.NamingContainer).PageIndex != ((GridView)Container.NamingContainer).PageCount - 1 %>' Text="下一页"></asp:Button>
@@ -168,70 +185,68 @@
     </div>
 </body>
 <script> 
+    document.getElementById( "headBox" ).style.display = ( url.indexOf( "hz" ) > -1 ? "none" : "block" );
     document.getElementById( "topBox" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topu" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topd" ).style.display = ( !topShow ? "block" : "none" );
+    //设置样式
+    $( "#Button1" ).addClass( "layui-btn layui-btn-small layui-btn-normal" )
+    $( "td :submit" ).addClass( "layui-btn layui-btn-radius layui-btn-mini layui-btn-normal" );
+    $( "td :button[value='河长']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
+    $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-mini" );
+    $( "td :submit[value='确认']" ).removeClass( "layui-btn-radius layui-btn-normal" ).addClass( "layui-btn-danger" );
+    $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-mini layui-btn-primary" );
+    $( "td :button[value='详情']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
+    $( "td :button[value='定位']" ).addClass( "layui-btn layui-btn-radius layui-btn-mini" );
     function loadRowIndex()
     {
-        layui.use( ['jquery'], function ()
+        var len = $( ".rowIndex" ).length;
+        for ( var i = 0; i < len; i++ )
         {
-            var $ = layui.jquery;
-            var len = $( ".rowIndex" ).length;
-            for ( var i = 0; i < len; i++ )
-            {
-                $( "#GridView1_rowIndex_" + i )[0].innerHTML = "&nbsp;&nbsp;" + ( i + 1 ) + "&nbsp;&nbsp;";
-            }
-        } );
+            $( "#GridView1_rowIndex_" + i )[0].innerHTML = "&nbsp;&nbsp;" + ( i + 1 ) + "&nbsp;&nbsp;";
+        }
     }
     //写入行号
     loadRowIndex();
 
-    layui.use( ['jquery'], function ()
+    $( "input[name$='$ctl02']" ).focus( function () { $( "input[name$='$ctl02']" )[0].readOnly = true } );
+    $( "input[name$='$ctl02']" ).click( function ()
     {
-        var $ = layui.jquery;
-        $( "input[name$='$ctl02']" ).focus( function () { $( "input[name$='$ctl02']" )[0].readOnly = true } );
-        $( "input[name$='$ctl02']" ).click( function ()
+        if ( url.indexOf( "slg_rv_po" ) > -1 )
         {
-            if ( url.indexOf( "slg_rv_po" ) > -1 )
+            var top = $( "input[name$='$ctl02']" ).offset().top;
+            var left = $( "input[name$='$ctl02']" ).offset().left;
+            var height = $( "input[name$='$ctl02']" ).height();
+            var width = $( "input[name$='$ctl02']" ).width() + 2;
+            $( "#selectList" ).css( { "position": "absolute", "left": left + 1 + "px", "top": top + height + 4 + "px", "z-index": "100" } );
+            $( "#selectList" ).slideDown( "fast" );
+            if ( width < 70 )//最小值
             {
-                var top = $( "input[name$='$ctl02']" ).offset().top;
-                var left = $( "input[name$='$ctl02']" ).offset().left;
-                var height = $( "input[name$='$ctl02']" ).height();
-                var width = $( "input[name$='$ctl02']" ).width() + 2;
-                $( "#selectList" ).css( { "position": "absolute", "left": left + 1 + "px", "top": top + height + 4 + "px", "z-index": "100" } );
-                $( "#selectList" ).slideDown( "fast" );
-                if ( width < 70 )//最小值
-                {
-                    $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
-                    $( ".droplic" ).css( { "width": "13px" } );//13
-                } else
-                {
-                    $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
-                    $( ".droplic" ).css( { "width": width * 0.20 + "px" } );//20%
-                }
-                var val = $( "input[name$='$ctl02']" )[0].value.split( "|" );
-                var check = $( "input.droplic" );
-                var checked = 0;
-                for ( j = 0; j < check.length; j++ )
-                {
-                    checked = 0;
-                    for ( i = 0; i < val.length; i++ )
-                    {
-                        if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
-                    }
-                    document.getElementById( "Checkbox" + j ).checked = checked == 1;
-                }
+                $( ".dropli" ).css( { "width": "70px", "font-size": "13px" } );//70
+                $( ".droplic" ).css( { "width": "13px" } );//13
+            } else
+            {
+                $( ".dropli" ).css( { "width": width + "px", "font-size": "13px" } );//100%
+                $( ".droplic" ).css( { "width": width * 0.20 + "px" } );//20%
             }
-        } );
+            var val = $( "input[name$='$ctl02']" )[0].value.split( "|" );
+            var check = $( "input.droplic" );
+            var checked = 0;
+            for ( j = 0; j < check.length; j++ )
+            {
+                checked = 0;
+                for ( i = 0; i < val.length; i++ )
+                {
+                    if ( val[i].indexOf( check[j].value ) > -1 ) checked = 1;
+                }
+                document.getElementById( "Checkbox" + j ).checked = checked == 1;
+            }
+        }
     } );
     function HideMList()
     {
         if ( document.getElementById( "selectList" ) != null )
-            layui.use( ['jquery'], function ()
-            {
-                var $ = layui.jquery;
-                $( "#selectList" ).slideUp( "fast" );
-            } );
+            $( "#selectList" ).slideUp( "fast" );
     }
     function checkclick( ele, flag )
     {
@@ -248,28 +263,20 @@
                     text = text + ( text == "" ? ckbox.value : ( "|" + ckbox.value ) );
                 }
             }
-            layui.use( ['jquery'], function ()
-            {
-                var $ = layui.jquery;
-                $( "input[name$='$ctl02']" )[0].value = text;
-            } );
+            $( "input[name$='$ctl02']" )[0].value = text;
         }
     }
     function toplist()
     {
-        layui.use( ['jquery'], function ()
-        {
-            var $ = layui.jquery;
-            $( "#topu" ).toggle();
-            $( "#topd" ).toggle();
-            $( "#topBox" ).slideToggle();
-            topShow = !topShow;
-            sessionStorage.setItem( "topShow_" + title, topShow );
-            //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
-        } );
+        $( "#topu" ).toggle();
+        $( "#topd" ).toggle();
+        $( "#topBox" ).slideToggle();
+        topShow = !topShow;
+        sessionStorage.setItem( "topShow_" + title, topShow );
+        //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
     }
     function inputObjectId( event )//限制为只可输入为数字
-    { 
+    {
         if ( event.keyCode == 13 )
         {
             event.returnValue = checkObjectId();
@@ -298,7 +305,7 @@
         {
             return true;
         }
-        else if ( d.value < u.value)
+        else if ( d.value < u.value )
         {
             return true;
         } else

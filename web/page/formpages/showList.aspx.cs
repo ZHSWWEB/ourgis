@@ -74,10 +74,12 @@ namespace web.page.formpages
                             //生成GridView
                             build();
                             //获取按键所在列
-                            int editcontrol = listconfig.Rows.Count + 1;
-                            int detailcontrol = listconfig.Rows.Count + 2;
-                            int mapcontrol = listconfig.Rows.Count + 3;
+                            int hzcontrol = listconfig.Rows.Count + 1;
+                            int editcontrol = listconfig.Rows.Count + 2;
+                            int detailcontrol = listconfig.Rows.Count + 3;
+                            int mapcontrol = listconfig.Rows.Count + 4;
                             //隐藏按键
+                            GridView1.Columns[hzcontrol].Visible = Convert.ToInt32(config.Rows[0]["showHz"]) == 1 ? true : false;
                             GridView1.Columns[editcontrol].Visible = (Convert.ToInt32(config.Rows[0]["showEdit"]) == 0 || Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()) < 2) ? false : true;
                             GridView1.Columns[detailcontrol].Visible = Convert.ToInt32(config.Rows[0]["showDetail"]) == 1 ? true : false;
                             GridView1.Columns[mapcontrol].Visible = Convert.ToInt32(config.Rows[0]["showMap"]) == 1 ? true : false;
@@ -107,6 +109,12 @@ namespace web.page.formpages
                 GridView1.Columns.Add(bf);
             }
             //设置按钮
+            ButtonField btnf3 = new ButtonField();
+            btnf3.CommandName = "hz"; btnf3.Text = "河长"; btnf3.ButtonType = ButtonType.Button;
+            btnf3.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
+            btnf3.ItemStyle.VerticalAlign = VerticalAlign.Middle;
+            btnf3.ItemStyle.Width = new Unit("40px");
+            GridView1.Columns.Add(btnf3);
             CommandField cf = new CommandField();
             cf.ShowEditButton = true; cf.ButtonType = ButtonType.Button;
             cf.EditText = "修改"; cf.UpdateText = "确认";
@@ -149,13 +157,21 @@ namespace web.page.formpages
             {
                 objstr = "OBJECTID < " + obju + " AND ";
             }
+            string hz = "";
+            if (Request.QueryString["table"].Contains("hz_info"))//河长表
+            {
+                if (Request.QueryString["table"].Contains("rv"))//河流河长表
+                {
+                    hz = "AND rvcd = '" + Request.QueryString["hzcd"]+"' ";//河涌代码
+                }
+            }
             //拼接Listconfig的查询字符串
             string sql = "";
             for (int i = 0; i < listconfig.Rows.Count; i++)
             {
                 sql = sql + listconfig.Rows[i]["fieldName"] + (i < listconfig.Rows.Count - 1 ? "," : "");
             }
-            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + objstr + se1368 + field + " like '%" + find + "%' " + set187 + set35;
+            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + objstr + se1368 + field + " like '%" + find + "%' " + set187 + set35 + hz;
             //string sql = "SELECT OBJECTID,HCMC,其他叫法,XZQ,F1368,F1368NUM,F1368查187,F1368查35,HZ_SHI,HZ_QU,HZ_JIEDAO FROM SLG_RV_po where " + xzq + field + " like '%" + find + "%'";
             DataSet ds = QuarySde(sql);
             //ds非空
@@ -366,6 +382,24 @@ namespace web.page.formpages
                 Response.Write("<script>parent.$(\"#tomap\").click();</script>");
                 //定位到所选项:由map的initMap.js处理
                 Response.Write("<script>parent.$(\"#map\").attr(\"src\",\"page/map/map.html?layerat=" + config.Rows[0]["layerName"] + "&objectidat=" + objectId + "\");</script>");
+            }
+            if (e.CommandName == "hz")//河长按钮
+            {
+                //获取当前行的index、objectid主键、位于第二、三列的名称与编码
+                int index = int.Parse(e.CommandArgument.ToString());
+                GridView1.SelectedIndex = index;
+                if (GridView1.Rows[index].Cells[listconfig.Rows.Count].Text == "有")
+                {
+                    string objectId = GridView1.DataKeys[index].Value.ToString();
+                    string name = GridView1.Rows[index].Cells[2].Text;
+                    string hzcd = GridView1.Rows[index].Cells[3].Text;
+                    //调用自制的layer函数showDetail
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + hzcd + "','" + name + "','" + "hz_info_rv" + "');", true);
+                }
+                else
+                {
+                    Response.Write("<script>alert(\"无河长数据\");</script>");
+                }
             }
         }
 
