@@ -7,12 +7,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <link rel="stylesheet" href="../../fonts/iconfont.css" media="all" />
-    <%--<link href="plugins/layui/css/layui.css" rel="stylesheet" />--%>
-    <link href="formstyle.css" rel="stylesheet" />
+    <link href="plugins/layui/css/layui.css" rel="stylesheet" />
+    <%--<link href="formstyle.css" rel="stylesheet" />--%>
     <%--引入jquery将导致弹窗失败--%>
     <script src="../../js/jquery.js"></script>
     <script type="text/javascript" src="plugins/layui/layui.all.js"></script>
     <script type="text/javascript">
+        //layui.use( 'layer', function ()
+        //{
+        //    var layer = layui.layer;
+        //    var loadindex = layer.load( 1, {
+        //        shade: [0.1, '#fff'] //0.1透明度的白色背景
+        //    } );
+        //})
         function showDetail( objectId, hcmc, table )
         {
             layui.use( 'layer', function ()
@@ -57,35 +64,52 @@
     </script>
 </head>
 <body>
-    <form id="Form1" runat="server">
+    <form id="Form1" class="layui-form layui-form-pane" runat="server">
         <div id="headBox" style="display: block">
             <div id="topBox" style="display: none">
-                <div>
-                    <asp:Label runat="server" for="DistrictList" ID="lDistrictList">行政区：</asp:Label>
-                    <asp:DropDownList ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
-                    <asp:Label runat="server" for="set1368" ID="lset1368">&nbsp;&nbsp;&nbsp;&nbsp;1368条河流：</asp:Label>
-                    <asp:DropDownList ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
-                        <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
-                        <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
-                        <asp:ListItem Value="F1368 = 0 AND ">非1368</asp:ListItem>
-                    </asp:DropDownList>
-                    &nbsp;&nbsp;&nbsp;&nbsp;数据ID：<asp:TextBox ID="objectidd" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
-                    &#126;&nbsp;<asp:TextBox ID="objectidu" runat="server" Width="60px" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
-                </div>
-                <div>
-                    <asp:CheckBox ID="only187" runat="server" AutoPostBack="True" Text="仅显示187条重点黑臭河流" OnCheckedChanged="only187_CheckedChanged" />
-                    <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" Text="仅显示35条重点黑臭河流" OnCheckedChanged="only35_CheckedChanged" />
+                <div class="layui-form-item">
+                    <asp:Label class="layui-form-label" Style="width: 130px" runat="server" ID="lDistrictList">行政区</asp:Label>
+                    <div class="layui-input-inline" style="width: 200px">
+                        <asp:DropDownList class="layui-input" ID="DistrictList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DistrictList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
+                    </div>
+                    <asp:Label class="layui-form-label" Style="width: 130px" runat="server" ID="lset1368">1368条河流</asp:Label>
+                    <div class="layui-input-inline" style="width: 200px">
+                        <asp:DropDownList class="layui-input" ID="set1368" runat="server" AutoPostBack="True" OnSelectedIndexChanged="set1368_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
+                            <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
+                            <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
+                            <asp:ListItem Value="F1368 = 0 AND ">非1368</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <label class="layui-form-label" style="width: 130px">数据ID</label>
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <asp:TextBox class="layui-input" ID="objectidd" runat="server" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+                    </div>
+                    <label class="layui-form-mid" style="width: 10px">-</label>
+                    <div class="layui-input-inline" style="width: 100px;">
+                        <asp:TextBox class="layui-input" ID="objectidu" runat="server" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
+                    </div>
                 </div>
             </div>
-            <hr style="margin-bottom: 0; margin-top: 2px; height: 2px" onclick="toplist()" />
-            <div style="height: 8px; text-align: center" onclick="toplist()">
-                <i id="topu" style="font-size: 22px; display: none" class="iconfont icon-shang"></i>
-                <i id="topd" style="font-size: 22px; display: block" class="iconfont icon-xia"></i>
+            <div class="layui-form-item">
+                <label class="layui-form-lable" style="width: 200px">仅显示187条重点黑臭河流</label>
+                <div class="layui-input-inline" lay-skin="primary">
+                    <asp:CheckBox ID="only187" runat="server" AutoPostBack="True" OnCheckedChanged="only187_CheckedChanged" />
+                </div>
+                <label class="layui-form-lable" style="width: 200px">仅显示35条重点黑臭河流</label>
+                <div class="layui-input-inline" lay-skin="primary">
+                    <asp:CheckBox ID="only35" runat="server" AutoPostBack="True" OnCheckedChanged="only35_CheckedChanged" />
+                </div>
             </div>
         </div>
         
+        <hr style="margin-bottom: 0; margin-top: 2px; height: 2px" onclick="toplist()" />
+        <div style="height: 8px; text-align: center" onclick="toplist()">
+            <i id="topu" style="font-size: 22px; display: none" class="iconfont icon-shang"></i>
+            <i id="topd" style="font-size: 22px; display: block" class="iconfont icon-xia"></i>
+        </div>
+        
         <asp:TextBox ID="TextBox1" runat="server" Height="16px" Width="146px" Style="margin-bottom: 10px;" Font-Names="微软雅黑" Font-Size="Small" MaxLength="100"></asp:TextBox>
-        <asp:DropDownList ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
+        <asp:DropDownList CssClass="layui-input" ID="SearchList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="SearchList_SelectedIndexChanged" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" Style="margin-bottom: 5px;" Font-Names="微软雅黑" Font-Size="Small"/>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height:0;width:0;padding-left:0;padding:0 0;border-left-width:0;border-right-width:0;border-top-width:0;border-bottom-width:0;"/>
 
@@ -189,6 +213,11 @@
     document.getElementById( "topBox" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topu" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topd" ).style.display = ( !topShow ? "block" : "none" );
+    layui.use( 'form', function ()
+    {
+        var form = layui.form;
+        form.render();
+    })
     //设置样式
     $( "#Button1" ).addClass( "layui-btn layui-btn-small layui-btn-normal" )
     $( "td :submit" ).addClass( "layui-btn layui-btn-radius layui-btn-mini layui-btn-normal" );
@@ -316,5 +345,15 @@
             return false;
         }
     }
+    //window.onload = function ()
+    //{
+    //    layui.use( 'layer', function ()
+    //    {
+    //        var layer = layui.layer;
+    //        layer.close( loadindex );
+    //    } )
+    //};
+
+    
 </script>
 </html>
