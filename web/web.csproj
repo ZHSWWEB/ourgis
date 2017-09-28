@@ -69,6 +69,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\demo.css" />
     <Content Include="packages.config" />
     <Content Include="fonts\iconfont.eot" />
     <Content Include="fonts\iconfont.ttf" />
@@ -978,7 +979,6 @@
     <Content Include="css\news.css" />
     <Content Include="css\user.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\demo.css" />
     <Content Include="fonts\demo_fontclass.html" />
     <Content Include="fonts\demo_symbol.html" />
     <Content Include="fonts\demo_unicode.html" />

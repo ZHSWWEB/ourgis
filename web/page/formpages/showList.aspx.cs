@@ -113,26 +113,22 @@ namespace web.page.formpages
             btnf3.CommandName = "hz"; btnf3.Text = "河长"; btnf3.ButtonType = ButtonType.Button;
             btnf3.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
             btnf3.ItemStyle.VerticalAlign = VerticalAlign.Middle;
-            btnf3.ItemStyle.Width = new Unit("40px");
             GridView1.Columns.Add(btnf3);
             CommandField cf = new CommandField();
             cf.ShowEditButton = true; cf.ButtonType = ButtonType.Button;
             cf.EditText = "修改"; cf.UpdateText = "确认";
             cf.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
             cf.ItemStyle.VerticalAlign = VerticalAlign.Middle;
-            cf.ItemStyle.Width = new Unit("40px");
             GridView1.Columns.Add(cf);
             ButtonField btnf1 = new ButtonField();
             btnf1.CommandName = "detail"; btnf1.Text = "详情"; btnf1.ButtonType = ButtonType.Button;
             btnf1.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
             btnf1.ItemStyle.VerticalAlign = VerticalAlign.Middle;
-            btnf1.ItemStyle.Width = new Unit("40px");
             GridView1.Columns.Add(btnf1);
             ButtonField btnf2 = new ButtonField();
             btnf2.CommandName = "map"; btnf2.Text = "定位"; btnf2.ButtonType = ButtonType.Button;
             btnf2.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
             btnf2.ItemStyle.VerticalAlign = VerticalAlign.Middle;
-            btnf2.ItemStyle.Width = new Unit("40px");
             GridView1.Columns.Add(btnf2);
         }
         protected void refresh()//绑定到GridView
@@ -186,6 +182,9 @@ namespace web.page.formpages
                 //绑定数据的条数到分页菜单栏
                 Label dataCount = (Label)GridView1.BottomPagerRow.Cells[0].FindControl("dataCount");
                 dataCount.Text = view.Count.ToString();
+                //绑定筛选设置到hiddenfield-sortSet
+                int sortNum = view.Table.Columns.IndexOf((string)ViewState["SortOrder"]);
+                sortSet.Value = sortNum + "-" + (string)ViewState["OrderDire"];
             }
             //ds为空
             else
@@ -194,10 +193,9 @@ namespace web.page.formpages
                 DistrictList.SelectedValue = "";
                 TextBox1.Text = "";
                 refresh();
-                Response.Write("<script>alert(\"未查找到符合条件的数据\");</script>");
+                //调用自制的layer函数showMsg
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "showMsg", "showMsg('未查找到符合条件的数据');", true);
             }
-            //对排序列进行色彩渲染
-            sortColor(onSort, index);
         }
         protected void DistrictList_bind()//绑定到行政区DropList
         {
@@ -398,7 +396,8 @@ namespace web.page.formpages
                 }
                 else
                 {
-                    Response.Write("<script>alert(\"无河长数据\");</script>");
+                    //调用自制的layer函数showMsg
+                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "showMsg", "showMsg('暂无河长数据');", true);
                 }
             }
         }
@@ -451,20 +450,6 @@ namespace web.page.formpages
             //刷新数据
             refresh();
         }
-        protected void sortColor(bool onSort, int index)//对所排序列进行色彩渲染
-        {
-            if (onSort)
-            {
-                for (int i = 0; i < GridView1.Rows.Count; i++)
-                {
-                    GridView1.Rows[i].Cells[index].Attributes.Add("style", "border-color:#1bb3a5");
-                    GridView1.Rows[i].Cells[index - 1].Attributes.Add("style", "border-color:#1bb3a5");
-                }
-                GridView1.HeaderRow.Cells[index].Attributes.Add("style", "border-color:#1bb3a5");
-                GridView1.HeaderRow.Cells[index - 1].Attributes.Add("style", "border-color:#1bb3a5");
-                GridView1.HeaderRow.Cells[index].ForeColor = System.Drawing.Color.FromName("#1bb3a5"); ;
-            }
-        }
         protected void Button1_Click(object sender, EventArgs e)//搜索键的点击事件
         {
             //重置页码
@@ -477,45 +462,5 @@ namespace web.page.formpages
         {
             refresh();
         }
-        protected void DistrictList_SelectedIndexChanged(object sender, EventArgs e)//行政区的切换事件
-        {
-            //重置页码
-            GridView1.PageIndex = 0;
-            //取消选中行
-            GridView1.SelectedIndex = -1;
-            refresh();
-        }
-        protected void set1368_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //重置页码
-            GridView1.PageIndex = 0;
-            //取消选中行
-            GridView1.SelectedIndex = -1;
-            refresh();
-        }
-        protected void SearchList_SelectedIndexChanged(object sender, EventArgs e)//搜索选项的切换事件
-        {
-            //refresh();
-        }
-        protected void only187_CheckedChanged(object sender, EventArgs e)
-        {
-            if (only187.Checked) only35.Checked = false;
-            //重置页码
-            GridView1.PageIndex = 0;
-            //取消选中行
-            GridView1.SelectedIndex = -1;
-            refresh();
-        }
-        protected void only35_CheckedChanged(object sender, EventArgs e)
-        {
-            if (only35.Checked) only187.Checked = false;
-            //重置页码
-            GridView1.PageIndex = 0;
-            //取消选中行
-            GridView1.SelectedIndex = -1;
-            refresh();
-        }
-
-        
     }
 }
