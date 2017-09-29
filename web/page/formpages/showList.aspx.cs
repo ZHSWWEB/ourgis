@@ -66,7 +66,7 @@ namespace web.page.formpages
                             //绑定下拉菜单
                             DistrictList_bind();
                             SearchList_bind();
-                            //设置河流工具
+                            //设置筛选工具
                             set1368.Visible = pagename == "RIVER";
                             lset1368.Visible = set1368.Visible;
                             only187.Visible = pagename == "RIVER";

@@ -6,21 +6,14 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <link rel="stylesheet" href="../../fonts/iconfont.css" media="all" />
-    <link href="plugins/layui/css/layui.css" rel="stylesheet" />
-    <link href="formstyle.css" rel="stylesheet" />
-    <%--引入jquery将导致弹窗失败--%>
-    <script src="../../js/jquery.js"></script>
-    <script type="text/javascript" src="plugins/layui/layui.all.js"></script>
+    <link rel="stylesheet" href="../../fonts/iconfont.css" media="all" /><%--加载字体图标--%>
+    <link href="plugins/layui/css/layui.css" rel="stylesheet" /><%--加载layui样式--%>
+    <link href="formstyle.css" rel="stylesheet" /><%--加载自定义样式覆盖layui样式--%>
+
+    <script src="../../js/jquery.js"></script><%--预先加载jquery--%>
+    <script type="text/javascript" src="plugins/layui/layui.all.js"></script><%--加载layui--%>
     <script type="text/javascript">
-        //layui.use( 'layer', function ()
-        //{
-        //    var layer = layui.layer;
-        //    var loadindex = layer.load( 1, {
-        //        shade: [0.1, '#fff'] //0.1透明度的白色背景
-        //    } );
-        //})
-        function showDetail( objectId, hcmc, table )
+        function showDetail( objectId, hcmc, table )//用于弹出详情页面窗口
         {
             layui.use( 'layer', function ()
             {
@@ -36,7 +29,7 @@
                 } )
             } )
         };
-        function showHz( hzcd, hcmc, table )
+        function showHz( hzcd, hcmc, table )//用于弹出河长页面窗口
         {
             layui.use( 'layer', function ()
             {
@@ -48,47 +41,51 @@
                 } )
             } )
         };
-        function showMsg( msg )
+        function showMsg( msg )//用于弹出顶部抖动提示信息
         {
             layui.use( 'layer', function ()
             {
                 var layer = layui.layer;
-                layer.msg( msg, { offset: '60px',anim: 6} );
+                layer.msg( msg, { offset: '60px', anim: 6 } );
             } )
         };
-        var url = window.location.href;
-        var timoutID;
-        var curmenu = JSON.parse( sessionStorage.getItem( "curmenu" ) );
+        var url = window.location.href;//用于分析页面内容
+        var timoutID;//用于下拉多选菜单的延迟隐藏
+        var curmenu = JSON.parse( sessionStorage.getItem( "curmenu" ) );//获取当前tab卡信息
         var title = curmenu.title;
-        var topShow = sessionStorage.getItem( "topShow_" + title );
+        var topShow = sessionStorage.getItem( "topShow_" + title );//查找页面对应sessionStorage获取顶部部件历史状态
         if ( topShow == null )//首次打开
         {
-            sessionStorage.setItem( "topShow_" + title ,true);
+            sessionStorage.setItem( "topShow_" + title, true );///设置sessionStorage
             topShow = true;
         } else
         {
-            topShow = ( topShow == "true" );
+            topShow = ( topShow == "true" );//读取sessionStorage
         }
     </script>
 </head>
 <body>
-    <form id="Form1" class="layui-form layui-form-pane" style="display:none" runat="server">
+    <form id="Form1" class="layui-form layui-form-pane" style="display:none" runat="server"><%--设置为form，隐藏等待渲染完毕--%>
+        <%--顶部可下拉窗体(含分割线及指示箭头)--%>
         <div id="headBox" style="display: block">
-            <div id="topBox" style="display: none">
-                <div class="layui-form-item">
-                    <Label class="layui-form-mid" Style="width: 3px" ></Label>
+            <div id="topBox" style="display: none"><%--顶部筛选设置窗体--%>
+                <div class="layui-form-item"><%--共用同一form-item--%>
+                    <Label class="layui-form-mid" Style="width: 3px" ></Label><%--前置占位符--%>
+                    <%--行政区--%>
                     <asp:Label class="layui-form-label" Style="width: 80px" runat="server" ID="lDistrictList">行政区</asp:Label>
                     <div class="layui-input-inline" style="width: 150px">
-                        <asp:DropDownList class="layui-input" lay-filter="DistrictList"  ID="DistrictList" runat="server" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px"></asp:DropDownList>
+                        <asp:DropDownList class="layui-input" ID="DistrictList" runat="server"></asp:DropDownList>
                     </div>
+                    <%--1368条河流--%>
                     <asp:Label class="layui-form-label" Style="width: 110px" runat="server" ID="lset1368">1368条河流</asp:Label>
                     <div class="layui-input-inline" style="width: 150px">
-                        <asp:DropDownList class="layui-input" lay-filter="set1368" ID="set1368" runat="server" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="70px" Style="margin-bottom: 7px">
+                        <asp:DropDownList class="layui-input" ID="set1368" runat="server">
                             <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
                             <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
                             <asp:ListItem Value="F1368 IS NULL AND ">非1368</asp:ListItem>
                         </asp:DropDownList>
                     </div>
+                    <%--数据ID--%>
                     <label class="layui-form-label" style="width: 80px">数据ID</label>
                     <div class="layui-input-inline" style="width: 70px;">
                         <asp:TextBox class="layui-input" ID="objectidd" runat="server" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
@@ -97,44 +94,54 @@
                     <div class="layui-input-inline" style="width: 70px;">
                         <asp:TextBox class="layui-input" ID="objectidu" runat="server" onkeypress="inputObjectId(event)" onblur="checkObjectId()"></asp:TextBox>
                     </div>
+                    <%--仅187--%>
                     <div class="layui-input-inline" style="width: 220px;">
                         <asp:CheckBox  ID="only187"  runat="server"/>
                     </div>
+                    <%--仅35--%>
                     <div class="layui-input-inline" style="width: 210px;">
                         <asp:CheckBox  ID="only35" runat="server"/>
                     </div>
                 </div>
             </div>
-            <hr style="margin-bottom: 0; margin-top: 2px; height: 2px" onclick="toplist()" />
+            <%--分割线与指示按钮部件--%>
+            <hr class="layui-bg-gray" style="margin-bottom: 0; margin-top: 5px; height: 2px" onclick="toplist()" />
             <div style="height: 8px; text-align: center" onclick="toplist()">
                 <i id="topu" style="font-size: 22px; display: none" class="iconfont icon-shang"></i>
                 <i id="topd" style="font-size: 22px; display: block" class="iconfont icon-xia"></i>
             </div>
         </div>
-
+        <%--固有搜索窗体--%>
         <div class="layui-form-item">
-            <Label class="layui-form-mid" Style="width: 3px" ></Label>
+            <Label class="layui-form-mid" Style="width: 3px" ></Label><%--前置占位符--%>
+            <%--输入框--%>
             <div class="layui-input-inline">
-                <asp:TextBox class="layui-input" ID="TextBox1" runat="server" Style="margin-bottom: 10px;" placeholder="请输入搜索内容" Font-Names="微软雅黑" Font-Size="Small" MaxLength="100"></asp:TextBox>
+                <asp:TextBox class="layui-input" ID="TextBox1" runat="server" Style="margin-bottom: 10px;" placeholder="请输入搜索内容" MaxLength="100"></asp:TextBox>
             </div>
+            <%--选项下拉窗--%>
             <div class="layui-input-inline" style="width: 150px;">
-                <asp:DropDownList class="layui-input" ID="SearchList" runat="server" BackColor="#CCCCCC" Font-Italic="False" Font-Names="微软雅黑" Font-Overline="False" Font-Size="Small" Font-Strikeout="False" Height="25px" Width="90px" Style="margin-bottom: 7px;"></asp:DropDownList>
+                <asp:DropDownList class="layui-input" ID="SearchList" runat="server"></asp:DropDownList>
             </div>
+            <%--按钮组--%>
             <div class="layui-input-inline">
-                <asp:Button ID="Button1" runat="server" Text="查&nbsp;&nbsp;&nbsp;&nbsp;询" Width="80px" OnClick="Button1_Click" Font-Names="微软雅黑" Font-Size="Small" />
-                <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Style="height: 0; width: 0; padding-left: 0; padding: 0 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;" />
-                <button id="submit1" style="display:none"></button>
-                <button id="submit2" style="display:none"></button>
+                <%--查询键(重置页码、选中行)--%>
+                <asp:Button ID="Button1" runat="server" Text="查&nbsp;&nbsp;&nbsp;&nbsp;询" Width="80px" OnClick="Button1_Click"/>
+                <%--刷新键(保留页码、选中行)--%>
+                <asp:Button ID="Button2" runat="server" Text="刷新" OnClick="Button2_Click"/>
+      
+                <button id="submit1" style="display:none"></button><%--顶部部件的中转到查询键--%>
+                <button id="submit2" style="display:none"></button><%--顶部部件中转到刷新键--%>
             </div>
         </div>
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" PageSize="20" Width="100%" EmptyDataText="暂缺"
+        <%--GridView窗体--%>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" BackColor="White" BorderColor="#DEDFDE" BorderStyle="Solid" ForeColor="Black" GridLines="Vertical" PageSize="20" Width="100%" EmptyDataText="暂缺"
             OnRowEditing="GridView1_RowEditing" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowUpdating="GridView1_RowUpdating" OnRowDeleting="GridView1_RowDeleting" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand" OnSorting="GridView1_Sorting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="行号">
                     <ItemTemplate>
-                        <asp:Label ID="rowIndex" class="rowIndex" runat="server">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:Label>
+                        <asp:Label ID="rowIndex" class="rowIndex" runat="server"></asp:Label>
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="40px" />
                 </asp:TemplateField>
@@ -181,6 +188,7 @@
         <asp:HiddenField ID="sortSet" runat="server" />
     </form>
 
+    <%--下拉多选菜单--%>
     <div id='selectList' class="dropli" style="display:none" onmouseover="clearTimeout(timoutID);"  onmouseout="timoutID = setTimeout('HideMList()', 250);">
         <table class="dropli" style="background-color: #31b7ab">
             <tr class="dropli">
@@ -224,23 +232,87 @@
             </tr>
         </table>
     </div>
-    
 </body>
-<script>
+<script>//--设置及渲染部分--
+
+    //设置顶部筛选窗体的有无
     document.getElementById( "headBox" ).style.display = ( url.indexOf( "hz" ) > -1 ? "none" : "block" );
+    //设置顶部筛选部件的展开
     document.getElementById( "topBox" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topu" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topd" ).style.display = ( !topShow ? "block" : "none" );
+    //渲染筛选部件组
     $( "#only187" ).attr( "lay-skin", "primary", );
     $( "#only187" ).attr( "lay-filter", "only187", );
     $( "#only187" ).attr( "title", "仅显示187条重点黑臭河流" ); 
     $( "#only35" ).attr( "lay-skin", "primary" );
     $( "#only35" ).attr( "lay-filter", "only35", );
     $( "#only35" ).attr( "title", "仅显示35条重点黑臭河流" ); 
+    //设置按钮样式
+    $( "#Button1" ).addClass( "layui-btn layui-btn-normal" );
+    $( "#Button2" ).addClass( "layui-btn layui-btn-small layui-btn-primary" );
+    $( "td :submit" ).addClass( "layui-btn layui-btn-radius layui-btn-mini layui-btn-normal" );
+    $( "td :button[value='河长']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
+    $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-mini" );
+    $( "td :submit[value='确认']" ).removeClass( "layui-btn-radius layui-btn-normal" ).addClass( "layui-btn-danger" );
+    $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-mini layui-btn-primary" );
+    $( "td :button[value='详情']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
+    $( "td :button[value='定位']" ).addClass( "layui-btn layui-btn-radius layui-btn-mini" );
+    //设置排序按钮
+    var sortset = $( "#sortSet" )[0].value.split( "-" );
+    $( "th a:gt(" + sortset[0] + ")" ).append( '<i style="display:none" class="iconfont icon-sortup"></i>' );
+    $( "th a:lt(" + sortset[0] + ")" ).append( '<i style="display:none" class="iconfont icon-sortup"></i>' );
+    $( "th a:gt(" + sortset[0] + ")" ).mouseleave( function () { $( this ).children( "i" ).toggle(); } );
+    $( "th a:gt(" + sortset[0] + ")" ).mouseenter( function () { $( this ).children( "i" ).toggle(); } );
+    $( "th a:lt(" + sortset[0] + ")" ).mouseleave( function () { $( this ).children( "i" ).toggle(); } );
+    $( "th a:lt(" + sortset[0] + ")" ).mouseenter( function () { $( this ).children( "i" ).toggle(); } );
+    //设置边框
+    $( "th a:eq(" + sortset[0] + ")" ).append( '<i class="iconfont icon-sort' + ( sortset[1] == 'ASC' ? "up" : "down" ) + '"></i>' );
+    $( "th:eq(" + sortset[0] + ")" ).css( "border-color", "#1bb3a5" );
+    $( "th:eq(" + ( sortset[0] * 1 + 1 ) + ")" ).css( "border-color", "#1bb3a5" );
+    $( "tr td:nth-child(" + ( sortset[0] * 1 + 1 ) + ")" ).css( "border-color", "#1bb3a5" );
+    $( "tr td:nth-child(" + ( sortset[0] * 1 + 2 ) + ")" ).css( "border-color", "#1bb3a5" );
+    $( "tr td:first-child" ).css( "border-left-color", "#1bb3a5" );
+    $( "tr td:last-child" ).css( "border-right-color", "#1bb3a5" );
+    $( "tr th:first-child" ).css( "border-left-color", "#1bb3a5" );
+    $( "tr th:last-child" ).css( "border-right-color", "#1bb3a5" );
+    //渲染Form模块
     layui.use( 'form', function ()
     {
         var form = layui.form;
         form.render();
+    })
+    //设置行号
+    var len = $( ".rowIndex" ).length;
+    for ( var i = 0; i < len; i++ )
+    {
+        $( "#GridView1_rowIndex_" + i )[0].innerHTML = "&nbsp;&nbsp;" + ( i + 1 ) + "&nbsp;&nbsp;";
+    }
+
+    //完成页面设置后展开页面
+    $( "#Form1" ).fadeIn();
+
+</script><%----设置部分----%>
+
+<script>//--事件及函数部分--
+
+    //切换顶部菜单的展开状态
+    function toplist()
+    {
+        $( "#topu" ).toggle();
+        $( "#topd" ).toggle();
+        $( "#topBox" ).slideToggle();
+        topShow = !topShow;
+        sessionStorage.setItem( "topShow_" + title, topShow );
+        //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
+    }
+
+    //---表单部分---
+    //Form筛选部件事件
+    layui.use( 'form', function ()
+    {
+        var form = layui.form;
+        //部件检查后点击相应的中转按钮
         form.on( 'checkbox(only187)', function ( data )
         {
             $( "#only35" ).attr( "checked", false );
@@ -256,49 +328,61 @@
             $( "#submit1" ).click();
         } );
     } )
+    //部件自身检查函数
+    function inputObjectId( event )//限制为只可输入为数字
+    {
+        if ( event.keyCode == 13 )
+        {
+            event.returnValue = checkObjectId();
+        } else
+        {
+            if ( event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;
+        }
+    }
+    function checkObjectId()//焦点离开后检查输入内容
+    {
+        layui.use( 'layer', function ()
+        {
+            var layer = layui.layer;
+            var d = document.getElementById( "objectidd" );
+            var u = document.getElementById( "objectidu" );
+            if ( d.value != "" && !( /^\d+$/.test( d.value ) ) )//是否全为数字
+            {
+                d.value = "";
+                showMsg( "请输入数字" );
+                return false;
+            }
+            if ( u.value != "" && !( /^\d+$/.test( u.value ) ) )//是否全为数字
+            {
+                u.value = "";
+                showMsg( "请输入数字" );
+                return false;
+            }
+            if ( d.value == "" || u.value == "" )
+            {
+                return true;
+            }
+            else if ( ( d.value * 1 ) < ( u.value * 1 ) )
+            {
+                return true;
+            } else
+            {
+                d.value = "";
+                u.value = "";
+                showMsg( "左侧值应小于右侧值" );
+                return false;
+            }
+        } )
+    }
+    //中转按钮的处理
     $( "#submit1" ).click( function ()
     {
         $( "#Button1" ).click();
         return false;
     } );
-    //设置样式
-    $( "#Button1" ).addClass( "layui-btn layui-btn-normal" );
-    $( "td :submit" ).addClass( "layui-btn layui-btn-radius layui-btn-mini layui-btn-normal" );
-    $( "td :button[value='河长']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
-    $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-mini" );
-    $( "td :submit[value='确认']" ).removeClass( "layui-btn-radius layui-btn-normal" ).addClass( "layui-btn-danger" );
-    $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-mini layui-btn-primary" );
-    $( "td :button[value='详情']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
-    $( "td :button[value='定位']" ).addClass( "layui-btn layui-btn-radius layui-btn-mini" );
-    function loadRowIndex()
-    {
-        var len = $( ".rowIndex" ).length;
-        for ( var i = 0; i < len; i++ )
-        {
-            $( "#GridView1_rowIndex_" + i )[0].innerHTML = "&nbsp;&nbsp;" + ( i + 1 ) + "&nbsp;&nbsp;";
-        }
-    }
-    //写入排序按钮
-    var sortset = $( "#sortSet" )[0].value.split("-");
-    $( "th a:gt(" + sortset[0] + ")" ).append( '<i style="display:none" class="iconfont icon-sortup"></i>' );
-    $( "th a:lt(" + sortset[0] + ")" ).append( '<i style="display:none" class="iconfont icon-sortup"></i>' );
-    $( "th a:gt(" + sortset[0] + ")" ).mouseleave( function () { $( this ).children( "i" ).toggle(); } );
-    $( "th a:gt(" + sortset[0] + ")" ).mouseenter( function () { $( this ).children( "i" ).toggle(); } );
-    $( "th a:lt(" + sortset[0] + ")" ).mouseleave( function () { $( this ).children( "i" ).toggle(); } );
-    $( "th a:lt(" + sortset[0] + ")" ).mouseenter( function () { $( this ).children( "i" ).toggle(); } );
-    //写入边框
-    $( "th a:eq(" + sortset[0] + ")" ).append( '<i class="iconfont icon-sort' + ( sortset[1] == 'ASC' ? "up" : "down" ) + '"></i>' );
-    $( "th:eq(" + sortset[0] + ")" ).css( "border-color", "#1bb3a5" );
-    $( "th:eq(" + ( sortset[0] * 1 + 1 ) + ")" ).css( "border-color", "#1bb3a5" );
-    $( "tr td:nth-child(" + ( sortset[0] * 1 + 1 ) + ")" ).css( "border-color", "#1bb3a5" );
-    $( "tr td:nth-child(" + ( sortset[0] * 1 + 2 ) + ")" ).css( "border-color", "#1bb3a5" );
-    $( "tr td:first-child" ).css( "border-left-color", "#1bb3a5" );
-    $( "tr td:last-child" ).css( "border-right-color", "#1bb3a5" );
-    $( "tr th:first-child" ).css( "border-left-color", "#1bb3a5" );
-    $( "tr th:last-child" ).css( "border-right-color", "#1bb3a5" );
-    //写入行号
-    loadRowIndex();
+    //---表单部分---
 
+    //---下拉多选菜单部分---
     $( "input[name$='$ctl02']" ).focus( function () { $( "input[name$='$ctl02']" )[0].readOnly = true } );
     $( "input[name$='$ctl02']" ).click( function ()
     {
@@ -356,66 +440,7 @@
             $( "input[name$='$ctl02']" )[0].value = text;
         }
     }
-    function toplist()
-    {
-        $( "#topu" ).toggle();
-        $( "#topd" ).toggle();
-        $( "#topBox" ).slideToggle();
-        topShow = !topShow;
-        sessionStorage.setItem( "topShow_" + title, topShow );
-        //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
-    }
-    function inputObjectId( event )//限制为只可输入为数字
-    {
-        if ( event.keyCode == 13 )
-        {
-            event.returnValue = checkObjectId();
-        } else
-        {
-            if ( event.keyCode < 48 || event.keyCode > 57 ) event.returnValue = false;
-        }
-    }
-    function checkObjectId()
-    {
-        var d = document.getElementById( "objectidd" );
-        var u = document.getElementById( "objectidu" );
-        if ( d.value != "" && !( /^\d+$/.test( d.value ) ) )//是否全为数字
-        {
-            d.value = "";
-            alert( "请输入数字" );
-            return false;
-        }
-        if ( u.value != "" && !( /^\d+$/.test( u.value ) ) )//是否全为数字
-        {
-            u.value = "";
-            alert( "请输入数字" );
-            return false;
-        }
-        if ( d.value == "" || u.value == "" )
-        {
-            return true;
-        }
-        else if ( d.value < u.value )
-        {
-            return true;
-        } else
-        {
-            d.value = "";
-            u.value = "";
-            alert( "左侧值应小于右侧值" );
-            return false;
-        }
-    }
-    $( "#Form1" ).fadeIn();
-    //window.onload = function ()
-    //{
-    //    layui.use( 'layer', function ()
-    //    {
-    //        var layer = layui.layer;
-    //        layer.close( loadindex );
-    //    } )
-    //};
-
+    //---下拉多选菜单部分---
     
-</script>
+</script><%----事件及函数部分----%>
 </html>

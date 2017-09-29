@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\demo.css" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\loading2.gif" />
+    <Content Include="images\loading3.gif" />
     <Content Include="packages.config" />
     <Content Include="fonts\iconfont.eot" />
     <Content Include="fonts\iconfont.ttf" />

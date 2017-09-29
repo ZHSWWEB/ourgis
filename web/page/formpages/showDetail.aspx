@@ -6,18 +6,18 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <link href="plugins/layui/css/layui.css" rel="stylesheet" />
-    <link href="formstyle.css" rel="stylesheet" />
-    <script src="../../js/jquery.js"></script>
-    <script type="text/javascript" src="plugins/layui/layui.all.js"></script>
+    <link href="plugins/layui/css/layui.css" rel="stylesheet" /><%--加载layui样式--%>
+    <link href="formstyle.css" rel="stylesheet" /><%--加载自定义样式覆盖layui样式--%>
+    <script src="../../js/jquery.js"></script><%--预先加载jquery--%>
+    <script type="text/javascript" src="plugins/layui/layui.all.js"></script><%--加载layui--%>
     <script>
         var url = window.location.href;
         var timoutID;
     </script>
 </head>
 <body>
-    <div id="dataPart" style="display: none">
-        <form id="form1" runat="server">
+    <div id="dataPart" style="display: none"><%--隐藏等待渲染完毕--%>
+        <form id="form1" runat="server"><%--DetailView窗体--%>
             <asp:DetailsView ID="DetailsView1" runat="server" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" Height="100%" Width="600px" AutoGenerateRows="False" Font-Bold="True"
                 OnModeChanging="DetailsView1_ModeChanging" OnItemUpdating="DetailsView1_ItemUpdating" OnItemCommand="DetailsView1_ItemCommand">
                 <EditRowStyle BackColor="White" Font-Bold="True" ForeColor="Black" />
@@ -27,8 +27,9 @@
                 <PagerStyle BackColor="#CCCCCC" ForeColor="Black" HorizontalAlign="Left" />
                 <RowStyle BackColor="White" HorizontalAlign="Center" />
             </asp:DetailsView>
-            <div id="headDiv" runat="server"></div>
+            <div id="headDiv" runat="server"></div><%--用于接后台发送代码--%>
         </form>
+        <%--下拉多选菜单--%>
         <div id='selectList' class="dropli" style="display: none" onmouseover="clearTimeout(timoutID);" onmouseout="timoutID = setTimeout('HideMList()', 250);">
             <table class="dropli" style="background-color: #31b7ab">
                 <tr class="dropli">
@@ -88,11 +89,16 @@
     </div>
 </body>
 <script>
+    //设置表单左侧的整体偏移
     $( "#DetailsView1" ).css( "margin-left", "7px" )
+    //设置按钮样式
     $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-small" );
     $( "td :submit[value='确认']" ).removeClass( "layui-btn-radius layui-btn-normal" ).addClass( "layui-btn-danger" );
     $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-small layui-btn-primary" );
     $( "td :button[value='返回']" ).addClass( "layui-btn layui-btn-small layui-btn-normal" );
+    //展开页面
+    $( "#dataPart" ).fadeIn();
+    //下拉多选菜单设置
     $( "input[name$='$ctl03']" ).click( function ()
     {
         if ( url.indexOf( "slg_rv_po" ) > -1 )
@@ -149,6 +155,6 @@
             $( "input[name$='$ctl03']" )[0].value = text;
         }
     }
-    $( "#dataPart" ).fadeIn();
+
 </script>
 </html> 
