@@ -19,8 +19,6 @@ namespace web.page.formpages
         static string pagename;
         [ThreadStatic]
         static bool onSort = false;
-        [ThreadStatic]
-        static int index = -1;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -153,10 +151,11 @@ namespace web.page.formpages
             {
                 objstr = "OBJECTID < " + obju + " AND ";
             }
+            //判断是否为附属河长页并附加相应代码
             string hz = "";
-            if (Request.QueryString["table"].Contains("hz_info"))//河长表
+            if (Request.QueryString["hzcd"] != null)//含河长附属代码
             {
-                if (Request.QueryString["table"].Contains("rv"))//河流河长表
+                if (listName.Contains("rv"))//河流河长表
                 {
                     hz = "AND rvcd = '" + Request.QueryString["hzcd"]+"' ";//河涌代码
                 }
@@ -430,22 +429,6 @@ namespace web.page.formpages
             {
                 ViewState["SortOrder"] = e.SortExpression;
                 ViewState["OrderDire"] = "Desc";
-            }
-            //获取所排序列的index
-            DataControlField col;
-            for (int i = 0; i < GridView1.Columns.Count; i++)
-            {
-                col = GridView1.Columns[i];
-                //只有BoundField列才有DataField
-                if (col is BoundField)
-                {
-                    var col1 = (BoundField)col;
-                    if (col1.DataField == e.SortExpression)
-                    {
-                        index = i;
-                        break;
-                    }
-                }
             }
             //刷新数据
             refresh();

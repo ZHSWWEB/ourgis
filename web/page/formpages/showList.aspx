@@ -36,7 +36,7 @@
                 var layer = layui.layer;
                 layer.open( {
                     type: 2, title: hcmc, shadeClose: true, shade: [0.3],
-                    maxmin: false, move: false, area: ['90%', '40%'], scrollbar: false,
+                    maxmin: true,resize: true, move: true, area: ['90%', '40%'], scrollbar: false,
                     content: 'showList.aspx?table=' + table + '&&hzcd=' + hzcd
                 } )
             } )
@@ -46,7 +46,7 @@
             layui.use( 'layer', function ()
             {
                 var layer = layui.layer;
-                layer.msg( msg, { offset: '60px', anim: 6 } );
+                layer.msg( msg, { anim: 6 } );
             } )
         };
         var url = window.location.href;//用于分析页面内容
@@ -290,7 +290,7 @@
     }
 
     //完成页面设置后展开页面
-    $( "#Form1" ).fadeIn();
+    $( "#Form1" ).fadeIn("fast");
 
 </script><%----设置部分----%>
 
