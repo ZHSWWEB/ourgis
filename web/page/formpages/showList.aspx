@@ -242,11 +242,11 @@
     document.getElementById( "topu" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topd" ).style.display = ( !topShow ? "block" : "none" );
     //渲染筛选部件组
-    $( "#only187" ).attr( "lay-skin", "primary", );
-    $( "#only187" ).attr( "lay-filter", "only187", );
+    $( "#only187" ).attr( "lay-skin", "primary");
+    $( "#only187" ).attr( "lay-filter", "only187" );
     $( "#only187" ).attr( "title", "仅显示187条重点黑臭河流" ); 
     $( "#only35" ).attr( "lay-skin", "primary" );
-    $( "#only35" ).attr( "lay-filter", "only35", );
+    $( "#only35" ).attr( "lay-filter", "only35" );
     $( "#only35" ).attr( "title", "仅显示35条重点黑臭河流" ); 
     //设置按钮样式
     $( "#Button1" ).addClass( "layui-btn layui-btn-normal" );
