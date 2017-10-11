@@ -159,6 +159,10 @@ namespace web.page.formpages
                 {
                     hz = "AND rvcd = '" + Request.QueryString["hzcd"]+"' ";//河涌代码
                 }
+                if (listName.Contains("res"))//水库河长表
+                {
+                    hz = "AND rescd = '" + Request.QueryString["hzcd"] + "' ";//河涌代码
+                }
             }
             //拼接Listconfig的查询字符串
             string sql = "";
@@ -391,7 +395,14 @@ namespace web.page.formpages
                     string name = GridView1.Rows[index].Cells[2].Text;
                     string hzcd = GridView1.Rows[index].Cells[3].Text;
                     //调用自制的layer函数showDetail
-                    Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + hzcd + "','" + name + "','" + "hz_info_rv" + "');", true);
+                    if (listName.Contains("rv"))//河流河长表
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + hzcd + "','" + name + "','" + "hz_info_rv" + "');", true);
+                    }
+                    if (listName.Contains("res"))//水库河长表
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + objectId + "','" + name + "','" + "hz_info_res" + "');", true);
+                    }
                 }
                 else
                 {

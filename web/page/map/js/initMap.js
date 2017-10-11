@@ -439,7 +439,7 @@ function querySingleLayer(key,e,complete) {
     query = new esri.tasks.Query();
     query.returnGeometry = true;
     query.outFields = layerConfiguration.dissertation[key].outFields;
-    var extentFlag = 200;//小矩形的查询范围，大比例尺默认20，小比例尺需要更大，要不选不上
+    var extentFlag = 500;//小矩形的查询范围，大比例尺默认20，小比例尺需要更大，要不选不上
     //根据比例尺重新生成查询范围
     extentFlag = map.getScale() / 1000;
     //因为点选的话，对于点图层，比较难选中，因此根据鼠标点的坐标，x/y个加减20，生成一个小矩形，用于查询的范围

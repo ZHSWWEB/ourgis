@@ -74,12 +74,12 @@
                     <%--行政区--%>
                     <asp:Label class="layui-form-label" Style="width: 80px" runat="server" ID="lDistrictList">行政区</asp:Label>
                     <div class="layui-input-inline" style="width: 150px">
-                        <asp:DropDownList class="layui-input" ID="DistrictList" runat="server"></asp:DropDownList>
+                        <asp:DropDownList lay-filter="xzq" class="layui-input" ID="DistrictList" runat="server"></asp:DropDownList>
                     </div>
                     <%--1368条河流--%>
                     <asp:Label class="layui-form-label" Style="width: 110px" runat="server" ID="lset1368">1368条河流</asp:Label>
                     <div class="layui-input-inline" style="width: 150px">
-                        <asp:DropDownList class="layui-input" ID="set1368" runat="server">
+                        <asp:DropDownList lay-filter="1368" class="layui-input" ID="set1368" runat="server">
                             <asp:ListItem Value="" Selected="True">全部</asp:ListItem>
                             <asp:ListItem Value="F1368 > 0 AND ">仅1368</asp:ListItem>
                             <asp:ListItem Value="F1368 IS NULL AND ">非1368</asp:ListItem>
@@ -323,7 +323,11 @@
             $( "#only187" ).attr( "checked", false );
             $( "#submit1" ).click();
         } );
-        form.on( 'select', function ( data )
+        form.on( 'select(xzq)', function ( data )
+        {
+            $( "#submit1" ).click();
+        } );
+        form.on( 'select(1368)', function ( data )
         {
             $( "#submit1" ).click();
         } );
