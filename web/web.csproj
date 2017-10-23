@@ -69,6 +69,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\dist\main.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\examples\demo1.gif" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\examples\demo2.gif" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\examples\index.html" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\examples\index2.html" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\gulpfile.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\china.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\echarts.common.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\echarts.common.min.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\echarts.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\echarts.min.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\echarts.simple.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\echarts.simple.min.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\extension\dataTool.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\libs\jquery-1.11.2.min.js" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\src\Echarts3Layer.js" />
     <Content Include="fonts\demo.css" />
     <Content Include="images\loading.gif" />
     <Content Include="images\loading2.gif" />
@@ -86,6 +102,8 @@
     <Content Include="json\systemParameter.json" />
     <Content Include="json\userface.json" />
     <Content Include="json\usersList.json" />
+    <Content Include="page\chartpages\echarts\echarts.js" />
+    <Content Include="page\chartpages\echarts\echarts.min.js" />
     <Content Include="page\docsummary\WebForm1.aspx" />
     <Content Include="page\formpages\formstyle.css" />
     <Content Include="page\formpages\plugins\layui\css\layui.css" />
@@ -967,6 +985,11 @@
     <Content Include="page\formpages\plugins\layui\font\iconfont.eot" />
     <Content Include="page\formpages\plugins\layui\font\iconfont.ttf" />
     <Content Include="page\formpages\plugins\layui\font\iconfont.woff" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\.gitignore" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\examples\weibo.json" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\LICENSE" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\package.json" />
+    <Content Include="page\chartpages\echarts\arcgis-echarts3-master\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -11617,16 +11640,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
-          <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>18033</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:18033/</IISUrl>
-          <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
-          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

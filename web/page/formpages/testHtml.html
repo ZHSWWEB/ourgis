@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-    <div id="demo1" style="width:40%;height:400px;"></div>
+    <div id="demo1" style="display:none;width:40%;height:400px;"></div>
     <!--ECharts 入门示例-->
     <script>
         // 基于准备好的dom，初始化echarts实例
@@ -35,7 +35,7 @@
         // 使用刚指定的配置项和数据显示图表。
         myChart1.setOption( option1 );
     </script>
-    <div id="demo2" style="width:40%;height:400px;"></div>
+    <div id="demo2" style="display:none;width:40%;height:400px;"></div>
     <!--异步数据加载示例1-->
     <script>
         var myChart2 = echarts.init( document.getElementById( 'demo2' ) );
@@ -61,7 +61,7 @@
             } );
         } );
     </script>
-    <div id="demo3" style="width:40%;height:400px;"></div>
+    <div id="demo3" style="display:none;width:40%;height:400px;"></div>
     <!--异步数据加载示例2-->
     <script>
         var myChart3 = echarts.init( document.getElementById( 'demo3' ) );
@@ -100,7 +100,7 @@
             } );
         } );
     </script>
-    <div id="demo4" style="width:40%;height:400px;"></div>
+    <div id="demo4" style="display:none;width:40%;height:400px;"></div>
     <!--数据加载画面示例-->
     <script>
         var myChart4 = echarts.init( document.getElementById( 'demo4' ) );
@@ -127,7 +127,7 @@
         $.get( 'data.json' ).done( function ( data )
         {
             // 关闭加载动画
-            myChart4.hideLoading();
+            //myChart4.hideLoading();
             myChart4.setOption( {
                 xAxis: {
                     data: data.categories
@@ -138,6 +138,79 @@
                 }]
             } );
         } );
+        setTimeout( "myChart4.hideLoading();",2000 );
+    </script>
+    <div id="demo5" style="display:block;width:40%;height:400px;"></div>
+    <!--X交互散点图示例-->
+    <script>
+        var myChart5 = echarts.init( document.getElementById( 'demo5' ) );
+        option = {
+            xAxis: {
+                type: 'value'
+            },
+            yAxis: {
+                type: 'value'
+            },
+            dataZoom: [
+                {   // 这个dataZoom组件，默认控制x轴。
+                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                    start: 0,      // 左边在 10% 的位置。
+                    end: 100         // 右边在 60% 的位置。
+                }
+            ],
+            series: [
+                {
+                    type: 'scatter', // 这是个『散点图』
+                    itemStyle: {
+                        normal: {
+                            opacity: 0.8
+                        }
+                    },
+                    symbolSize: function ( val )
+                    {
+                        return val[2] * 40;
+                    },
+                    data: [["14.616", "7.241", "0.896"], ["3.958", "5.701", "0.955"], ["2.768", "8.971", "0.669"], ["9.051", "9.710", "0.171"], ["14.046", "4.182", "0.536"], ["12.295", "1.429", "0.962"], ["4.417", "8.167", "0.113"], ["0.492", "4.771", "0.785"], ["7.632", "2.605", "0.645"], ["14.242", "5.042", "0.368"]]
+                }
+            ]
+        }
+        myChart5.setOption(option);
+    </script>
+    <div id="demo5" style="display:block;width:40%;height:400px;"></div>
+    <!--X交互散点图示例-->
+    <script>
+        var myChart6 = echarts.init( document.getElementById( 'demo5' ) );
+        option = {
+            xAxis: {
+                type: 'value'
+            },
+            yAxis: {
+                type: 'value'
+            },
+            dataZoom: [
+                {   // 这个dataZoom组件，默认控制x轴。
+                    type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                    start: 0,      // 左边在 10% 的位置。
+                    end: 100         // 右边在 60% 的位置。
+                }
+            ],
+            series: [
+                {
+                    type: 'scatter', // 这是个『散点图』
+                    itemStyle: {
+                        normal: {
+                            opacity: 0.8
+                        }
+                    },
+                    symbolSize: function ( val )
+                    {
+                        return val[2] * 40;
+                    },
+                    data: [["14.616", "7.241", "0.896"], ["3.958", "5.701", "0.955"], ["2.768", "8.971", "0.669"], ["9.051", "9.710", "0.171"], ["14.046", "4.182", "0.536"], ["12.295", "1.429", "0.962"], ["4.417", "8.167", "0.113"], ["0.492", "4.771", "0.785"], ["7.632", "2.605", "0.645"], ["14.242", "5.042", "0.368"]]
+                }
+            ]
+        }
+        myChart6.setOption( option );
     </script>
 </body>
 </html>
