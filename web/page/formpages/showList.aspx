@@ -49,14 +49,21 @@
                 layer.msg( msg, { anim: 6 } );
             } )
         };
-        var url = window.location.href;//用于分析页面内容
         var timoutID;//用于下拉多选菜单的延迟隐藏
-        var curmenu = JSON.parse( sessionStorage.getItem( "curmenu" ) );//获取当前tab卡信息
-        var title = curmenu.title;
-        var topShow = sessionStorage.getItem( "topShow_" + title );//查找页面对应sessionStorage获取顶部部件历史状态
+        var url = location.href;
+        //获取url传值
+        function getfurl( key )
+        {
+            var reg = new RegExp( "(^|\\?|&)" + key + "=([^&]*)(\\s|&|$)", "i" );
+            if ( reg.test( location.href ) )
+                return unescape( RegExp.$2.replace( /\+/g, " " ) );
+            return "";
+        };
+        var formtable = getfurl( "table" );
+        var topShow = sessionStorage.getItem( "topShow_" + formtable );//查找页面对应sessionStorage获取顶部部件历史状态
         if ( topShow == null )//首次打开
         {
-            sessionStorage.setItem( "topShow_" + title, true );///设置sessionStorage
+            sessionStorage.setItem( "topShow_" + formtable, true );///设置sessionStorage
             topShow = true;
         } else
         {
@@ -303,7 +310,7 @@
         $( "#topd" ).toggle();
         $( "#topBox" ).slideToggle();
         topShow = !topShow;
-        sessionStorage.setItem( "topShow_" + title, topShow );
+        sessionStorage.setItem( "topShow_" + formtable, topShow );
         //$( "#topd" )[0].style.display = $( "#topd" )[0].style.display == "none" ? "block" : "none";
     }
 
@@ -387,7 +394,15 @@
     //---表单部分---
 
     //---下拉多选菜单部分---
-    $( "input[name$='$ctl02']" ).focus( function () { $( "input[name$='$ctl02']" )[0].readOnly = true } );
+    $( "input[name$='$ctl02']" ).focus( function ()
+    {
+        {
+            if ( url.indexOf( "slg_rv_po" ) > -1 )
+            {
+                $( "input[name$='$ctl02']" )[0].readOnly = true
+            }
+        }
+    });
     $( "input[name$='$ctl02']" ).click( function ()
     {
         if ( url.indexOf( "slg_rv_po" ) > -1 )

@@ -637,7 +637,18 @@ function addPoint1() {
     var interestRemark = document.getElementById('interestRemark_input').value;
     var attr = { "NAME": interestName, "REMARK": interestRemark};
     var graphic = new esri.Graphic(egeo, null, attr, null);
-    saveInterestEdit([graphic], null, null, 'interestPoint')
+    saveInterestEdit( [graphic], null, null, 'interestPoint' )
+    //完成存储后，使用ajax post到后台
+    //$.post( "demo_test_post.asp",
+    //    {
+    //        name: "Donald Duck",
+    //        city: "Duckburg"
+    //    },
+    //    function ( data, status )
+    //    {
+    //        alert( "Data: " + data + "\nStatus: " + status );
+    //    } );
+    //存储失败进行三次重试，并提示。
     map.graphics.clear();
 }
 function addMultiPoint1() {

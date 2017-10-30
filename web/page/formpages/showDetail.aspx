@@ -93,12 +93,21 @@
     $( "#DetailsView1" ).css( "margin-left", "7px" )
     //设置按钮样式
     $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-small" );
-    $( "td :submit[value='确认']" ).removeClass( "layui-btn-radius layui-btn-normal" ).addClass( "layui-btn-danger" );
+    $( "td :submit[value='确认']" ).addClass( "layui-btn layui-btn-small layui-btn-danger" );
     $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-small layui-btn-primary" );
     $( "td :button[value='返回']" ).addClass( "layui-btn layui-btn-small layui-btn-normal" );
     //展开页面
     $( "#dataPart" ).fadeIn();
     //下拉多选菜单设置
+    $( "input[name$='$ctl03']" ).focus( function ()
+    {
+        {
+            if ( url.indexOf( "slg_rv_po" ) > -1 )
+            {
+                $( "input[name$='$ctl03']" )[0].readOnly = true
+            }
+        }
+    } );
     $( "input[name$='$ctl03']" ).click( function ()
     {
         if ( url.indexOf( "slg_rv_po" ) > -1 )

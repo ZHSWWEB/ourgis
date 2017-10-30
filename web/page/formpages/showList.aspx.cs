@@ -159,9 +159,13 @@ namespace web.page.formpages
                 {
                     hz = "AND rvcd = '" + Request.QueryString["hzcd"]+"' ";//河涌代码
                 }
-                if (listName.Contains("res"))//水库河长表
+                else if (listName.Contains("res"))//水库河长表
                 {
                     hz = "AND rescd = '" + Request.QueryString["hzcd"] + "' ";//河涌代码
+                }
+                else if (listName.Contains("lake"))//湖泊河长表
+                {
+                    hz = "AND lakecd = '" + Request.QueryString["hzcd"] + "' ";//河涌代码
                 }
             }
             //拼接Listconfig的查询字符串
@@ -399,9 +403,13 @@ namespace web.page.formpages
                     {
                         Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + hzcd + "','" + name + "','" + "hz_info_rv" + "');", true);
                     }
-                    if (listName.Contains("res"))//水库河长表
+                    else if (listName.Contains("res"))//水库河长表
                     {
-                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + objectId + "','" + name + "','" + "hz_info_res" + "');", true);
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + hzcd + "','" + name + "','" + "hz_info_res" + "');", true);
+                    }
+                    else if (listName.Contains("lake"))//湖泊河长表
+                    {
+                        Page.ClientScript.RegisterStartupScript(Page.GetType(), "showHz", "showHz('" + hzcd + "','" + name + "','" + "hz_info_lake" + "');", true);
                     }
                 }
                 else
