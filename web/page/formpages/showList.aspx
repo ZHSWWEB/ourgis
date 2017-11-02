@@ -29,6 +29,22 @@
                 } )
             } )
         };
+        function showCycle( table )//用于弹出回收站页面窗口
+        {
+            layui.use( 'layer', function ()
+            {
+                var layer = layui.layer;
+                layer.open( {
+                    type: 2, title: "回收站", shadeClose: true, shade: [0.3],
+                    maxmin: false, resize: false , move: false, area: ['100%', '100%'], scrollbar: false,
+                    content: 'showList.aspx?table=' + table,
+                    end: function ()
+                    {
+                        document.getElementById( "Button2" ).click();
+                    }
+                } )
+            } )
+        };
         function showHz( hzcd, hcmc, table )//用于弹出河长页面窗口
         {
             layui.use( 'layer', function ()
@@ -36,7 +52,7 @@
                 var layer = layui.layer;
                 layer.open( {
                     type: 2, title: hcmc, shadeClose: true, shade: [0.3],
-                    maxmin: true,resize: true, move: true, area: ['90%', '40%'], scrollbar: false,
+                    maxmin: true, resize: true, move: true, area: ['90%', '40%'], scrollbar: false,
                     content: 'showList.aspx?table=' + table + '&&hzcd=' + hzcd
                 } )
             } )
@@ -130,12 +146,13 @@
                 <asp:DropDownList class="layui-input" ID="SearchList" runat="server"></asp:DropDownList>
             </div>
             <%--按钮组--%>
-            <div class="layui-input-inline">
+            <div class="layui-input-inline" style="width: 250px;">
                 <%--查询键(重置页码、选中行)--%>
                 <asp:Button ID="Button1" runat="server" Text="查&nbsp;&nbsp;&nbsp;&nbsp;询" Width="80px" OnClick="Button1_Click"/>
                 <%--刷新键(保留页码、选中行)--%>
                 <asp:Button ID="Button2" runat="server" Text="刷新" OnClick="Button2_Click"/>
-      
+                <%--回收站--%>
+                <asp:Button ID="cycle" runat="server" Text="回收站" OnClick="Cycle_Click"/>
                 <button id="submit1" style="display:none"></button><%--顶部部件的中转到查询键--%>
                 <button id="submit2" style="display:none"></button><%--顶部部件中转到刷新键--%>
             </div>
@@ -243,7 +260,7 @@
 <script>//--设置及渲染部分--
 
     //设置顶部筛选窗体的有无
-    document.getElementById( "headBox" ).style.display = ( url.indexOf( "hz" ) > -1 ? "none" : "block" );
+    //document.getElementById( "headBox" ).style.display = ( url.indexOf( "hz" ) > -1 ? "none" : "block" );
     //设置顶部筛选部件的展开
     document.getElementById( "topBox" ).style.display = ( topShow ? "block" : "none" );
     document.getElementById( "topu" ).style.display = ( topShow ? "block" : "none" );
@@ -258,6 +275,7 @@
     //设置按钮样式
     $( "#Button1" ).addClass( "layui-btn layui-btn-normal" );
     $( "#Button2" ).addClass( "layui-btn layui-btn-small layui-btn-primary" );
+    $( "#cycle" ).addClass( "layui-btn layui-btn-mini layui-btn-danger" );
     $( "td :submit" ).addClass( "layui-btn layui-btn-radius layui-btn-mini layui-btn-normal" );
     $( "td :button[value='河长']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
     $( "td :button[value='修改']" ).addClass( "layui-btn layui-btn-mini" );
@@ -265,6 +283,7 @@
     $( "td :button[value='取消']" ).addClass( "layui-btn layui-btn-mini layui-btn-primary" );
     $( "td :button[value='详情']" ).addClass( "layui-btn layui-btn-mini layui-btn-normal" );
     $( "td :button[value='定位']" ).addClass( "layui-btn layui-btn-radius layui-btn-mini" );
+    $( "td :button[value='还原']" ).addClass( "layui-btn layui-btn-radius layui-btn-mini layui-btn-danger" );
     //设置排序按钮
     var sortset = $( "#sortSet" )[0].value.split( "-" );
     $( "th a:gt(" + sortset[0] + ")" ).append( '<i style="display:none" class="iconfont icon-sortup"></i>' );

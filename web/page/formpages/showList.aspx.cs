@@ -61,14 +61,20 @@ namespace web.page.formpages
                         //首次打开
                         if (!IsPostBack)
                         {
-                            //绑定下拉菜单
-                            DistrictList_bind();
-                            SearchList_bind();
                             //设置筛选工具
+                            lDistrictList.Visible = (Convert.ToString(config.Rows[0]["districtName"]) != "");
+                            DistrictList.Visible = lDistrictList.Visible;
                             set1368.Visible = pagename == "RIVER";
                             lset1368.Visible = set1368.Visible;
                             only187.Visible = pagename == "RIVER";
                             only35.Visible = pagename == "RIVER";
+                            cycle.Visible = Request.QueryString["table"].Contains("interest");
+                            //绑定下拉菜单
+                            if (lDistrictList.Visible)
+                            {
+                                DistrictList_bind();
+                            }
+                            SearchList_bind();
                             //生成GridView
                             build();
                             //获取按键所在列
@@ -76,11 +82,13 @@ namespace web.page.formpages
                             int editcontrol = listconfig.Rows.Count + 2;
                             int detailcontrol = listconfig.Rows.Count + 3;
                             int mapcontrol = listconfig.Rows.Count + 4;
+                            int flashbackcontrol = listconfig.Rows.Count + 5;
                             //隐藏按键
                             GridView1.Columns[hzcontrol].Visible = Convert.ToInt32(config.Rows[0]["showHz"]) == 1 ? true : false;
                             GridView1.Columns[editcontrol].Visible = (Convert.ToInt32(config.Rows[0]["showEdit"]) == 0 || Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString()) < 2) ? false : true;
                             GridView1.Columns[detailcontrol].Visible = Convert.ToInt32(config.Rows[0]["showDetail"]) == 1 ? true : false;
                             GridView1.Columns[mapcontrol].Visible = Convert.ToInt32(config.Rows[0]["showMap"]) == 1 ? true : false;
+                            GridView1.Columns[flashbackcontrol].Visible = Request.QueryString["table"].Contains("cycle");
                             //设置初始排序
                             ViewState["SortOrder"] = config.Rows[0]["mainKey"];
                             ViewState["OrderDire"] = "ASC";
@@ -128,6 +136,11 @@ namespace web.page.formpages
             btnf2.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
             btnf2.ItemStyle.VerticalAlign = VerticalAlign.Middle;
             GridView1.Columns.Add(btnf2);
+            ButtonField btnf4 = new ButtonField();
+            btnf4.CommandName = "flashback"; btnf4.Text = "还原"; btnf4.ButtonType = ButtonType.Button;
+            btnf4.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
+            btnf4.ItemStyle.VerticalAlign = VerticalAlign.Middle;
+            GridView1.Columns.Add(btnf4);
         }
         protected void refresh()//绑定到GridView
         {
@@ -168,13 +181,23 @@ namespace web.page.formpages
                     hz = "AND lakecd = '" + Request.QueryString["hzcd"] + "' ";//河涌代码
                 }
             }
+            //判断是否为兴趣信息页并选择数据展示
+            string interest = "";
+            if (Request.QueryString["table"].Contains("interest"))
+            {
+                interest = "AND SCZT IS NULL ";
+            }
+            if (Request.QueryString["table"].Contains("cycle"))
+            {
+                interest = "AND SCZT = 1 ";
+            }
             //拼接Listconfig的查询字符串
             string sql = "";
             for (int i = 0; i < listconfig.Rows.Count; i++)
             {
                 sql = sql + listconfig.Rows[i]["fieldName"] + (i < listconfig.Rows.Count - 1 ? "," : "");
             }
-            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + objstr + se1368 + field + " like '%" + find + "%' " + set187 + set35 + hz;
+            sql = "SELECT " + sql + " From " + config.Rows[0]["tableName"] + " WHERE " + district + objstr + se1368 + field + " like '%" + find + "%' " + set187 + set35 + hz + interest ;
             //string sql = "SELECT OBJECTID,HCMC,其他叫法,XZQ,F1368,F1368NUM,F1368查187,F1368查35,HZ_SHI,HZ_QU,HZ_JIEDAO FROM SLG_RV_po where " + xzq + field + " like '%" + find + "%'";
             DataSet ds = QuarySde(sql);
             //ds非空
@@ -418,6 +441,17 @@ namespace web.page.formpages
                     Page.ClientScript.RegisterStartupScript(Page.GetType(), "showMsg", "showMsg('暂无河长数据');", true);
                 }
             }
+            if (e.CommandName == "flashback")//定位按钮
+            {
+                //获取当前行的index、objectid主键
+                int index = int.Parse(e.CommandArgument.ToString());
+                GridView1.SelectedIndex = index;
+                string objectId = GridView1.DataKeys[index].Value.ToString();
+                //切换到map页
+                string recycle = "update interest" + listName.Substring(5, listName.Length - 5) + " set sczt=null,scr=null,scbm=null,scrq=null where objectid = " + objectId;
+                OperateSde(recycle);
+                refresh();
+            }
         }
 
         protected void GridView1_Sorting(object sender, GridViewSortEventArgs e)//排序事件
@@ -463,6 +497,11 @@ namespace web.page.formpages
         protected void Button2_Click(object sender, EventArgs e)//刷新键的点击事件
         {
             refresh();
+        }
+        protected void Cycle_Click(object sender, EventArgs e)//刷新键的点击事件
+        {
+            //调用自制的layer函数showcycle
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "showcycle", "showCycle('cycle" +listName.Substring(8,listName.Length-8) + "');", true);
         }
     }
 }

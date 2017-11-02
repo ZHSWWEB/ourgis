@@ -22,7 +22,7 @@ namespace tools
         }
         public static DataSet QuarySde(string sql)
         {
-            OracleDataAdapter ad = new OracleDataAdapter(sql, sdecon());
+             OracleDataAdapter ad = new OracleDataAdapter(sql, sdecon());
             DataSet ds = new DataSet();
             ad.Fill(ds);
             return ds;

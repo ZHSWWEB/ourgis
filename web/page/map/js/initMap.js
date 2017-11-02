@@ -276,7 +276,7 @@ function initTools() {
                 //调用Draw工具绘制
             };
             //启用兴趣项的绘制
-            document.getElementById( "interest_point1" ).onclick = function () {
+            document.getElementById( "interest_point" ).onclick = function () {
                 //开始绘制状态
                 isDrawing = true;
                 //开始绘制状态
@@ -287,13 +287,13 @@ function initTools() {
                 //停止缩放工具以及测量工具，以免冲突
                 map.DrawTool = addInterestTool;
                 //绘制完成转到存储方法
-                drawEnd = addInterestTool.on( "draw-end", addPoint1ToMap );
+                drawEnd = addInterestTool.on( "draw-end", addPointToMap );
                 //绘制完成转到存储方法
                 //调用Draw工具绘制
                 addInterestTool.activate( Draw.POINT );
                 //调用Draw工具绘制
             };
-            document.getElementById( "interest_multipoint1" ).onclick = function () {
+            document.getElementById( "interest_multipoint" ).onclick = function () {
                 //开始绘制状态
                 isDrawing = true;
                 //开始绘制状态
@@ -304,13 +304,13 @@ function initTools() {
                 //停止缩放工具以及测量工具，以免冲突
                 map.DrawTool = addInterestTool;
                 //绘制完成转到存储方法
-                drawEnd = addInterestTool.on( "draw-end", addMultiPoint1ToMap );
+                drawEnd = addInterestTool.on( "draw-end", addMultiPointToMap );
                 //绘制完成转到存储方法
                 //调用Draw工具绘制
                 addInterestTool.activate( Draw.MULTI_POINT );
                 //调用Draw工具绘制
             };
-            document.getElementById( "interest_polyline1" ).onclick = function () {
+            document.getElementById( "interest_polyline" ).onclick = function () {
                 //开始绘制状态
                 isDrawing = true;
                 //开始绘制状态
@@ -321,13 +321,13 @@ function initTools() {
                 //停止缩放工具以及测量工具，以免冲突
                 map.DrawTool = addInterestTool;
                 //绘制完成转到存储方法
-                drawEnd = addInterestTool.on( "draw-end", addPolyline1ToMap );
+                drawEnd = addInterestTool.on( "draw-end", addPolylineToMap );
                 //绘制完成转到存储方法
                 //调用Draw工具绘制
                 addInterestTool.activate( Draw.POLYLINE );
                 //调用Draw工具绘制
             };
-            document.getElementById( "interest_polygon1" ).onclick = function () {
+            document.getElementById( "interest_polygon" ).onclick = function () {
                 //开始绘制状态
                 isDrawing = true;
                 //开始绘制状态
@@ -338,7 +338,7 @@ function initTools() {
                 //停止缩放工具以及测量工具，以免冲突
                 map.DrawTool = addInterestTool;
                 //绘制完成转到存储方法
-                drawEnd = addInterestTool.on( "draw-end", addPolygon1ToMap );
+                drawEnd = addInterestTool.on( "draw-end", addPolygonToMap );
                 //绘制完成转到存储方法
                 //调用Draw工具绘制
                 addInterestTool.activate( Draw.POLYGON );
@@ -522,7 +522,7 @@ function addProjectPointToMap(e) {
     drawEnd.remove();
 }
 //绘制兴趣项
-function addPoint1ToMap(e) {
+function addPointToMap(e) {
     //定义符号后显示
     var Symbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10,
                             new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
@@ -532,14 +532,14 @@ function addPoint1ToMap(e) {
     map.DrawTool.deactivate();
     //弹出信息框
     map.infoWindow.clearFeatures();
-    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addPoint1()'></input></div>");
+    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addPoint()'></input></div>");
     map.infoWindow.show(e.geometry);
     //转存到全局变量
     egeo = e.geometry;
     //转存到全局变量
     drawEnd.remove();
 }
-function addMultiPoint1ToMap(e) {
+function addMultiPointToMap(e) {
     //定义符号后显示
     var Symbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10,
         new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
@@ -549,28 +549,28 @@ function addMultiPoint1ToMap(e) {
     map.DrawTool.deactivate();
     //弹出信息框
     map.infoWindow.clearFeatures();
-    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addMultiPoint1()'></input></div>");
+    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addMultiPoint()'></input></div>");
     map.infoWindow.show(e.geometry.getPoint(e.geometry.points.length - 1));
     //转存到全局变量
     egeo = e.geometry;
     //转存到全局变量
     drawEnd.remove();
 }
-function addPolyline1ToMap(e) {
+function addPolylineToMap(e) {
     //定义符号后显示
     var Symbol = new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,new dojo.Color([255, 0, 0]), 1)
     map.graphics.add(new esri.Graphic(e.geometry, Symbol));
     map.DrawTool.deactivate();
     //弹出信息框
     map.infoWindow.clearFeatures();
-    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addPolyline1()'></input></div>");
+    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addPolyline()'></input></div>");
     map.infoWindow.show(e.geometry.getPoint(0, e.geometry.paths[0].length - 1));
     //转存到全局变量
     egeo = e.geometry;
     //转存到全局变量
     drawEnd.remove();
 }
-function addPolygon1ToMap(e) {
+function addPolygonToMap(e) {
     //定义符号后显示
     var Symbol = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, 
         new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
@@ -580,7 +580,7 @@ function addPolygon1ToMap(e) {
     map.DrawTool.deactivate();
     //弹出信息框
     map.infoWindow.clearFeatures();
-    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addPolygon1()'></input></div>");
+    map.infoWindow.setContent("<div><p>新建名称:</p><input id = 'interestName_input' type='text' style='width:100%'></input><p></div><div>备注（最长600字）:</p><textarea id = 'interestRemark_input'  type='text'  style='width:99%'></textarea></div><div><input type='button' style='width:30%' value='保存' onclick='addPolygon()'></input></div>");
     map.infoWindow.show(e.geometry.getPoint(0, e.geometry.rings[0].length - 2));
     //转存到全局变量
     egeo = e.geometry;
@@ -628,7 +628,7 @@ function saveProjectPoint() {
     parent.document.getElementById("pointSaved").setAttribute("data-value", '1');
 }
 //保存兴趣项到数据库
-function addPoint1() {
+function addPoint() {
     var interestName = document.getElementById('interestName_input').value;
     if (interestName == "" || interestName == null) {
         alert('请输入点名称');
@@ -638,20 +638,9 @@ function addPoint1() {
     var attr = { "NAME": interestName, "REMARK": interestRemark};
     var graphic = new esri.Graphic(egeo, null, attr, null);
     saveInterestEdit( [graphic], null, null, 'interestPoint' )
-    //完成存储后，使用ajax post到后台
-    //$.post( "demo_test_post.asp",
-    //    {
-    //        name: "Donald Duck",
-    //        city: "Duckburg"
-    //    },
-    //    function ( data, status )
-    //    {
-    //        alert( "Data: " + data + "\nStatus: " + status );
-    //    } );
-    //存储失败进行三次重试，并提示。
     map.graphics.clear();
 }
-function addMultiPoint1() {
+function addMultiPoint() {
     var interestName = document.getElementById('interestName_input').value;
     if (interestName == "" || interestName == null) {
         alert('请输入点集名称');
@@ -660,10 +649,10 @@ function addMultiPoint1() {
     var interestRemark = document.getElementById('interestRemark_input').value;
     var attr = { "NAME": interestName, "REMARK": interestRemark };
     var graphic = new esri.Graphic(egeo, null, attr, null);
-    saveInterestEdit([graphic], null, null, 'interestMultiPoint1')
+    saveInterestEdit([graphic], null, null, 'interestMultiPoint')
     map.graphics.clear();
 }
-function addPolyline1() {
+function addPolyline() {
     var interestName = document.getElementById('interestName_input').value;
     if (interestName == "" || interestName == null) {
         alert('请输入线名称');
@@ -672,10 +661,10 @@ function addPolyline1() {
     var interestRemark = document.getElementById('interestRemark_input').value;
     var attr = { "NAME": interestName, "REMARK": interestRemark };
     var graphic = new esri.Graphic(egeo, null, attr, null);
-    saveInterestEdit([graphic], null, null, 'interestPolyline1')
+    saveInterestEdit([graphic], null, null, 'interestPolyline')
     map.graphics.clear();
 }
-function addPolygon1() {
+function addPolygon() {
     var interestName = document.getElementById('interestName_input').value;
     if (interestName == "" || interestName == null) {
         alert('请输入面名称');
@@ -684,7 +673,7 @@ function addPolygon1() {
     var interestRemark = document.getElementById('interestRemark_input').value;
     var attr = { "NAME": interestName, "REMARK": interestRemark };
     var graphic = new esri.Graphic(egeo, null, attr, null);
-    saveInterestEdit([graphic], null, null, 'interestPolygon1')
+    saveInterestEdit([graphic], null, null, 'interestPolygon')
     map.graphics.clear();
 }
 
@@ -706,16 +695,69 @@ function saveinterestEdit() {
 }
 
 //兴趣项保存函数
-function saveInterestEdit(adds, updates, deletes, layerId) {
-//保存兴趣项的编辑，四个参数对应新增的、更新的、删除的、图层id
-    var interestLayer = map.getLayer(layerId);
-    //applyEdits(adds?, updates?, deletes?, callback?, errback?)
-    interestLayer.applyEdits(adds, updates, deletes, function () {
-        interestLayer.refresh();
-        map.infoWindow.hide();
-    }, function (e) {
-        alert(e);
-    });
+function saveInterestEdit( adds, updates, deletes, layerId )
+{
+    //保存兴趣项的编辑，四个参数对应新增的、更新的、删除的、图层id
+    var interestLayer = map.getLayer( layerId );
+    var loged = document.cookie.indexOf( "userId" );//检查是否已经登入
+    if ( loged == -1 )//无cookie，判定未登陆，拒绝操作
+    {
+        alert( "请登陆后再进行操作" );
+    } else//已登陆
+    {
+        if ( deletes != null )//判断为删除操作
+        {
+            var table = interestLayer.id;
+            //完成存储后，使用ajax post到后台
+            $.post( "editHelper.aspx",
+                {
+                    table: table,
+                    objectid: deletes[0].attributes.OBJECTID,
+                    method: "delete"
+                },
+                function ()//回调刷新地图
+                {
+                    interestLayer.refresh();
+                    map.infoWindow.hide();
+                } );
+        } else//增改操作
+        {
+            //applyEdits(adds?, updates?, deletes?, callback?, errback?)
+            interestLayer.applyEdits( adds, updates, deletes, function ( a, u, d )
+            {//成功回调add,updata,delete
+                if ( a.length > 0 )//判断操作类型
+                {
+                    var objectid = a[0].objectId;
+                    var status = a[0].success;
+                    var method = "add"
+                } else if ( u.length > 0 )
+                {
+                    var objectid = u[0].objectId;
+                    var status = u[0].success;
+                    var method = "update"
+                }
+                if ( status == true )//操作成功
+                {
+                    var table = interestLayer.id;
+                    //完成存储后，使用ajax post到后台
+                    $.post( "editHelper.aspx",
+                        {
+                            table: table,
+                            objectid: objectid,
+                            method: method
+                        },
+                        function ( data, status )
+                        {
+                            interestLayer.refresh();
+                            map.infoWindow.hide();
+                        } );
+                }
+            }, function ( e )
+                {//失败回调
+                    alert( e );
+                } );
+        }
+    }
 }
 
 //使兴趣点弹窗内容可编辑
@@ -754,10 +796,30 @@ function getInfoWindowContent(feature, key) {
             map.selectedInterestfeature = feature;
             var interestName = feature.attributes['NAME'];
             var interestRemark = feature.attributes['REMARK'];
-            if (interestName == null) {interestName = "";}
-            if (interestRemark == null) { interestRemark = ""; }
+            var interestXGR = feature.attributes['XGR'];
+            var interestXGBM = feature.attributes['XGBM'];
+            var interestXGRQ = feature.attributes['XGRQ'];
+            if ( interestName == null ) { interestName = ""; }
+            if ( interestRemark == null ) { interestRemark = ""; }
+            var interestXG;
+            if ( interestXGRQ == null )
+            {
+                interestXG = "";
+            } else
+            {
+                var dataa = new Date( interestXGRQ );
+                var year = dataa.getFullYear();
+                var month = dataa.getMonth() + 1;
+                var day = dataa.getDate();
+                var hour = dataa.getHours();
+                var minu = dataa.getMinutes();
+                var sec = dataa.getSeconds();
+                //传入显示
+                interestXGRQ = year + '年' + OO( month ) + '月' + OO( day ) + '日 ' + OO( hour ) + '时' + OO( minu ) + '分' + OO( sec ) + '秒';
+                interestXG = interestXGR + "-" + interestXGBM + "-" + interestXGRQ;
+            }
             //显示信息
-            infoContent += "<div style='height:10%'><input id = 'divInterestId' style='display:none' value ='" + feature.attributes['OBJECTID'] + "'></input><p>兴趣点名称：</p><input id = 'info_interestName' type='text' value = '" + interestName + "' readonly='readonly' style = 'width:100%'></input></div><div style='height:90%'><div>备注：</div><textarea id = 'info_interestRemark' style='width:100%;height:90%;' readonly='readonly'>" + interestRemark+"</textarea>";
+            infoContent += "<div style='height:10%'><input id = 'divInterestId' style='display:none' value ='" + feature.attributes['OBJECTID'] + "'></input><p>兴趣点名称：</p><input id = 'info_interestName' type='text' value = '" + interestName + "' readonly='readonly' style = 'width:100%'></input></div><div style='height:80%'><div>备注：</div><textarea id = 'info_interestRemark' style='width:100%;height:90%;' readonly='readonly'>" + interestRemark + "</textarea><div>最后编辑人：</div><input id = 'info_interestXG' type='text' value = '" + interestXG + "' readonly='readonly' style = 'width:100%'></input>";
             //显示菜单
             infoContent += "<div style= 'width:100%'> <input type='button' value='修改' onclick='enableEdit()'></input> <input type='button' value='保存' onclick='saveinterestEdit()'></input> <input type='button' value='删除' onclick='deleteinterest()'></input></div ></div > ";
         }

@@ -1,0 +1,10 @@
+﻿{
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true
+  },
+  "exclude": [ "plugins", "page/map/plugins" ], //ignore lib folders, we will get IntelliSense via ATA
+  "typeAcquisition": {
+    "enable": false
+  }
+}

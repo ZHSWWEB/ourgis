@@ -210,6 +210,7 @@
     <Content Include="page\formpages\showList.aspx" />
     <Content Include="page\formpages\test.aspx" />
     <Content Include="page\formpages\testHtml.html" />
+    <Content Include="page\map\editHelper.aspx" />
     <Content Include="page\project1\projectAdd.aspx" />
     <Content Include="page\project1\projectFiles.aspx" />
     <Content Include="page\project1\projectFiles.js" />
@@ -990,6 +991,7 @@
     <Content Include="page\chartpages\echarts\arcgis-echarts3-master\LICENSE" />
     <Content Include="page\chartpages\echarts\arcgis-echarts3-master\package.json" />
     <Content Include="page\chartpages\echarts\arcgis-echarts3-master\README.md" />
+    <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -11484,6 +11486,13 @@
     </Compile>
     <Compile Include="page\login\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="page\map\editHelper.aspx.cs">
+      <DependentUpon>editHelper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="page\map\editHelper.aspx.designer.cs">
+      <DependentUpon>editHelper.aspx</DependentUpon>
     </Compile>
     <Compile Include="page\project1\projectAdd.aspx.cs">
       <DependentUpon>projectAdd.aspx</DependentUpon>

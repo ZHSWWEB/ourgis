@@ -690,7 +690,7 @@ var layerConfiguration = {
             statType: 'count',
             sumField: null
         },
-        interestPolygon1: {
+        interestPolygon: {
             name: '兴趣面',
             addToMap: true,
             visitflag: false,
@@ -698,20 +698,20 @@ var layerConfiguration = {
             queryflag: 3,
             minScale: 0,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/interestPolygon1/FeatureServer/0",
+            url: commandUrl + "QuanLiuYu/interestPolygon/FeatureServer/0",
             type: "polygon",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "OBJECTID"],
-            displayFields: ["名称", "备注"],
+            outFields: ["NAME", "REMARK", "XGR","XGBM","XGRQ","OBJECTID"],
+            displayFields: ["名称", "备注","修改人","修改部门","修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK"],
+            queryField: ["NAME", "REMARK","XGR", "XGBM"],
             statisticsFields: {
 
             },
             statType: 'count',
             sumField: null
         },
-        interestPolyline1: {
+        interestPolyline: {
             name: '兴趣线',
             addToMap: true,
             visitflag: false,
@@ -719,20 +719,20 @@ var layerConfiguration = {
             queryflag: 3,
             minScale: 0,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/interestPolyline1/FeatureServer/0",
+            url: commandUrl + "QuanLiuYu/interestPolyline/FeatureServer/0",
             type: "polyline",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "OBJECTID"],
-            displayFields: ["名称", "备注"],
+            outFields: ["NAME", "REMARK", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK"],
+            queryField: ["NAME", "REMARK", "XGR", "XGBM"],
             statisticsFields: {
 
             },
             statType: 'count',
             sumField: null
         },
-        interestMultiPoint1: {
+        interestMultiPoint: {
             name: '兴趣点集',
             addToMap: true,
             visitflag: false,
@@ -740,13 +740,13 @@ var layerConfiguration = {
             queryflag: 3,
             minScale: 0,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/interestMultiPoint1/FeatureServer/0",
+            url: commandUrl + "QuanLiuYu/interestMultiPoint/FeatureServer/0",
             type: "multipoint",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "OBJECTID"],
-            displayFields: ["名称", "备注"],
+            outFields: ["NAME", "REMARK", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK"],
+            queryField: ["NAME", "REMARK", "XGR", "XGBM"],
             statisticsFields: {
 
             },
@@ -764,10 +764,10 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/interestPoint/FeatureServer/0",
             type: "point",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "OBJECTID"],
-            displayFields: ["名称", "备注"],
+            outFields: ["NAME", "REMARK", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK"],
+            queryField: ["NAME", "REMARK", "XGR", "XGBM"],
             statisticsFields: {
 
             },
