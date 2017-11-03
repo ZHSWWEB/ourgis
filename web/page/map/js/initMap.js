@@ -796,11 +796,31 @@ function getInfoWindowContent(feature, key) {
             map.selectedInterestfeature = feature;
             var interestName = feature.attributes['NAME'];
             var interestRemark = feature.attributes['REMARK'];
+            var interestCJR = feature.attributes['CJR'];
+            var interestCJBM = feature.attributes['CJBM'];
+            var interestCJRQ = feature.attributes['CJRQ'];
             var interestXGR = feature.attributes['XGR'];
             var interestXGBM = feature.attributes['XGBM'];
             var interestXGRQ = feature.attributes['XGRQ'];
             if ( interestName == null ) { interestName = ""; }
             if ( interestRemark == null ) { interestRemark = ""; }
+            var interestCJ;
+            if ( interestCJRQ == null )
+            {
+                interestCJ = "";
+            } else
+            {
+                var dataa = new Date( interestCJRQ );
+                var year = dataa.getFullYear();
+                var month = dataa.getMonth() + 1;
+                var day = dataa.getDate();
+                var hour = dataa.getHours();
+                var minu = dataa.getMinutes();
+                var sec = dataa.getSeconds();
+                //传入显示
+                interestCJRQ = year + '年' + OO( month ) + '月' + OO( day ) + '日 ' + OO( hour ) + '时' + OO( minu ) + '分' + OO( sec ) + '秒';
+                interestCJ = interestCJR + "-" + interestCJBM + "-" + interestCJRQ;
+            }
             var interestXG;
             if ( interestXGRQ == null )
             {
@@ -819,7 +839,7 @@ function getInfoWindowContent(feature, key) {
                 interestXG = interestXGR + "-" + interestXGBM + "-" + interestXGRQ;
             }
             //显示信息
-            infoContent += "<div style='height:10%'><input id = 'divInterestId' style='display:none' value ='" + feature.attributes['OBJECTID'] + "'></input><p>兴趣点名称：</p><input id = 'info_interestName' type='text' value = '" + interestName + "' readonly='readonly' style = 'width:100%'></input></div><div style='height:80%'><div>备注：</div><textarea id = 'info_interestRemark' style='width:100%;height:90%;' readonly='readonly'>" + interestRemark + "</textarea><div>最后编辑人：</div><input id = 'info_interestXG' type='text' value = '" + interestXG + "' readonly='readonly' style = 'width:100%'></input>";
+            infoContent += "<div style='height:10%'><input id = 'divInterestId' style='display:none' value ='" + feature.attributes['OBJECTID'] + "'></input><p>兴趣点名称：</p><input id = 'info_interestName' type='text' value = '" + interestName + "' readonly='readonly' style = 'width:100%'></input></div><div style='height:80%'><div>备注：</div><textarea id = 'info_interestRemark' style='width:100%;height:90%;' readonly='readonly'>" + interestRemark + "</textarea><div>创建编辑人：</div><input id = 'info_interestCJ' type='text' value = '" + interestCJ + "' readonly='readonly' style = 'width:100%'></input><div>最后编辑人：</div><input id = 'info_interestXG' type='text' value = '" + interestXG + "' readonly='readonly' style = 'width:100%'></input>";
             //显示菜单
             infoContent += "<div style= 'width:100%'> <input type='button' value='修改' onclick='enableEdit()'></input> <input type='button' value='保存' onclick='saveinterestEdit()'></input> <input type='button' value='删除' onclick='deleteinterest()'></input></div ></div > ";
         }
@@ -1066,6 +1086,16 @@ function getMaxXPoint(geometry, extent) {
                 var vertex = new esri.geometry.Point(polygon.rings[z][j][0], polygon.rings[z][j][1], polygon.spatialReference);
                 points.push(vertex);
             }
+        }
+    }
+    //多点遍历添加
+    else if ( geometry.type == 'multipoint' )
+    {
+        var multipoint = geometry;
+        for ( var j = 0; j < multipoint.points.length; j++ )
+        {
+            var vertex = new esri.geometry.Point( multipoint.points[j][0], multipoint.points[j][1], multipoint.spatialReference );
+            points.push( vertex );
         }
     }
 

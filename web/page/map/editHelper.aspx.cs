@@ -22,14 +22,19 @@ namespace web.page.map
             string byname = Convert.ToString(ds.Tables[0].Rows[0][0]);
             string department = Convert.ToString(ds.Tables[0].Rows[0][1]);
             string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            if (method == "delete")
+            if (method == "add")
             {
-                OperateSde("UPDATE " + table + " SET SCZT=1,SCR='" + byname + "',SCBM='" + department + "',SCRQ=to_date('" + now + "', 'yyyy-mm-dd hh24:mi:ss') where objectid=" + objectid);
+                OperateSde("UPDATE " + table + " SET CJR='" + byname + "',CJBM='" + department + "',CJRQ=to_date('" + now + "', 'yyyy-mm-dd hh24:mi:ss') where objectid=" + objectid);
             }
-            else
+            else if (method == "update")
             {
                 OperateSde("UPDATE " + table + " SET XGR='" + byname + "',XGBM='" + department + "',XGRQ=to_date('" + now + "', 'yyyy-mm-dd hh24:mi:ss') where objectid=" + objectid);
             }
+            else if (method == "delete")
+            {
+                OperateSde("UPDATE " + table + " SET SCZT=1,SCR='" + byname + "',SCBM='" + department + "',SCRQ=to_date('" + now + "', 'yyyy-mm-dd hh24:mi:ss') where objectid=" + objectid);
+            }
+            
 
             Response.Clear();
             Response.ContentEncoding = Encoding.UTF8;

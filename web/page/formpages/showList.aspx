@@ -15,19 +15,37 @@
     <script type="text/javascript">
         function showDetail( objectId, hcmc, table )//用于弹出详情页面窗口
         {
-            layui.use( 'layer', function ()
+            if ( table.indexOf( "interest" ) == 0 )
             {
-                var layer = layui.layer;
-                layer.open( {
-                    type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
-                    maxmin: false, move: false, area: ['632px', '90%'], scrollbar: false,
-                    content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
-                    end: function ()
-                    {
-                        document.getElementById( "Button2" ).click();
-                    }
+                layui.use( 'layer', function ()
+                {
+                    var layer = layui.layer;
+                    layer.open( {
+                        type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
+                        maxmin: false, move: false, area: ['632px', '425px'], scrollbar: false,
+                        content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
+                        end: function ()
+                        {
+                            document.getElementById( "Button2" ).click();
+                        }
+                    } )
                 } )
-            } )
+            } else
+            {
+                layui.use( 'layer', function ()
+                {
+                    var layer = layui.layer;
+                    layer.open( {
+                        type: 2, title: '#' + objectId + hcmc, shadeClose: true, shade: [0.3],
+                        maxmin: false, move: false, area: ['632px', '90%'], scrollbar: false,
+                        content: 'showDetail.aspx?table=' + table + '&&objectId=' + objectId,
+                        end: function ()
+                        {
+                            document.getElementById( "Button2" ).click();
+                        }
+                    } )
+                } )
+            }
         };
         function showCycle( table )//用于弹出回收站页面窗口
         {
@@ -65,6 +83,21 @@
                 layer.msg( msg, { anim: 6 } );
             } )
         };
+        function setVisibleSessionStorageTrue( ids )//用于设置跳转时map的图层显示设置
+        {
+            visibleConfig = JSON.parse( sessionStorage.getItem( "visibleConfig" ) );
+            for ( i = 0; i < visibleConfig.length; i++ )
+            {
+                for ( j = 0; j < ids.length; j++ )
+                {
+                    if ( visibleConfig[i].id == ids[j] )
+                    {
+                        visibleConfig[i].visible = true;
+                    }
+                }
+            }
+            sessionStorage.setItem( "visibleConfig", JSON.stringify( visibleConfig ) );
+        }
         var timoutID;//用于下拉多选菜单的延迟隐藏
         var url = location.href;
         //获取url传值

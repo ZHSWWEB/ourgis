@@ -154,6 +154,12 @@ function locateFeature(graphic) {
                 var extent = polygon.getExtent();
                 windowPoint = getMaxXPoint(polygon);
                 //centerPoint.spatialReference = new esri.SpatialReference(wkt);
+            } else if ( type == "multipoint" )
+            {
+                var multipoint = graphic.geometry;
+                var extent = multipoint.getExtent();
+                windowPoint = getMaxXPoint( multipoint );
+                //centerPoint.spatialReference = new esri.SpatialReference(wkt);
             }
             var remarkExtent = 40;
             var xOffset = (extent.xmax - extent.xmin) * remarkExtent / 100;

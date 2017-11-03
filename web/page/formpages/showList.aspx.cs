@@ -90,8 +90,21 @@ namespace web.page.formpages
                             GridView1.Columns[mapcontrol].Visible = Convert.ToInt32(config.Rows[0]["showMap"]) == 1 ? true : false;
                             GridView1.Columns[flashbackcontrol].Visible = Request.QueryString["table"].Contains("cycle");
                             //设置初始排序
-                            ViewState["SortOrder"] = config.Rows[0]["mainKey"];
-                            ViewState["OrderDire"] = "ASC";
+                            if (listName.Contains("interest"))
+                            {
+                                ViewState["SortOrder"] = config.Rows[5]["fieldName"];
+                                ViewState["OrderDire"] = "Desc";
+                            }
+                            else if (listName.Contains("cycle"))
+                            {
+                                ViewState["SortOrder"] = config.Rows[9]["fieldName"];
+                                ViewState["OrderDire"] = "Desc";
+                            }
+                            else
+                            {
+                                ViewState["SortOrder"] = config.Rows[0]["mainKey"];
+                                ViewState["OrderDire"] = "ASC";
+                            };
                             //调用绑定数据信息函数
                             refresh();
                         }
@@ -406,6 +419,9 @@ namespace web.page.formpages
                 int index = int.Parse(e.CommandArgument.ToString());
                 GridView1.SelectedIndex = index;
                 string objectId = GridView1.DataKeys[index].Value.ToString();
+                string layerid = Convert.ToString(config.Rows[0]["layerName"]);
+                //开启定位图层
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "setVisibleSessionStorageTrue", "setVisibleSessionStorageTrue(['"+ layerid + "'])", true);
                 //切换到map页
                 Response.Write("<script>parent.$(\"#tomap\").click();</script>");
                 //定位到所选项:由map的initMap.js处理
@@ -465,17 +481,54 @@ namespace web.page.formpages
             //二次三次排序
             if (ViewState["SortOrder"].ToString() == sPage)
             {
-                //二次排序、正序
-                if (ViewState["OrderDire"].ToString() == "Desc")
-                    ViewState["OrderDire"] = "ASC";
-                //三次排序、返回默认
-                else if (ViewState["OrderDire"].ToString() == "ASC")
+                if (listName.Contains("interest"))
                 {
-                    ViewState["SortOrder"] = config.Rows[0]["mainKey"];
-                    ViewState["OrderDire"] = "Desc";
-                    //添加默认排序标记
-                    onSort = false;
+                    //二次排序、正序
+                    if (ViewState["OrderDire"].ToString() == "Desc")
+                    {
+                        ViewState["OrderDire"] = "ASC";
+                        //添加默认排序标记
+                        onSort = false;
+                    }
+                    //三次排序、返回默认
+                    else if (ViewState["OrderDire"].ToString() == "ASC")
+                    {
+                        ViewState["SortOrder"] = config.Rows[5]["fieldName"];
+                        ViewState["OrderDire"] = "Desc";
+                    }
                 }
+                else if (listName.Contains("cycle"))
+                {
+                    //二次排序、正序
+                    if (ViewState["OrderDire"].ToString() == "Desc")
+                    {
+                        ViewState["OrderDire"] = "ASC";
+                        //添加默认排序标记
+                        onSort = false;
+                    }
+                    //三次排序、返回默认
+                    else if (ViewState["OrderDire"].ToString() == "ASC")
+                    {
+                        ViewState["SortOrder"] = config.Rows[9]["fieldName"];
+                        ViewState["OrderDire"] = "Desc";
+                    }
+                }
+                else
+                {
+                    //二次排序、正序
+                    if (ViewState["OrderDire"].ToString() == "Desc")
+                    {
+                        ViewState["OrderDire"] = "ASC";
+                    }
+                    //三次排序、返回默认
+                    else if (ViewState["OrderDire"].ToString() == "ASC")
+                    {
+                        ViewState["SortOrder"] = config.Rows[0]["mainKey"];
+                        ViewState["OrderDire"] = "Desc";
+                        //添加默认排序标记
+                        onSort = false;
+                    }
+                }      
             }
             //首次排序、倒序
             else

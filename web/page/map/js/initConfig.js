@@ -701,12 +701,11 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/interestPolygon/FeatureServer/0",
             type: "polygon",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "XGR","XGBM","XGRQ","OBJECTID"],
-            displayFields: ["名称", "备注","修改人","修改部门","修改日期"],
+            outFields: ["NAME", "REMARK", "CJR", "CJBM", "CJRQ", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "创建人", "创建部门", "创建日期", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK","XGR", "XGBM"],
+            queryField: ["NAME", "REMARK", "CJR", "CJBM", "XGR", "XGBM"],
             statisticsFields: {
-
             },
             statType: 'count',
             sumField: null
@@ -722,12 +721,11 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/interestPolyline/FeatureServer/0",
             type: "polyline",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "XGR", "XGBM", "XGRQ", "OBJECTID"],
-            displayFields: ["名称", "备注", "修改人", "修改部门", "修改日期"],
+            outFields: ["NAME", "REMARK", "CJR", "CJBM", "CJRQ", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "创建人", "创建部门", "创建日期", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK", "XGR", "XGBM"],
+            queryField: ["NAME", "REMARK", "CJR", "CJBM", "XGR", "XGBM"],
             statisticsFields: {
-
             },
             statType: 'count',
             sumField: null
@@ -743,12 +741,11 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/interestMultiPoint/FeatureServer/0",
             type: "multipoint",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "XGR", "XGBM", "XGRQ", "OBJECTID"],
-            displayFields: ["名称", "备注", "修改人", "修改部门", "修改日期"],
+            outFields: ["NAME", "REMARK", "CJR", "CJBM", "CJRQ", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "创建人", "创建部门", "创建日期", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK", "XGR", "XGBM"],
+            queryField: ["NAME", "REMARK", "CJR", "CJBM", "XGR", "XGBM"],
             statisticsFields: {
-
             },
             statType: 'count',
             sumField: null
@@ -764,12 +761,11 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/interestPoint/FeatureServer/0",
             type: "point",
             titleField: 'NAME',
-            outFields: ["NAME", "REMARK", "XGR", "XGBM", "XGRQ", "OBJECTID"],
-            displayFields: ["名称", "备注", "修改人", "修改部门", "修改日期"],
+            outFields: ["NAME", "REMARK", "CJR", "CJBM", "CJRQ", "XGR", "XGBM", "XGRQ", "OBJECTID"],
+            displayFields: ["名称", "备注", "创建人", "创建部门", "创建日期", "修改人", "修改部门", "修改日期"],
             dateFields: [],
-            queryField: ["NAME", "REMARK", "XGR", "XGBM"],
+            queryField: ["NAME", "REMARK", "CJR","CJBM","XGR", "XGBM"],
             statisticsFields: {
-
             },
             statType: 'count',
             sumField: null
