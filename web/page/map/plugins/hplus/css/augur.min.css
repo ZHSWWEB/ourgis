@@ -12,11 +12,11 @@ input{outline:none;}
 
 /*搜索框开始*/
 /*搜索框开始*/
-#search{width:335px;border-radius:2px;background:#fff;position:absolute;top:20px;left:20px;z-index:1000;box-shadow: 1px 2px 1px rgba(0,0,0,.15);}
+#search{width:335px;border-radius:2px;background:#fff;position:absolute;top:20px;z-index:1000;box-shadow: 1px 2px 1px rgba(0,0,0,.15);}
 #inputBox{width:80%;overflow:hidden;height:36px;display:inline-block;}
 #sole-input {box-sizing: border-box;border: 0;padding: 9px 0;line-height: 20px;text-indent:20px;width:80%;font-size: 16px;height: 38px;color: #333;position: relative;border-radius: 2px 0 0 2px;}
 #search-button {pointer-events: auto;background: url(../img/searchbox.png) no-repeat 0 -76px #3385ff;width: 57px;height: 38px;float: right;border: 0;padding: 0;cursor: pointer;border-radius: 0 2px 2px 0;box-shadow: 1px 2px 1px rgba(0,0,0,.15);}
-#selectLayer{width:315px;background:#fff;position:absolute;top:114px;left:25px;z-index:1000;padding:0.6em;display:none;box-shadow: 1px 2px 1px rgba(0,0,0,.15);}
+#selectLayer{width:315px;background:#fff;position:absolute;top:114px;z-index:1000;padding:0.6em;display:none;box-shadow: 1px 2px 1px rgba(0,0,0,.15);}
 #selectLayer .layerStyle p{font-size:16px;color:#444;}
 #selectLayer .layerStyle li{float:left;padding-right:25px;}
 #selectLayer .layerStyle li a{display:block;padding:0.5em;color:#666;font-size:14px;}
@@ -25,7 +25,7 @@ input{outline:none;}
 .icon-up{border-color:transparent transparent #3385ff;bottom:12px;right:-10px;}
 
 .close{position:absolute;display:inline-block;width:24px;height:24px;overflow:hidden;top:0px;right:10px;}
-.close::before,.close::after{content:'';position:absolute;height:2px;width:100%;top:50%;left:0;margin-top:-1px;background:#60C0DD;}
+.close::before,.close::after{content:'';position:absolute;height:2px;width:100%;top:50%;margin-top:-1px;background:#60C0DD;}
 .close::before{transform:rotate(45deg);-webkit-transform: rotate(45deg); -moz-transform: rotate(45deg);-ms-transform: rotate(45deg);-o-transform: rotate(45deg);}
 .close::after{transform:rotate(-45deg);-webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg);-ms-transform: rotate(-45deg);-o-transform: rotate(-45deg);}
 .close:hover::before,.close:hover::after{background:#fff ;}
@@ -39,7 +39,7 @@ input{outline:none;}
 /*搜索框结束*/
 
 /*信息列表框*/
-#tool-box{width:40px;height:200px;background:#eee;position:absolute;top:50%;left:0;margin-top:-71px;z-index:1000;box-shadow:1px 1px 2px 0 #666;}
+#tool-box{width:40px;height:200px;background:#eee;position:absolute;top:50%;margin-top:-71px;z-index:1000;box-shadow:1px 1px 2px 0 #666;}
 #tool-box li{width:100%;height:40px;}
 #tool-box li a{display:block;width:inherit;height:inherit;}
 #tool_1{background:url("../img/navigation.png") no-repeat;background-size:100% 100%;}

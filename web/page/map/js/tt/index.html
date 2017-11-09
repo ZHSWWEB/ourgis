@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  	<link rel="stylesheet" type="text/css" href="jquery.pageslide.css" />
+  	<style>
+        #modal { display: none;}
+            #modal a { background: #CCC; color: #333; font-weight: bold; padding: 5px 10px; border: none; }
+            #modal a:hover { background: #aaa; } 
+    </style>
+    <script src="lib/jquery-1.7.1.min.js"></script>
+
+</head>
+<body>
+        <a href="#modal" class="second">Slide to the left, and display hidden content from this page in a modal pane.</a>
+        <div id="modal">
+            <h2>Modal</h2>
+            <p>This slide uses "modal" option set to "true". When using a modal pageslide, clicking on the main window will not close the window. You must explicitly call <code>$.pageslide.close()</code>.</p>
+            <p><a href="javascript:$.pageslide.close()">Close</a></p>
+        </div>
+    <script src="jquery.pageslide.min.js"></script>
+    <script>
+        /* Slide to the left, and make it model (you'll have to call $.pageslide.close() to close) */
+        $(".second").pageslide({ direction: "right", modal: true });
+    </script>
+</body>
+</html>
+

@@ -2,32 +2,24 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <link herf="../../plugins/layui/css/layui.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../plugins/layui/layui.js"></script>
-    <title></title>
-    <script>
-        function FullHeight(ele) {
-            ele.height = document.documentElement.clientHeight;
-        }
-        function FullHeightS() {
-            var eles = document.getElementsByClassName( "fullHeight" );
-            for ( var i = 0; i < eles.length; i++ ) {
-                eles[i].height = document.documentElement.clientHeight;
-            }
-            
-        }
-
-    </script>
-
+    <link rel="stylesheet" type="text/css" href="jquery.pageslide.css" />
+    
 </head>
-<body  onresize="FullHeightS()">
-    <!--<iframe id="win" name="win" src="../404.html" align="left" width="100%" height=0  frameborder="1" scrolling="no" onload="Javascript:SetWinHeight(this)">抱歉！该页面不支持您的浏览器！</iframe>-->
-    
-    <iframe id="form" class="fullHeight" src="testiframe.html" align="left" width="40%" height="700px" frameborder="0" scrolling="no" onload="FullHeight(this)">抱歉！该页面不支持您的浏览器！</iframe>
-    <iframe id="map" class="fullHeight" src="map.html?app=1" align="right" width="60%" height="700px" frameborder="0" scrolling="no" onload="FullHeight(this)">抱歉！该页面不支持您的浏览器！</iframe>
-    
-    <!--<iframe id="treeinfo" name="treeinfo" src="../404.html" width="100%" height="100%" marginwidth="0" marginheight="0" frameborder="1" 
-            onload="this.style.height=treeinfo.document.body.scrollHeight+5" scrolling="no"></iframe>-->
+<body>
+    <a href="#modal" class="layermenu">Link text</a>
+    <div id="modal" style="display:none">
 
+        <h2>Modal</h2>
+
+        <p>This slide uses "modal" option set to "true". When using a modal pageslide, clicking on the main window will not close the window. You must explicitly call <code>$.pageslide.close()</code>.</p>
+
+        <p><a href="javascript:$.pageslide.close()">Close</a></p>
+
+    </div>
+    <script src="plugins/jquery-ui/jquery.min.js"></script>
+    <script src="plugins/jquery.pageslide.js"></script>
+    <script>
+        $( ".second" ).pageslide( { direction: "right", modal: true } );
+    </script>
 </body>
 </html>

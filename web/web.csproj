@@ -211,6 +211,15 @@
     <Content Include="page\formpages\test.aspx" />
     <Content Include="page\formpages\testHtml.html" />
     <Content Include="page\map\editHelper.aspx" />
+    <Content Include="page\map\js\tt\index.html" />
+    <Content Include="page\map\js\tt\jquery.pageslide.css" />
+    <Content Include="page\map\js\tt\jquery.pageslide.js" />
+    <Content Include="page\map\js\tt\jquery.pageslide.min.js" />
+    <Content Include="page\map\js\tt\lib\jquery-1.7.1.min.js" />
+    <Content Include="page\map\js\tt\menu.png" />
+    <Content Include="page\map\js\tt\responsive.html" />
+    <Content Include="page\map\js\tt\_secondary.html" />
+    <Content Include="page\map\plugins\jquery.pageslide.js" />
     <Content Include="page\project1\projectAdd.aspx" />
     <Content Include="page\project1\projectFiles.aspx" />
     <Content Include="page\project1\projectFiles.js" />
