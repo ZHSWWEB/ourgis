@@ -11,7 +11,7 @@
 
 //定义服务链接
 var commandUrl = 'http://192.168.2.55:6080/arcgis/rest/services/';
-var token = '?token=' +'Qvyvl9zSiFfSy3CL1-LqWfugzmkRLMcUi43V6WU2liDNb5GejTc6uTTst7LMX0FgcwMsCLN0BK4I5vBc3JHz7Q..';
+var token = '?token=' +'sAtYy20rhv7KicUbJcBDiZyKPXQiS3vckyeoa0TTCgsL-4yU31bf3T6P-9SDjPs5rclPNV1srVDANjL_0zwAsA..';
 
 //定义图层
 var layerConfiguration = {
@@ -139,8 +139,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/shuili/MapServer/2" + token,
             type: "polyline",
             titleField: 'LVNM',
-            outFields: ["LVCD", "LVNM", "PRST", "LVGR", "LVTP", "MNUN", "CMUN", "BLSYS", "CTCD", "RVCD", "BNSD", "LVINPS", "LVINCH", "LVINEL", "LVTRPS", "LVTRCH", "LVTREL", "LVLEN", "MAXLVHG", "RVSDBNPTCN", "NSDBNPTCN", "BSSSIN", "FREQIN", "DTPL", "CPYR", "LVOV", "DTUPDT", "BZSL", "DBCD", "DDKD_MAX", "DDKD_MIN", "DFBM", "DFGD_MIN", "DFGD_MAX", "DFLX", "DHXSL", "GCRW", "GHSL", "GLDWBM", "JCSJ_Y", "KJQK", "QD_XZQBM", "QDWZ_Q", "QDWZ_Z", "QDWZ_C", "SFWCHJ", "SFWCQQ", "SJBZ", "SJSW", "SZHL", "SZSL", "XH", "ZD_XZQBM", "ZDWZ_Q", "ZDWZ_Z", "ZDWZ_C", "SZHLBM", "JSQK", "DFJB", "DFXS", "GLBM", "HLAB", "QDWZ_J", "GCXT"],
-            displayFields: ["堤防(段)代码", "堤防(段)名称", "工程状态", "堤防(段)级别", "堤防(段)类型", "管理单位", "主管单位", "归属部门", "所在流域代码", "所在河流代码", "岸别", "堤防(段)起点位置", "堤防(段)起点桩号", "堤防(段)起点高程", "堤防(段)终点位置", "堤防(段)终点桩号", "堤防(段)终点高程", "堤防(段)长度", "最大堤高", "临水面护岸情况", "背水面护坡情况", "地震基本烈度", "设防地震烈度", "水准基面", "建成年份", "堤防(段)概况", "数据更新日期", "泵站数量(处)", "达到规范防洪(潮)标准的长度", "堤顶宽度(m)(最大值)", "堤顶宽度(m)(最小值)", "堤防编码", "堤防高度(m)(最小值)", "堤防高度(m)(最大值)", "堤防类型", "倒虹吸数量(个)", "工程任务", "管涵数量(个)", "堤防工程管理单位编码", "建成时间(月)", "跨界情况", "起点行政区划代码", "起点位置区", "起点位置镇", "起点位置村", "是否完成划界", "是否完成确权", "规划防洪(潮)标准(年)", "设计水(高潮)位(m)", "所在河流", "水闸数量(个)", "索引序号", "终点行政区划代码", "终点位置区", "终点位置镇", "终点位置村", "所在河流编码", "工程建设情况", "堤防级别", "堤防型式", "堤防工程归口管理部门", "河流岸别", "起点位置街(村)", "高程系统"],
+            outFields: ["LVCD", "LVNM", "PRST", "LVGR", "LVTP", "MNUN", "CMUN", "BLSYS", "CTCD", "RVCD", "BNSD", "LVINPS", "LVINCH", "LVINEL", "LVTRPS", "LVTRCH", "LVTREL", "LVLEN", "MAXLVHG", "RVSDBNPTCN", "NSDBNPTCN", "BSSSIN", "FREQIN", "DTPL", "CPYR", "LVOV", "DTUPDT", "BZSL", "DBCD", "DDKD_MAX", "DDKD_MIN", "DFGD_MIN", "DFGD_MAX", "DFLX", "DHXSL", "GCRW", "GHSL", "GLDWBM", "JCSJ_Y", "KJQK", "SFWCHJ", "SFWCQQ", "SJBZ", "SJSW", "SZSL", "JSQK", "DFJB", "DFXS", "GLBM", "HLAB", "GCXT", "REMARK", "XGR", "XGBM", "XGRQ"],
+            displayFields: ["堤防(段)代码", "堤防(段)名称", "工程状态", "堤防(段)级别", "堤防(段)类型", "管理单位", "主管单位", "归属部门", "所在流域代码", "所在河流代码", "岸别", "堤防(段)起点位置", "堤防(段)起点桩号", "堤防(段)起点高程", "堤防(段)终点位置", "堤防(段)终点桩号", "堤防(段)终点高程", "堤防(段)长度", "最大堤高", "临水面护岸情况", "背水面护坡情况", "地震基本烈度", "设防地震烈度", "水准基面", "建成年份", "堤防(段)概况", "数据更新日期", "泵站数量(处)", "达到规范防洪(潮)标准的长度", "堤顶宽度(m)(最大值)", "堤顶宽度(m)(最小值)", "堤防高度(m)(最小值)", "堤防高度(m)(最大值)", "堤防类型", "倒虹吸数量(个)", "工程任务", "管涵数量(个)", "堤防工程管理单位编码", "建成时间(月)", "跨界情况", "是否完成划界", "是否完成确权", "规划防洪(潮)标准(年)", "设计水(高潮)位(m)", "水闸数量(个)", "工程建设情况", "堤防级别", "堤防型式", "堤防工程归口管理部门", "河流岸别", "高程系统", "备注", "修改人", "修改部门", "修改日期"],
             dateFields: ["数据更新日期", "修改日期"],
             queryField: ["LVNM"],
             statisticsFields: {},
@@ -428,8 +428,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/10" + token,
             type: "polyline",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "PIPETYPE", "MATERIAL", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGCEN_DEEP", "END_H", "ENDCEN_DEEP", "D_S", "LENGTH", "STYLE", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK", "MANAGEDEPT", "STATE", "SUBTYPE"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "竣工日期", "管道名称", "作业编号", "所在道路", "地址", "等级", "类别", "管道类型", "管道材质", "是否围压", "起始管点标识码", "终止管点标识码", "BEG_H", "起始埋深", "END_H", "终止埋深", "管径", "LENGTH", "断面形式", "I", "调查日期", "调查单位", "数据来源", "备注", "管理单位", "设施状态", "敷设类型"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "PIPETYPE", "SUBTYPE", "MATERIAL", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGCEN_DEEP", "END_H", "ENDCEN_DEEP", "D_S", "LENGTH", "STYLE", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "管道名称", "作业编号", "所在道路", "地址", "等级", "类别", "管道类型", "敷设类型", "管道材质", "是否围压", "起始管点标识码", "终止管点标识码", "起始管底高程", "起始覆土深度", "终止管底高程", "终止覆土深度", "管径", "长度", "断面形式", "坡度", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'USID',
@@ -454,8 +454,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/11" + token,
             type: "polyline",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "SUBTYPE", "STRUCT", "BS_SHAPE", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGIN_DEEP", "END_H", "END_DEEP", "WIDTH", "HEIGHT", "LENGTH", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "沟渠名称", "作业编号", "所在道路", "地址", "等级", "类别", "类型", "结构", "面板结构", "是否被围压", "起始管点标识码", "终止管点标识码", "BEG_H", "BEGIN_DEEP", "END_H", "END_DEEP", "WIDTH", "HEIGHT", "LENGTH", "I", "调查日期", "调查单位", "数据来源", "备注"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "SUBTYPE", "STRUCT", "BS_SHAPE", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGIN_DEEP", "END_H", "END_DEEP", "WIDTH", "HEIGHT", "LENGTH", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "沟渠名称", "作业编号", "所在道路", "地址", "等级", "类别", "类型", "结构", "面板结构", "是否被围压", "起始管点标识码", "终止管点标识码", "起始渠底高程", "起始覆土深度", "终止渠底高程", "终止覆土深度", "宽度", "净高(H)", "长度", "坡度", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'USID',
@@ -480,8 +480,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/1" + token,
             type: "point",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "MANAGEDEPT", "OWNERDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "SUR_H", "TOP_H", "CEN_H", "OLD_D_S", "NEW_D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK", "CEN_DEEP"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "管理单位", "权属单位", "设施状态", "竣工日期", "变径名称", "作业编号", "所在道路", "地址", "类别", "材质", "SUR_H", "TOP_H", "CEN_H", "变化前管径", "变化后管径", "X", "Y", "调查日期", "调查单位", "数据来源", "备注", "CEN_DEEP"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "MANAGEDEPT", "OWNERDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "SUR_H", "CEN_DEEP", "TOP_H", "CEN_H", "OLD_D_S", "NEW_D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "管理单位", "权属单位", "设施状态", "竣工日期", "变径名称", "作业编号", "所在道路", "地址", "类别", "材质", "地面高程", "覆土深度", "顶部高程", "中心点高程", "变化前管径", "变化后管径", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'NAME',
@@ -505,8 +505,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/2" + token,
             type: "point",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUBTYPE", "COVER_TYPE", "COVER_MATERIAL", "COVER_SIZE", "MATERIAL", "SUR_H", "CHAMBER_ROOF", "BOTTOM_H", "BT_H", "CHAMBER_AREA", "WELL_STATUS", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "窨井名称", "作业编号", "所在道路", "地址", "类别", "窨井类型", "井盖型号", "井盖材质", "COVER_SIZE", "井室材质", "SUR_H", "井室顶高程", "BOTTOM_H", "BT_H", "井室平面面积", "井底状况", "X", "Y", "调查日期", "调查单位", "数据来源", "备注"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUBTYPE", "COVER_TYPE", "COVER_MATERIAL", "COVER_SIZE", "MATERIAL", "SUR_H", "CHAMBER_ROOF", "BOTTOM_H", "BT_H", "CHAMBER_AREA", "WELL_STATUS", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "窨井名称", "作业编号", "所在道路", "地址", "类别", "窨井类型", "井盖型号", "井盖材质", "井盖大小", "井室材质", "地面高程", "井室顶高程", "井底高程", "最低流水位高程", "井室平面面积", "井底状况", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'NAME',
@@ -555,8 +555,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/4" + token,
             type: "point",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "CEN_DEEP", "TOP_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "管线点名称", "作业编号", "所在道路", "地址", "类别", "SUR_H", "CEN_DEEP", "TOP_H", "X", "Y", "调查日期", "调查单位", "数据来源", "备注"],
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "CEN_DEEP", "TOP_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "管线暗点名称", "作业编号", "所在道路", "地址", "类别", "地面高程", "覆土深度", "顶部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["调查日期"],
             queryField: [
                 'NAME',
@@ -580,8 +580,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/5" + token,
             type: "point",
             titleField: 'USID',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "RIVER", "SUR_H", "TOP_H", "BOTTOM_H", "FLUX", "ACTUALFLOW", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "排放口名称", "作业编号", "所在道路", "地址", "类别", "排放去向", "SUR_H", "TOP_H", "BOTTOM_H", "FLUX", "ACTUALFLOW", "X", "Y", "调查日期", "调查单位", "数据来源", "备注"],
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "RIVER", "SUR_H", "TOP_H", "BOTTOM_H", "FLUX", "ACTUALFLOW", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "排放口名称", "作业编号", "所在道路", "地址", "类别", "排放去向", "地面高程", "顶部高程", "底部高程", "设计流量", "实际流量", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'USID',
@@ -605,8 +605,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/6" + token,
             type: "point",
             titleField: 'USID',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "TOP_H", "BOTTOM_H", "HEIGHT", "WIDTH", "X", "Y", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK", "OWNERDEPT"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "管理单位", "设施状态", "竣工日期", "溢流堰名称", "作业编号", "所在道路", "地址", "类别", "SUR_H", "TOP_H", "BOTTOM_H", "HEIGHT", "WIDTH", "X", "Y", "调查单位", "数据来源", "备注", "权属单位"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "TOP_H", "BOTTOM_H", "HEIGHT", "Width", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "溢流堰名称", "作业编号", "所在道路", "地址", "类别", "地面高程", "堰顶高程", "堰底高程", "高度", "堰宽", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'USID',
@@ -630,8 +630,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/7" + token,
             type: "point",
             titleField: 'USID',
-            outFields: ["OBJECTID", "USID", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "ADDR", "RIVER", "SORT", "MODE_", "MATERIAL", "SIZE_", "SUR_H", "CEN_DEEP", "TOP_H", "W_LEVEL", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "拍门名称", "作业编号", "地址", "所在河涌", "类别", "型号", "材质", "SIZE_", "SUR_H", "CEN_DEEP", "TOP_H", "W_LEVEL", "X", "Y", "调查日期", "调查单位", "数据来源", "REMARK"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "ADDR", "RIVER", "SORT", "MODE_", "MATERIAL", "SIZE_", "SUR_H", "CEN_DEEP", "TOP_H", "W_LEVEL", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "拍门名称", "作业编号", "地址", "所在河涌", "类别", "型号", "材质", "拍门尺寸", "地面高程", "覆土深度", "顶部高程", "底部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'NAME',
@@ -655,8 +655,8 @@ var layerConfiguration = {
             url: commandUrl + "QuanLiuYu/paishui/MapServer/8" + token,
             type: "point",
             titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SUBTYPE", "FEATURE", "STYLE", "SUR_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "要素代码 要素代码 要素代码 要素代码 要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "雨水口名称", "作业编号", "所在道路", "地址", "雨水篦类型", "特征", "形式", "SUR_H", "X", "Y", "调查日期", "调查单位", "数据来源", "备注"],
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SUBTYPE", "FEATURE", "STYLE", "SUR_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "雨水口名称", "作业编号", "所在道路", "地址", "雨水箅类型", "特征", "形式", "地面高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
             queryField: [
                 'NAME',
