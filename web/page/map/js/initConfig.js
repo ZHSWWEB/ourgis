@@ -167,135 +167,6 @@ var layerConfiguration = {
             statType: 'count',
             sumField: null
         },
-        //quanjingtu: {
-        //    name: '720全景',
-        //    addToMap: false,
-        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/0",
-        //    type: "point",
-        //    titleField: 'NAME',
-        //    outFields: ['NAME', 'XZQ',"URL"],
-        //    displayFields: ['名称',"行政区"],
-        //    queryField: [
-        //        'NAME',
-        //        'XZQ'
-        //    ],
-        //    statisticsFields: {
-        //        'XZQ':'行政区'
-        //    },
-        //    statType: 'count',
-        //    sumField: null
-        //},
-        chengzhongcun: {
-            name: '城中村',
-            addToMap: false,
-            url: commandUrl + "QuanLiuYu/zhuanti/MapServer/1" + token,
-            type: "point",
-            titleField: '村',
-            outFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
-            displayFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
-            queryField: ["区", "街道", "村", "地址"],
-            statisticsFields: {
-                '区': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        wurenjixunfei: {
-            name: '无人机巡飞',
-            addToMap: false,
-            url: commandUrl + "QuanLiuYu/zhuanti/MapServer/2" + token,
-            type: "line",
-            titleField: 'NAME',
-            outFields: ["NAME", "DISTRICT"],
-            displayFields: ["巡飞河流", "行政区域"],
-            queryField: ["NAME", "DISTRICT"],
-            statisticsFields: {
-                'NAME': '巡飞河流',
-                'DISTRICT': '行政区域'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        chengshigengxin: {
-            name: '城市改造',
-            addToMap: false,
-            url: commandUrl + "QuanLiuYu/zhuanti/MapServer/3" + token,
-            type: "polygon",
-            titleField: '项目名称',
-            outFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
-            displayFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
-            queryField: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体"],
-            statisticsFields: {
-                '更新类型': '更新类型',
-                '更新方式': '更新方式',
-                '行政区域': '行政区域'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        qujie: {
-            name: '区界',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
-            queryflag: 3,
-            followvisit: "NULL",
-            minScale: 0,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/0" + token,
-            type: "polygon",
-            titleField: 'FQ',
-            outFields: ["FQ", "SHAPE.AREA", "SHAPE.LEN"],
-            displayFields: ["行政区", "面积(平方米)", "周长(米)"],
-            dateFields: [],
-            queryField: ["FQ"],
-            statisticsFields: {
-            },
-            statType: 'count',
-            sumField: null
-        },
-        zhenjie: {
-            name: '镇界',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
-            queryflag: 3,
-            followvisit: "NULL",
-            minScale: 0,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/1" + token,
-            type: "polygon",
-            titleField: 'JEDAONAME',
-            outFields: ["JEDAONAME", "SHAPE.AREA", "SHAPE.LEN"],
-            displayFields: ["街镇名", "面积(平方米)", "周长(米)"],
-            dateFields: [],
-            queryField: ["JEDAONAME"],
-            statisticsFields: {
-            },
-            statType: 'count',
-            sumField: null
-        },
-        cunjie: {
-            name: '村界',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
-            queryflag: 3,
-            followvisit: "NULL",
-            minScale: 0,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/2" + token,
-            type: "polygon",
-            titleField: 'XZQMC',
-            outFields: ["XZQMC", "SHAPE.AREA", "SHAPE.LEN"],
-            displayFields: ["村名", "面积(平方米)", "周长(米)"],
-            dateFields: [],
-            queryField: ["XZQMC"],
-            statisticsFields: {
-            },
-            statType: 'count',
-            sumField: null
-        },
         zhili187: {
             name: '187条河流治理',
             addToMap: true,
@@ -340,6 +211,135 @@ var layerConfiguration = {
             statType: 'count',
             sumField: null
         },
+        //quanjingtu: {
+        //    name: '720全景',
+        //    addToMap: false,
+        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/0",
+        //    type: "point",
+        //    titleField: 'NAME',
+        //    outFields: ['NAME', 'XZQ',"URL"],
+        //    displayFields: ['名称',"行政区"],
+        //    queryField: [
+        //        'NAME',
+        //        'XZQ'
+        //    ],
+        //    statisticsFields: {
+        //        'XZQ':'行政区'
+        //    },
+        //    statType: 'count',
+        //    sumField: null
+        //},
+        //chengzhongcun: {
+        //    name: '城中村',
+        //    addToMap: false,
+        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/1" + token,
+        //    type: "point",
+        //    titleField: '村',
+        //    outFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
+        //    displayFields: ["区", "街道", "村", "地址", "经度", "纬度", "其他"],
+        //    queryField: ["区", "街道", "村", "地址"],
+        //    statisticsFields: {
+        //        '区': '行政区'
+        //    },
+        //    statType: 'count',
+        //    sumField: null
+        //},
+        //wurenjixunfei: {
+        //    name: '无人机巡飞',
+        //    addToMap: false,
+        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/2" + token,
+        //    type: "line",
+        //    titleField: 'NAME',
+        //    outFields: ["NAME", "DISTRICT"],
+        //    displayFields: ["巡飞河流", "行政区域"],
+        //    queryField: ["NAME", "DISTRICT"],
+        //    statisticsFields: {
+        //        'NAME': '巡飞河流',
+        //        'DISTRICT': '行政区域'
+        //    },
+        //    statType: 'count',
+        //    sumField: null
+        //},
+        //chengshigengxin: {
+        //    name: '城市改造',
+        //    addToMap: false,
+        //    url: commandUrl + "QuanLiuYu/zhuanti/MapServer/3" + token,
+        //    type: "polygon",
+        //    titleField: '项目名称',
+        //    outFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
+        //    displayFields: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体", "更新面积"],
+        //    queryField: ["项目名称", "更新方式", "更新类型", "行政区域", "改造主体"],
+        //    statisticsFields: {
+        //        '更新类型': '更新类型',
+        //        '更新方式': '更新方式',
+        //        '行政区域': '行政区域'
+        //    },
+        //    statType: 'count',
+        //    sumField: null
+        //},
+        qujie: {
+            name: '区界',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
+            queryflag: 3,
+            followvisit: "NULL",
+            minScale: 0,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/0" + token,
+            type: "polygon",
+            titleField: 'QUNAME',
+            outFields: ["QUNAME", "QUCODE", "SHAPE.AREA", "SHAPE.LEN"],
+            displayFields: ["区名", "区代码", "面积(平方米)", "周长(米)"],
+            dateFields: [],
+            queryField: ["QUNAME", "QUCODE"],
+            statisticsFields: {
+            },
+            statType: 'count',
+            sumField: null
+        },
+        zhenjie: {
+            name: '镇界',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
+            queryflag: 3,
+            followvisit: "NULL",
+            minScale: 0,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/1" + token,
+            type: "polygon",
+            titleField: 'ZHENJIENAME',
+            outFields: ["ZHENJIENAME", "ZHENJIECODE", "QUNAME", "QUCODE", "SHAPE.AREA", "SHAPE.LEN"],
+            displayFields: ["街镇名", "街镇代码", "所在区名", "所在区代码", "面积(平方米)", "周长(米)"],
+            dateFields: [],
+            queryField: ["ZHENJIENAME", "ZHENJIECODE", "QUNAME", "QUCODE"],
+            statisticsFields: {
+            },
+            statType: 'count',
+            sumField: null
+        },
+        cunjie: {
+            name: '村界',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
+            queryflag: 3,
+            followvisit: "NULL",
+            minScale: 0,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/xingzhengqu/MapServer/2" + token,
+            type: "polygon",
+            titleField: 'CUNJUNAME',
+            outFields: ["CUNJUNAME", "CUNJUCODE", "ZHENJIENAME", "ZHENJIECODE", "QUNAME", "QUCODE", "SHAPE.AREA", "SHAPE.LEN"],
+            displayFields: ["村居名", "村居代码", "所在街镇名", "所在街镇代码", "所在区名", "所在区代码", "面积(平方米)", "周长(米)"],
+            dateFields: [],
+            queryField: ["CUNJUNAME", "CUNJUCODE", "ZHENJIENAME", "ZHENJIECODE", "QUNAME", "QUCODE"],
+            statisticsFields: {
+            },
+            statType: 'count',
+            sumField: null
+        },
 
         wushuichulichang: {
             name: '污水处理厂',
@@ -348,18 +348,15 @@ var layerConfiguration = {
             //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
             queryflag: 4,
             followvisit: "paishuiLayer",
-            minScale: 5000,
+            minScale: 250000,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/13" + token,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/18" + token,
             type: "polygon",
             titleField: 'NAME',
-            outFields: ["USID", "FCODE", "SEWAGESYST", "RAINESYSTE", "DISTRICT", "PROJECT_NA", "OWNERDEPT", "MANAGEDEPT", "FINISH_DAT", "NAME", "SEWAGEFARM", "ADDR", "TEL", "POST", "WORKERS", "PRINCIPALN", "USE_AREA", "SERV_AREA", "SERV_PNUM", "BS_COPE", "DISPOSELEV", "TECHNICAL", "DESIGNS_CO", "CAPABILLTY", "DIPOSEPERD", "ELECTRO", "P_WASTE", "P_MUD", "MUD_NUM", "MUD_WRATIO", "PH_EN", "PH_EX", "BOD_EN", "BOD_EX", "COD_EN", "COD_EX", "SS_EN", "SS_EX", "NH_EN", "NH_EX", "TN_EN", "TN_EX", "TP_EN", "TP_EX", "RIVER", "DATA_ORIGI", "REPAIR_DAT", "REPAIR_COM", "REMARK"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "FINISH_DATE", "NAME", "SEWAGEFARM_ID", "ADDR", "TEL", "POST", "WORKERS", "PRINCIPALNAME", "USE_AREA", "SERV_AREA", "SERV_PNUM", "BS_COPE", "DISPOSELEVEL", "TECHNICAL", "DESIGNS_COPE", "CAPABILLTY", "DiposePerDay", "ELECTRO", "P_WASTE", "P_MUD", "MUD_NUM", "MUD_WRATIO", "PH_EN", "PH_EX", "BOD_EN", "BOD_EX", "COD_EN", "COD_EX", "SS_EN", "SS_EX", "NH_EN", "NH_EX", "TN_EN", "TN_EX", "TP_EN", "TP_EX", "RIVER", "DATA_ORIGIN", "REPAIR_DATE", "REPAIR_COMPANY", "REMARK"],
             displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "竣工日期", "污水处理厂名称", "污水处理厂编号", "地址", "电话", "邮编", "员工人数", "负责人姓名", "占地面积", "服务面积", "服务人口数", "建设规模", "处理级别", "污水处理工艺", "设计规模", "实际处理能力", "实际日处理量", "日处理用电量", "吨水处理能耗", "污泥处理方法", "污泥量", "污泥含水率", "进水pH值", "出水pH值", "BOD5进水浓度", "BOD5出水浓度", "CODCr进水浓度", "CODCr出水浓度", "悬浮物进水浓度", "悬浮物出水浓度", "氨氮进水浓度", "氨氮出水浓度", "总氮进水浓度", "总氮出水浓度", "总磷进水浓度", "总磷出水浓度", "排入河涌", "数据来源", "调查日期", "调查单位", "备注"],
             dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
             statisticsFields: {
                 'DISTRICT': '行政区'
             },
@@ -373,18 +370,15 @@ var layerConfiguration = {
             //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
             queryflag: 4,
             followvisit: "paishuiLayer",
-            minScale: 5000,
+            minScale: 50000,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/14" + token,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/17" + token,
             type: "polygon",
             titleField: 'NAME',
-            outFields: ["USID", "FCODE", "SEWAGESYST", "RAINESYSTE", "DISTRICT", "PROJECT_NA", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DAT", "STARTUP_DA", "NAME", "STATION_ID", "LANE_WAY", "ADDR", "OVERFLOWP", "BZ_SORT", "USE_AREA", "CATCHMENT_", "SERVICE_AR", "MAIN_POWER", "DEVICECACI", "START_WATE", "CONTROL_WA", "WARN_WATER", "DESIGN_CAP", "ACTUAL_CAP", "REPAIR_DAT", "REPAIR_COM", "DATA_ORIGI", "REMARK"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "STARTUP_DATE", "NAME", "STATION_ID", "LANE_WAY", "ADDR", "overflowp", "BZ_SORT", "USE_AREA", "CATCHMENT_AREA", "SERVICE_AREA", "MAIN_POWER_SUPPLY", "DeviceCacity", "START_WATER_LEVEL", "CONTROL_WATER_LEVEL", "WARN_WATER_LEVEL", "DESIGN_CAPACITY", "ACTUAL_CAPACITY", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
             displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "投入运行日期", "泵站名称", "泵站编号", "所在道路", "地址", "溢流地点", "泵站类别", "占地面积", "汇水面积", "服务面积", "主供电源", "装机容量", "起排水位", "控制水位", "警戒水位", "设计抽排能力", "实际抽排量", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "投入运行日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
             statisticsFields: {
                 'DISTRICT': '行政区'
             },
@@ -398,44 +392,15 @@ var layerConfiguration = {
             //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
             queryflag: 4,
             followvisit: "paishuiLayer",
-            minScale: 5000,
+            minScale: 50000,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/12" + token,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/16" + token,
             type: "polygon",
             titleField: 'NAME',
-            outFields: ["USID", "FCODE", "SEWAGESYST", "RAINESYSTE", "DISTRICT", "PROJECT_NA", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DAT", "NAME", "GATE_ID", "LANE_WAY", "ADDR", "RIVER", "SORT", "SUBTYPE", "SWITCH_STY", "GATE_MATER", "ROW_NUM", "NUM", "USE_AREA", "COLL_AREA", "TOP_H", "HEIGHT", "WIDTH", "FLUX", "ACTUALFLOW", "REPAIR_DAT", "REPAIR_COM", "DATA_ORIGI", "REMARK"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "GATE_ID", "LANE_WAY", "ADDR", "RIVER", "SORT", "SUBTYPE", "SWITCH_STYLE", "GATE_MATERIAL", "ROW_NUM", "NUM", "USE_AREA", "COLL_AREA", "TOP_H", "HEIGHT", "WIDTH", "FLUX", "ACTUALFLOW", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
             displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "闸名称", "闸编号", "所在道路", "地址", "所在河涌", "类别", "控制类型", "闸门启闭型式", "闸门材质", "排数", "闸门孔数", "占地面积", "汇水面积", "闸顶高程", "闸门净高", "闸门净宽", "设计排水流量", "实际排水流量", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        paishuiguandao: {
-            name: '排水管道',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/10" + token,
-            type: "polyline",
-            titleField: 'NAME',
-            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "PIPETYPE", "SUBTYPE", "MATERIAL", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGCEN_DEEP", "END_H", "ENDCEN_DEEP", "D_S", "LENGTH", "STYLE", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "管道名称", "作业编号", "所在道路", "地址", "等级", "类别", "管道类型", "敷设类型", "管道材质", "是否围压", "起始管点标识码", "终止管点标识码", "起始管底高程", "起始覆土深度", "终止管底高程", "终止覆土深度", "管径", "长度", "断面形式", "坡度", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'USID',
-                'NAME',
-                'DISTRICT'
-            ],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
             statisticsFields: {
                 'DISTRICT': '行政区'
             },
@@ -449,219 +414,37 @@ var layerConfiguration = {
             //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
             queryflag: 4,
             followvisit: "paishuiLayer",
-            minScale: 5000,
+            minScale: 10000,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/11" + token,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/14" + token,
             type: "polyline",
             titleField: 'NAME',
             outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "SUBTYPE", "STRUCT", "BS_SHAPE", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGIN_DEEP", "END_H", "END_DEEP", "WIDTH", "HEIGHT", "LENGTH", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
             displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "沟渠名称", "作业编号", "所在道路", "地址", "等级", "类别", "类型", "结构", "面板结构", "是否被围压", "起始管点标识码", "终止管点标识码", "起始渠底高程", "起始覆土深度", "终止渠底高程", "终止覆土深度", "宽度", "净高(H)", "长度", "坡度", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'USID',
-                'NAME',
-                'DISTRICT'
-            ],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
             statisticsFields: {
                 'DISTRICT': '行政区'
             },
             statType: 'count',
             sumField: null
         },
-        bianjing: {
-            name: '变径',
+        paishuiguandao: {
+            name: '排水管道',
             addToMap: true,
             visitflag: false,
             //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
             queryflag: 4,
             followvisit: "paishuiLayer",
-            minScale: 5000,
+            minScale: 10000,
             maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/1" + token,
-            type: "point",
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/13" + token,
+            type: "polyline",
             titleField: 'NAME',
-            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "MANAGEDEPT", "OWNERDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "SUR_H", "CEN_DEEP", "TOP_H", "CEN_H", "OLD_D_S", "NEW_D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "管理单位", "权属单位", "设施状态", "竣工日期", "变径名称", "作业编号", "所在道路", "地址", "类别", "材质", "地面高程", "覆土深度", "顶部高程", "中心点高程", "变化前管径", "变化后管径", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "GRADE", "SORT", "PIPETYPE", "SUBTYPE", "MATERIAL", "IS_PRESS", "START_USID", "END_USID", "BEG_H", "BEGCEN_DEEP", "END_H", "ENDCEN_DEEP", "D_S", "LENGTH", "STYLE", "I", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "管道名称", "作业编号", "所在道路", "地址", "等级", "类别", "管道类型", "敷设类型", "管道材质", "是否围压", "起始管点标识码", "终止管点标识码", "起始管底高程", "起始覆土深度", "终止管底高程", "终止覆土深度", "管径", "长度", "断面形式", "坡度", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        yinjing: {
-            name: '窨井',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/2" + token,
-            type: "point",
-            titleField: 'NAME',
-            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUBTYPE", "COVER_TYPE", "COVER_MATERIAL", "COVER_SIZE", "MATERIAL", "SUR_H", "CHAMBER_ROOF", "BOTTOM_H", "BT_H", "CHAMBER_AREA", "WELL_STATUS", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "窨井名称", "作业编号", "所在道路", "地址", "类别", "窨井类型", "井盖型号", "井盖材质", "井盖大小", "井室材质", "地面高程", "井室顶高程", "井底高程", "最低流水位高程", "井室平面面积", "井底状况", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        wantou: {
-            name: '弯头',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/3" + token,
-            type: "point",
-            titleField: 'NAME',
-            outFields: ["OBJECTID", "USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "MODE_", "STYLE", "SUR_H", "CEN_DEEP", "TOP_H", "D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["OBJECTID", "标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "弯头名称", "作业编号", "所在道路", "地址", "类别", "材质", "型号", "形式", "SUR_H", "CEN_DEEP", "TOP_H", "管径", "X", "Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        guanxianandian: {
-            name: '管线暗点',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/4" + token,
-            type: "point",
-            titleField: 'NAME',
-            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "CEN_DEEP", "TOP_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "管线暗点名称", "作业编号", "所在道路", "地址", "类别", "地面高程", "覆土深度", "顶部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        paifangkou: {
-            name: '排放口',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/5" + token,
-            type: "point",
-            titleField: 'USID',
-            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "RIVER", "SUR_H", "TOP_H", "BOTTOM_H", "FLUX", "ACTUALFLOW", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "排放口名称", "作业编号", "所在道路", "地址", "类别", "排放去向", "地面高程", "顶部高程", "底部高程", "设计流量", "实际流量", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'USID',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        yiliuyan: {
-            name: '溢流堰',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/6" + token,
-            type: "point",
-            titleField: 'USID',
-            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "TOP_H", "BOTTOM_H", "HEIGHT", "Width", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "溢流堰名称", "作业编号", "所在道路", "地址", "类别", "地面高程", "堰顶高程", "堰底高程", "高度", "堰宽", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'USID',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        paimen: {
-            name: '拍门',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/7" + token,
-            type: "point",
-            titleField: 'USID',
-            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "ADDR", "RIVER", "SORT", "MODE_", "MATERIAL", "SIZE_", "SUR_H", "CEN_DEEP", "TOP_H", "W_LEVEL", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "拍门名称", "作业编号", "地址", "所在河涌", "类别", "型号", "材质", "拍门尺寸", "地面高程", "覆土深度", "顶部高程", "底部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
-            statisticsFields: {
-                'DISTRICT': '行政区'
-            },
-            statType: 'count',
-            sumField: null
-        },
-        yushuikou: {
-            name: '雨水口',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "paishuiLayer",
-            minScale: 5000,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/paishui/MapServer/8" + token,
-            type: "point",
-            titleField: 'NAME',
-            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SUBTYPE", "FEATURE", "STYLE", "SUR_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "雨水口名称", "作业编号", "所在道路", "地址", "雨水箅类型", "特征", "形式", "地面高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
-            dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
             statisticsFields: {
                 'DISTRICT': '行政区'
             },
@@ -675,18 +458,235 @@ var layerConfiguration = {
             //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
             queryflag: 4,
             followvisit: "paishuiLayer",
-            minScale: 5000,
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/11" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID", "RAINESYSTEM_ID", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "DRAINMETRY_ID", "ADDR", "DESCRIPTIO", "TYPE", "METHOD", "DEVICE", "SORT", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "监测点名称", "监测点编号", "地址", "监测点描述", "监测类别", "监测方式", "监测点设备", "监测点类型", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        paimen: {
+            name: '拍门',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/10" + token,
+            type: "point",
+            titleField: 'USID',
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "ADDR", "RIVER", "SORT", "MODE_", "MATERIAL", "SIZE_", "SUR_H", "CEN_DEEP", "TOP_H", "W_LEVEL", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "拍门名称", "作业编号", "地址", "所在河涌", "类别", "型号", "材质", "拍门尺寸", "地面高程", "覆土深度", "顶部高程", "底部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        yinjing: {
+            name: '窨井',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
             maxScale: 0,
             url: commandUrl + "QuanLiuYu/paishui/MapServer/9" + token,
             type: "point",
-            titleField: 'USID',
-            outFields: ["USID", "FCODE", "SEWAGESYST", "RAINESYSTE", "DISTRICT", "PROJECT_NA", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DAT", "NAME", "DRAINMETRY", "ADDR", "DESCRIPTIO", "TYPE", "METHOD", "DEVICE", "SORT", "X", "Y", "REPAIR_DAT", "REPAIR_COM", "DATA_ORIGI", "REMARK"],
-            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "监测点名称", "监测点编号", "地址", "监测点描述", "监测类别", "监测方式", "监测点设备", "监测点类型", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            titleField: 'NAME',
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUBTYPE", "COVER_TYPE", "COVER_MATERIAL", "COVER_SIZE", "MATERIAL", "SUR_H", "CHAMBER_ROOF", "BOTTOM_H", "BT_H", "CHAMBER_AREA", "WELL_STATUS", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "窨井名称", "作业编号", "所在道路", "地址", "类别", "窨井类型", "井盖型号", "井盖材质", "井盖大小", "井室材质", "地面高程", "井室顶高程", "井底高程", "最低流水位高程", "井室平面面积", "井底状况", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
             dateFields: ["竣工日期", "调查日期"],
-            queryField: [
-                'NAME',
-                'DISTRICT'
-            ],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        paifangkou: {
+            name: '排放口',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/8" + token,
+            type: "point",
+            titleField: 'USID',
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "RIVER", "SUR_H", "TOP_H", "BOTTOM_H", "FLUX", "ACTUALFLOW", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "排放口名称", "作业编号", "所在道路", "地址", "类别", "排放去向", "地面高程", "顶部高程", "底部高程", "设计流量", "实际流量", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        bianjing: {
+            name: '变径',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/7" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "MANAGEDEPT", "OWNERDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "SUR_H", "CEN_DEEP", "TOP_H", "CEN_H", "OLD_D_S", "NEW_D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "管理单位", "权属单位", "设施状态", "竣工日期", "变径名称", "作业编号", "所在道路", "地址", "类别", "材质", "地面高程", "覆土深度", "顶部高程", "中心点高程", "变化前管径", "变化后管径", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        yushuikou: {
+            name: '雨水口',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/6" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SUBTYPE", "FEATURE", "STYLE", "SUR_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "雨水口名称", "作业编号", "所在道路", "地址", "雨水箅类型", "特征", "形式", "地面高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        yiliuyan: {
+            name: '溢流堰',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/5" + token,
+            type: "point",
+            titleField: 'USID',
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "TOP_H", "BOTTOM_H", "HEIGHT", "Width", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "溢流堰名称", "作业编号", "所在道路", "地址", "类别", "地面高程", "堰顶高程", "堰底高程", "高度", "堰宽", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        famen: {
+            name: '阀门',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/4" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MODE_", "STYLE", "ORIENTATION", "ROTATE_NUM", "MANUFACTURER", "SUR_H", "CEN_DEEP", "TOP_H", "CEN_H", "D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "阀门名称", "作业编号", "所在道路", "地址", "类别", "型号", "类型", "开启转向", "转数", "生产厂家", "地面高程", "覆土深度", "顶部高程", "中心点高程", "管径", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        santong: {
+            name: '三通',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/3" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "FINISH_DATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "SUBTYPE", "SUR_H", "CEN_DEEP", "TOP_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "竣工日期", "三通名称", "作业编号", "所在道路", "地址", "类别", "材质", "类型", "地面高程", "覆土深度", "顶部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["竣工日期", "调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        wantou: {
+            name: '弯头',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/2" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "MATERIAL", "MODE_", "STYLE", "SUR_H", "CEN_DEEP", "TOP_H", "D_S", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "弯头名称", "作业编号", "所在道路", "地址", "类别", "材质", "型号", "形式", "地面高程", "覆土深度", "顶部高程", "管径", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
+            statisticsFields: {
+                'DISTRICT': '行政区'
+            },
+            statType: 'count',
+            sumField: null
+        },
+        guanxianandian: {
+            name: '管线暗点',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "paishuiLayer",
+            minScale: 1000,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/paishui/MapServer/1" + token,
+            type: "point",
+            titleField: 'NAME',
+            outFields: ["USID ", "FCODE", "SEWAGESYSTEM_ID ", "RAINESYSTEM_ID ", "DISTRICT", "PROJECT_NAME", "OWNERDEPT", "MANAGEDEPT", "STATE", "NAME", "WORK_ID", "LANE_WAY", "ADDR", "SORT", "SUR_H", "CEN_DEEP", "TOP_H", "X", "Y", "REPAIR_DATE", "REPAIR_COMPANY", "DATA_ORIGIN", "REMARK"],
+            displayFields: ["标识码", "要素代码", "所在污水系统", "所在雨水系统", "行政区划", "所属工程名称", "权属单位", "管理单位", "设施状态", "管线暗点名称", "作业编号", "所在道路", "地址", "类别", "地面高程", "覆土深度", "顶部高程", "坐标X", "坐标Y", "调查日期", "调查单位", "数据来源", "备注"],
+            dateFields: ["调查日期"],
+            queryField: ['USID', 'NAME', 'DISTRICT'],
             statisticsFields: {
                 'DISTRICT': '行政区'
             },

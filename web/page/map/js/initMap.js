@@ -104,8 +104,8 @@ function initMap(Map) {
     jichushujuLayer = new esri.layers.ArcGISDynamicMapServiceLayer(layerConfiguration.baseMap.jichushuju, { visible: true, id: "jichushujuLayer" });
     map.addLayer(jichushujuLayer);
 
-    //paishuiLayer = new esri.layers.ArcGISDynamicMapServiceLayer(layerConfiguration.baseMap.paishui, { visible: false, id: "paishuiLayer" });
-    paishuiLayer = new esri.layers.ArcGISTiledMapServiceLayer(layerConfiguration.baseMap.paishui, { visible: true, id: "paishuiLayer" });
+    paishuiLayer = new esri.layers.ArcGISDynamicMapServiceLayer(layerConfiguration.baseMap.paishui, { visible: true, id: "paishuiLayer" });
+    //paishuiLayer = new esri.layers.ArcGISTiledMapServiceLayer(layerConfiguration.baseMap.paishui, { visible: true, id: "paishuiLayer" });
     map.addLayer( paishuiLayer );
 
     jietubiaoLayer = new esri.layers.ArcGISDynamicMapServiceLayer( layerConfiguration.baseMap.jietubiao, { visible: false, id: "jietubiaoLayer" } );
