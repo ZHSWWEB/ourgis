@@ -814,7 +814,7 @@ function getInfoWindowContent(feature, key) {
                 var year = dataa.getFullYear();
                 var month = dataa.getMonth() + 1;
                 var day = dataa.getDate();
-                var hour = dataa.getHours();
+                var hour = dataa.getHours() - 8;
                 var minu = dataa.getMinutes();
                 var sec = dataa.getSeconds();
                 //传入显示
@@ -831,7 +831,7 @@ function getInfoWindowContent(feature, key) {
                 var year = dataa.getFullYear();
                 var month = dataa.getMonth() + 1;
                 var day = dataa.getDate();
-                var hour = dataa.getHours();
+                var hour = dataa.getHours() - 8;
                 var minu = dataa.getMinutes();
                 var sec = dataa.getSeconds();
                 //传入显示
@@ -859,7 +859,7 @@ function getInfoWindowContent(feature, key) {
                     var year = dataa.getFullYear();
                     var month = dataa.getMonth() + 1;
                     var day = dataa.getDate();
-                    var hour = dataa.getHours();
+                    var hour = dataa.getHours() - 8;
                     var minu = dataa.getMinutes();
                     var sec = dataa.getSeconds();
                     //传入显示
