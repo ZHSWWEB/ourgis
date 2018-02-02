@@ -88,7 +88,7 @@
             visibleConfig = JSON.parse( sessionStorage.getItem( "visibleConfig" ) );
             var opened = false;
             var layerNum = -1;//父级所在序列位置
-            for ( j = 0; j < ids.length; j++ )
+            for ( j = 1; j>=0; j-- )
             {
                 for ( i = 0; i < visibleConfig.length; i++ )
                 {

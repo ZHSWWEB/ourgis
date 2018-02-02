@@ -60,7 +60,7 @@ input{outline:none;}
 #list3 li{width:100%;height:50%;text-align:center;border-bottom:2px solid #ccc ;color:#333;position:relative}
 #list3 li:first-of-type h3 {border-top-width: 2px;border-top-style: solid;border-top-color: #CCC;padding-top: 8px;}
 #list3 li h3 {color: #FFF;margin-top:10px;}
-#list3 li a{line-height:40px;text-indent:-35px;}
+#list3 li a{line-height:26px;text-indent:-35px;}
 #list4{top:120px;}
 #list4 li{width:100%;height:50%;text-align:center;border-bottom:2px solid #ccc ;color:#333;position:relative;}
 #list4 li a{line-height:40px;text-indent:-35px;}
