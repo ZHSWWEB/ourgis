@@ -86,17 +86,27 @@
         function setVisibleSessionStorageTrue( ids )//用于设置跳转时map的图层显示设置
         {
             visibleConfig = JSON.parse( sessionStorage.getItem( "visibleConfig" ) );
-            for ( i = 0; i < visibleConfig.length; i++ )
+            var opened = false;
+            var layerNum = -1;//父级所在序列位置
+            for ( j = 0; j < ids.length; j++ )
             {
-                for ( j = 0; j < ids.length; j++ )
+                for ( i = 0; i < visibleConfig.length; i++ )
                 {
-                    if ( visibleConfig[i].id == ids[j] )
+
+                    if ( visibleConfig[i].id == ids[j])
                     {
-                        visibleConfig[i].visible = true;
+                        if ( visibleConfig[i].visible == true){
+                            opened = true;  
+                        }
+                        layerNum = i;
                     }
                 }
             }
-            sessionStorage.setItem( "visibleConfig", JSON.stringify( visibleConfig ) );
+            if ( !opened )
+            {
+                visibleConfig[layerNum].visible = true;
+                sessionStorage.setItem( "visibleConfig", JSON.stringify( visibleConfig ) );
+            } 
         }
         var timoutID;//用于下拉多选菜单的延迟隐藏
         var url = location.href;

@@ -420,8 +420,9 @@ namespace web.page.formpages
                 GridView1.SelectedIndex = index;
                 string objectId = GridView1.DataKeys[index].Value.ToString();
                 string layerid = Convert.ToString(config.Rows[0]["layerName"]);
+                string parentlayerid = Convert.ToString(config.Rows[0]["parentLayerName"]);
                 //开启定位图层
-                Page.ClientScript.RegisterStartupScript(Page.GetType(), "setVisibleSessionStorageTrue", "setVisibleSessionStorageTrue(['"+ layerid + "'])", true);
+                Page.ClientScript.RegisterStartupScript(Page.GetType(), "setVisibleSessionStorageTrue", "setVisibleSessionStorageTrue(['"+ layerid + "','"+ parentlayerid + "'])", true);
                 //切换到map页
                 Response.Write("<script>parent.$(\"#tomap\").click();</script>");
                 //定位到所选项:由map的initMap.js处理

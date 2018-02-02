@@ -11,7 +11,7 @@
 
 //定义服务链接
 var commandUrl = 'http://192.168.2.55:6080/arcgis/rest/services/';
-var token = '?token=' +'sAtYy20rhv7KicUbJcBDiZyKPXQiS3vckyeoa0TTCgsL-4yU31bf3T6P-9SDjPs5rclPNV1srVDANjL_0zwAsA..';
+var token = '?token=' +'hYmQ9Remo8xhJ17T3q2HQpfVElZEK3bPlVaRWbDEUkmt7c4200aKt_s0w7iIemiR64Te8MmHF2PY4kiIcClKDw..';
 
 //定义图层
 var layerConfiguration = {
@@ -127,26 +127,6 @@ var layerConfiguration = {
             statType: 'count',
             sumField: null
         },
-        difang: {
-            name: '堤防',
-            addToMap: true,
-            visitflag: false,
-            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
-            queryflag: 4,
-            followvisit: "shuiliLayer",
-            minScale: 0,
-            maxScale: 0,
-            url: commandUrl + "QuanLiuYu/shuili/MapServer/2" + token,
-            type: "polyline",
-            titleField: 'LVNM',
-            outFields: ["LVCD", "LVNM", "PRST", "LVGR", "LVTP", "MNUN", "CMUN", "BLSYS", "CTCD", "RVCD", "BNSD", "LVINPS", "LVINCH", "LVINEL", "LVTRPS", "LVTRCH", "LVTREL", "LVLEN", "MAXLVHG", "RVSDBNPTCN", "NSDBNPTCN", "BSSSIN", "FREQIN", "DTPL", "CPYR", "LVOV", "DTUPDT", "BZSL", "DBCD", "DDKD_MAX", "DDKD_MIN", "DFGD_MIN", "DFGD_MAX", "DFLX", "DHXSL", "GCRW", "GHSL", "GLDWBM", "JCSJ_Y", "KJQK", "SFWCHJ", "SFWCQQ", "SJBZ", "SJSW", "SZSL", "JSQK", "DFJB", "DFXS", "GLBM", "HLAB", "GCXT", "REMARK", "XGR", "XGBM", "XGRQ"],
-            displayFields: ["堤防(段)代码", "堤防(段)名称", "工程状态", "堤防(段)级别", "堤防(段)类型", "管理单位", "主管单位", "归属部门", "所在流域代码", "所在河流代码", "岸别", "堤防(段)起点位置", "堤防(段)起点桩号", "堤防(段)起点高程", "堤防(段)终点位置", "堤防(段)终点桩号", "堤防(段)终点高程", "堤防(段)长度", "最大堤高", "临水面护岸情况", "背水面护坡情况", "地震基本烈度", "设防地震烈度", "水准基面", "建成年份", "堤防(段)概况", "数据更新日期", "泵站数量(处)", "达到规范防洪(潮)标准的长度", "堤顶宽度(m)(最大值)", "堤顶宽度(m)(最小值)", "堤防高度(m)(最小值)", "堤防高度(m)(最大值)", "堤防类型", "倒虹吸数量(个)", "工程任务", "管涵数量(个)", "堤防工程管理单位编码", "建成时间(月)", "跨界情况", "是否完成划界", "是否完成确权", "规划防洪(潮)标准(年)", "设计水(高潮)位(m)", "水闸数量(个)", "工程建设情况", "堤防级别", "堤防型式", "堤防工程归口管理部门", "河流岸别", "高程系统", "备注", "修改人", "修改部门", "修改日期"],
-            dateFields: ["数据更新日期", "修改日期"],
-            queryField: ["LVNM"],
-            statisticsFields: {},
-            statType: 'other',
-            sumField: null
-        },
         bengzhan: {
             name: '泵站',
             addToMap: true,
@@ -165,6 +145,26 @@ var layerConfiguration = {
             dateFields: ["建成年份", "数据更新日期", "修改日期"],
             statisticsFields: {},
             statType: 'count',
+            sumField: null
+        },
+        difang: {
+            name: '堤防',
+            addToMap: true,
+            visitflag: false,
+            //queryflag 0-不查 1-查询 3-跟随自身visible 4-跟随其他followvisit
+            queryflag: 4,
+            followvisit: "shuiliLayer",
+            minScale: 0,
+            maxScale: 0,
+            url: commandUrl + "QuanLiuYu/shuili/MapServer/2" + token,
+            type: "polyline",
+            titleField: 'LVNM',
+            outFields: ["LVCD", "LVNM", "PRST", "LVGR", "LVTP", "MNUN", "CMUN", "BLSYS", "CTCD", "RVCD", "BNSD", "LVINPS", "LVINCH", "LVINEL", "LVTRPS", "LVTRCH", "LVTREL", "LVLEN", "MAXLVHG", "RVSDBNPTCN", "NSDBNPTCN", "BSSSIN", "FREQIN", "DTPL", "CPYR", "LVOV", "DTUPDT", "BZSL", "DBCD", "DDKD_MAX", "DDKD_MIN", "DFGD_MIN", "DFGD_MAX", "DFLX", "DHXSL", "GCRW", "GHSL", "GLDWBM", "JCSJ_Y", "KJQK", "SFWCHJ", "SFWCQQ", "SJBZ", "SJSW", "SZSL", "JSQK", "DFJB", "DFXS", "GLBM", "HLAB", "GCXT", "REMARK", "XGR", "XGBM", "XGRQ"],
+            displayFields: ["堤防(段)代码", "堤防(段)名称", "工程状态", "堤防(段)级别", "堤防(段)类型", "管理单位", "主管单位", "归属部门", "所在流域代码", "所在河流代码", "岸别", "堤防(段)起点位置", "堤防(段)起点桩号", "堤防(段)起点高程", "堤防(段)终点位置", "堤防(段)终点桩号", "堤防(段)终点高程", "堤防(段)长度", "最大堤高", "临水面护岸情况", "背水面护坡情况", "地震基本烈度", "设防地震烈度", "水准基面", "建成年份", "堤防(段)概况", "数据更新日期", "泵站数量(处)", "达到规范防洪(潮)标准的长度", "堤顶宽度(m)(最大值)", "堤顶宽度(m)(最小值)", "堤防高度(m)(最小值)", "堤防高度(m)(最大值)", "堤防类型", "倒虹吸数量(个)", "工程任务", "管涵数量(个)", "堤防工程管理单位编码", "建成时间(月)", "跨界情况", "是否完成划界", "是否完成确权", "规划防洪(潮)标准(年)", "设计水(高潮)位(m)", "水闸数量(个)", "工程建设情况", "堤防级别", "堤防型式", "堤防工程归口管理部门", "河流岸别", "高程系统", "备注", "修改人", "修改部门", "修改日期"],
+            dateFields: ["数据更新日期", "修改日期"],
+            queryField: ["LVNM"],
+            statisticsFields: {},
+            statType: 'other',
             sumField: null
         },
         zhili187: {

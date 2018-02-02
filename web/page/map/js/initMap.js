@@ -120,7 +120,8 @@ function initMap(Map) {
     //添加服务ServiceLayer到地图
     //添加图层layer到地图
     for (var key in layerConfiguration.dissertation) {
-        if (layerConfiguration.dissertation[key].addToMap == true) {//当配置文件中addToMap为true时，把图层添加到地图中
+        if ( layerConfiguration.dissertation[key].addToMap == true )
+        {//当配置文件中addToMap为true时，把图层添加到地图中
             var tempLayer = new esri.layers.FeatureLayer(layerConfiguration.dissertation[key].url, { outFields: ["*"], visible: layerConfiguration.dissertation[key].visitflag, id: key });
             map.addLayer(tempLayer);
         }
@@ -258,10 +259,20 @@ function initTools() {
                 //清空图形绘制层
             } );
             //启用项目信息的绘制
-            document.getElementById( "projectPoint" ).onclick = function () {
-                //开始绘制状态
+            document.getElementById( "projectPoint" ).onclick = function ()
+            {
+                //打开图层
+                //if ( !$( ".projectInfo" ).hasClass( "checked" ) )
+                //{
+                //    $( ".projectInfo" ).addClass( "checked" );
+                //    document.getElementsByClassName( "projectInfo" )[0].click();
+                //}
+                //打开图层
+                //重置并开始绘制状态
+                addInterestTool.deactivate();
+                addInterestTool = new Draw( map );
                 isDrawing = true;
-                //开始绘制状态
+                //重置并开始绘制状态
                 //停止缩放工具以及测量工具，以免冲突
                 navToolbar.deactivate();
                 drawTool.deactivate();
@@ -276,10 +287,19 @@ function initTools() {
                 //调用Draw工具绘制
             };
             //启用兴趣项的绘制
-            document.getElementById( "interest_point" ).onclick = function () {
-                //开始绘制状态
+            document.getElementById( "interest_point" ).onclick = function ()
+            {
+                //打开图层
+                if ( !$( ".interestPoint" ).hasClass( "checked" )){
+                    $( ".interestPoint" ).addClass( "checked" );
+                    document.getElementsByClassName( "interestPoint" )[0].click();
+                }
+                //打开图层
+                //重置并开始绘制状态
+                addInterestTool.deactivate();
+                addInterestTool = new Draw( map );
                 isDrawing = true;
-                //开始绘制状态
+                //重置并开始绘制状态
                 //停止缩放工具以及测量工具，以免冲突
                 navToolbar.deactivate();
                 drawTool.deactivate();
@@ -293,10 +313,20 @@ function initTools() {
                 addInterestTool.activate( Draw.POINT );
                 //调用Draw工具绘制
             };
-            document.getElementById( "interest_multipoint" ).onclick = function () {
-                //开始绘制状态
+            document.getElementById( "interest_multipoint" ).onclick = function ()
+            {
+                //打开图层
+                if ( !$( ".interestMultiPoint" ).hasClass( "checked" ) )
+                {
+                    $( ".interestMultiPoint" ).addClass( "checked" );
+                    document.getElementsByClassName( "interestMultiPoint" )[0].click();
+                }
+                //打开图层
+                //重置并开始绘制状态
+                addInterestTool.deactivate();
+                addInterestTool = new Draw( map );
                 isDrawing = true;
-                //开始绘制状态
+                //重置并开始绘制状态
                 //停止缩放工具以及测量工具，以免冲突
                 navToolbar.deactivate();
                 drawTool.deactivate();
@@ -310,10 +340,20 @@ function initTools() {
                 addInterestTool.activate( Draw.MULTI_POINT );
                 //调用Draw工具绘制
             };
-            document.getElementById( "interest_polyline" ).onclick = function () {
-                //开始绘制状态
+            document.getElementById( "interest_polyline" ).onclick = function ()
+            {
+                //打开图层
+                if ( !$( ".interestPolyline" ).hasClass( "checked" ) )
+                {
+                    $( ".interestPolyline" ).addClass( "checked" );
+                    document.getElementsByClassName( "interestPolyline" )[0].click();
+                }
+                //打开图层
+                //重置并开始绘制状态
+                addInterestTool.deactivate();
+                addInterestTool = new Draw( map );
                 isDrawing = true;
-                //开始绘制状态
+                //重置并开始绘制状态
                 //停止缩放工具以及测量工具，以免冲突
                 navToolbar.deactivate();
                 drawTool.deactivate();
@@ -327,10 +367,20 @@ function initTools() {
                 addInterestTool.activate( Draw.POLYLINE );
                 //调用Draw工具绘制
             };
-            document.getElementById( "interest_polygon" ).onclick = function () {
-                //开始绘制状态
+            document.getElementById( "interest_polygon" ).onclick = function ()
+            {
+                //打开图层
+                if ( !$( ".interestPolygon" ).hasClass( "checked" ) )
+                {
+                    $( ".interestPolygon" ).addClass( "checked" );
+                    document.getElementsByClassName( "interestPolygon" )[0].click();
+                }
+                //打开图层
+                //重置并开始绘制状态
+                addInterestTool.deactivate();
+                addInterestTool = new Draw( map );
                 isDrawing = true;
-                //开始绘制状态
+                //重置并开始绘制状态
                 //停止缩放工具以及测量工具，以免冲突
                 navToolbar.deactivate();
                 drawTool.deactivate();

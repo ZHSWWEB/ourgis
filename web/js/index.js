@@ -223,7 +223,7 @@ layui.config({
 	        id: 'LAY_layuipro',
 	        btn: ['火速围观'],
 	        moveType: 1,
-            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>这里是智慧水务研发所正在搭建的地理信息系统,功能尚未完善,如有问题欢迎反馈.</p><p>o<-n ->o</p></div>',
+            content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>祝大家新春愉快，悄悄说一下，新版本的地图发布啦！！！</p><br /><p>全新的管网图、全新的图层菜单。</p><p>快来体验吧！</p><br /><p>Tip：使用时若遇到各种奇奇怪怪的问题，推荐手动清除浏览器缓存及刷新，或联系智慧水务研发所。</p></div>',
 	        success: function(layero){
 				var btn = layero.find('.layui-layer-btn');
 				btn.css('text-align', 'center');
